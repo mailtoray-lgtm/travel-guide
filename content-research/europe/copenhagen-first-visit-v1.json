@@ -1,0 +1,149 @@
+{
+  "schema_version": "1.0",
+  "status": "APPROVED_CONTENT_V1",
+  "city_id": "copenhagen",
+  "city_name": "Copenhagen",
+  "country": "Denmark",
+  "research_date": "2026-08-11",
+  "editorial_owner": "ChatGPT",
+  "implementation_owner": "Codex",
+  "first_time_summary_cn": "第一次到哥本哈根，重点不是把所有王宫和博物馆都扫一遍，而是抓住三条主线：海港城市、仍然活着的王室传统、丹麦把历史空间做成日常生活空间的能力。1天先保留Nyhavn+王室轴线+Tivoli或Rosenborg；2天再补National Museum；3天才扩展更慢的城市生活和专题馆。",
+  "signature_story_cn": "从Nyhavn这个17世纪商业港口开始，步行进入Amalienborg理解现代丹麦王室，再到Rosenborg看Christian IV与王冠珠宝，最后用Tivoli把19世纪城市娱乐文化和今天的Copenhagen连接起来。",
+  "recommended_nights_relaxed_self_drive": 2,
+  "self_drive_strategy_cn": "不要在Indre By逐点开车。自驾到Copenhagen后把车停在住宿停车场或外围停车设施，核心区用步行+Metro。到达日只安排Nyhavn/港口散步；离开日不要再塞需要timed entry的Rosenborg。",
+  "editorial_scale": {"5": "第一次到访不可轻易删除", "4": "很值得；时间允许应加入"},
+  "attractions": [
+    {
+      "id": "nyhavn",
+      "name": "Nyhavn",
+      "editorial_rating": 5,
+      "first_time_required": true,
+      "latitude": 55.680031,
+      "longitude": 12.590950,
+      "coordinate_precision": "site_center",
+      "coordinate_source": "Wikidata coordinate near central Nyhavn; VisitCopenhagen confirms Nyhavn 1-71",
+      "coordinate_verified_date": "2026-08-11",
+      "why_it_matters_cn": "这是最容易让第一次游客马上理解Copenhagen海港性格的地方。它原本是17世纪工作港口和水手世界，如今变成城市最具识别度的公共 waterfront。",
+      "how_to_experience_cn": "清晨或蓝调时段从Kongens Nytorv方向进入，走完两侧，不只在彩色房子最密处拍照。若当天要坐canal cruise，Nyhavn是很自然的起点。",
+      "what_to_look_for_cn": ["17至18世纪彩色联排屋", "老船与窄水道的尺度", "Hans Christian Andersen居住过的Nyhavn地址", "从商业港口到公共生活空间的转变"],
+      "time_required_minutes": 60,
+      "best_time": "early morning or blue hour",
+      "sub_attractions": [
+        {"id": "nyhavn-historic-houses", "name": "Historic harbour houses", "editorial_rating": 5, "why_it_matters_cn": "最直观的Copenhagen城市图像。", "time_required_minutes": 20},
+        {"id": "nyhavn-canal-tour", "name": "Canal tour departure", "editorial_rating": 4, "why_it_matters_cn": "从水上理解港口和城市结构，比只走陆路完整。", "time_required_minutes": 60}
+      ],
+      "sources": [
+        {"source_type": "official", "publisher": "VisitCopenhagen", "url": "https://www.visitcopenhagen.com/copenhagen/planning/nyhavn-gdk474735", "supports": ["history", "first_time_priority", "canal_tours"]},
+        {"source_type": "coordinate", "publisher": "Wikidata", "url": "https://www.wikidata.org/wiki/Q56277532", "supports": ["gps_reference"]}
+      ]
+    },
+    {
+      "id": "amalienborg",
+      "name": "Amalienborg Palace",
+      "editorial_rating": 5,
+      "first_time_required": true,
+      "latitude": 55.684167,
+      "longitude": 12.593333,
+      "coordinate_precision": "site_center",
+      "coordinate_source": "Wikidata Q211053",
+      "coordinate_verified_date": "2026-08-11",
+      "why_it_matters_cn": "Copenhagen不是只剩历史王宫的城市；Amalienborg仍是丹麦王室生活和国家仪式的一部分。广场本身比只看一栋宫殿更重要。",
+      "how_to_experience_cn": "先站广场中央理解四座宫殿的整体构图，再看Frederik's Church方向轴线。若时间配合，可看约中午的Royal Guard换岗，但不要为了仪式牺牲整天。",
+      "what_to_look_for_cn": ["四座宫殿形成的八角形空间", "中央骑马像", "Frederik's Church对景", "王室仪式仍如何使用城市公共空间"],
+      "time_required_minutes": 75,
+      "best_time": "late morning",
+      "sources": [
+        {"source_type": "official", "publisher": "VisitCopenhagen", "url": "https://www.visitcopenhagen.com/copenhagen/things-to-do/museums-and-attractions/royal-castles-and-palaces-thatll-awaken-your-inner-monarch", "supports": ["royal_context", "guard_change"]},
+        {"source_type": "coordinate", "publisher": "Wikidata", "url": "https://www.wikidata.org/wiki/Q211053", "supports": ["gps"]}
+      ]
+    },
+    {
+      "id": "rosenborg-castle",
+      "name": "Rosenborg Castle",
+      "editorial_rating": 5,
+      "first_time_required": true,
+      "latitude": 55.685667,
+      "longitude": 12.577472,
+      "coordinate_precision": "exact",
+      "coordinate_source": "Wikidata Q206101; official address Øster Voldgade 4A",
+      "coordinate_verified_date": "2026-08-11",
+      "why_it_matters_cn": "如果只能选一座Copenhagen王室历史建筑，Rosenborg的信息密度很高：Christian IV、保存良好的房间、Knights' Hall、王冠和Crown Jewels都在一个紧凑路线内。",
+      "how_to_experience_cn": "把Great Hall和Treasury当主线，不必每个房间平均用时间。一定留时间到地下看crown jewels；timed entry要提前锁定。",
+      "what_to_look_for_cn": ["Knights' Hall的coronation thrones", "三只life-size silver lions", "Royal Regalia与Crown Jewels", "Christian IV时代的私人房间", "King's Garden与城堡关系"],
+      "time_required_minutes": 120,
+      "best_time": "first timed entry",
+      "sub_attractions": [
+        {"id": "rosenborg-great-hall", "name": "Knights' Hall", "editorial_rating": 5, "time_required_minutes": 25},
+        {"id": "rosenborg-treasury", "name": "Treasury / Crown Jewels", "editorial_rating": 5, "time_required_minutes": 35},
+        {"id": "kings-garden", "name": "King's Garden", "editorial_rating": 4, "time_required_minutes": 30, "autumn_focus_cn": "成熟树木和城堡外观非常适合秋季慢走。"}
+      ],
+      "sources": [
+        {"source_type": "official", "publisher": "VisitCopenhagen", "url": "https://www.visitcopenhagen.com/copenhagen/planning/rosenborg-castle-gdk410582", "supports": ["history", "highlights", "visit_planning"]},
+        {"source_type": "coordinate", "publisher": "Wikidata", "url": "https://www.wikidata.org/wiki/Q206101", "supports": ["gps"]}
+      ]
+    },
+    {
+      "id": "tivoli-gardens",
+      "name": "Tivoli Gardens",
+      "editorial_rating": 5,
+      "first_time_required": false,
+      "latitude": 55.673611,
+      "longitude": 12.568333,
+      "coordinate_precision": "site_center",
+      "coordinate_source": "Wikidata Q110289; official address Vesterbrogade 3",
+      "coordinate_verified_date": "2026-08-11",
+      "why_it_matters_cn": "Tivoli不是普通主题乐园；它是1843年以来城市pleasure garden传统的一部分，最强体验来自花园、灯光、老式娱乐和城市中心位置的组合。",
+      "how_to_experience_cn": "第一次游客若不追求rides，安排傍晚到夜间2至3小时最合算；如果喜欢历史游乐设施，至少体验一项classic ride并保留时间看灯光。",
+      "what_to_look_for_cn": ["夜间灯光和花园设计", "1914 wooden roller coaster等历史ride", "城市中心与娱乐园无缝连接", "季节性装饰"],
+      "time_required_minutes": 180,
+      "best_time": "late afternoon into evening",
+      "autumn_focus_cn": "若碰到秋季/Halloween运营期，季节装饰会明显提升体验；必须按实际开放日检查。",
+      "sources": [
+        {"source_type": "official", "publisher": "Tivoli", "url": "https://www.tivoli.dk/en/", "supports": ["operations", "seasonality"]},
+        {"source_type": "coordinate", "publisher": "Wikidata", "url": "https://www.wikidata.org/wiki/Q110289", "supports": ["gps"]}
+      ]
+    },
+    {
+      "id": "national-museum-denmark",
+      "name": "National Museum of Denmark",
+      "editorial_rating": 4,
+      "first_time_required": false,
+      "latitude": 55.674722,
+      "longitude": 12.574722,
+      "coordinate_precision": "exact",
+      "coordinate_source": "Wikidata Q648166; official address Ny Vestergade 10",
+      "coordinate_verified_date": "2026-08-11",
+      "why_it_matters_cn": "对想理解丹麦而不是只看漂亮城市的人，这是最有效率的国家历史补课点，尤其是prehistory、Viking与后续丹麦社会。",
+      "how_to_experience_cn": "控制在2至3小时：Danish prehistory/Viking优先，再选一段Middle Ages或modern Denmark；不要把全球collection全扫完。",
+      "what_to_look_for_cn": ["Danish prehistory", "Viking-era objects", "Middle Ages", "Denmark 1660-2000的国家与日常生活"],
+      "time_required_minutes": 150,
+      "best_time": "rainy or cold half-day",
+      "rain_plan": true,
+      "sources": [
+        {"source_type": "official", "publisher": "VisitCopenhagen", "url": "https://www.visitcopenhagen.com/copenhagen/planning/the-national-museum-gdk410508", "supports": ["collections", "first_time_context"]},
+        {"source_type": "coordinate", "publisher": "Wikidata", "url": "https://www.wikidata.org/wiki/Q648166", "supports": ["gps"]}
+      ]
+    }
+  ],
+  "mini_tours": [
+    {
+      "duration": "1_day",
+      "pace": "relaxed",
+      "must_see": ["nyhavn", "amalienborg", "rosenborg-castle"],
+      "optional_evening": ["tivoli-gardens"],
+      "schedule_cn": ["上午：Nyhavn→Amalienborg步行轴线", "午后：Rosenborg Castle + King's Garden", "晚上：有体力再进Tivoli；累了就直接晚饭休息"]
+    },
+    {
+      "duration": "2_days",
+      "pace": "relaxed",
+      "must_see": ["nyhavn", "amalienborg", "rosenborg-castle", "tivoli-gardens", "national-museum-denmark"],
+      "schedule_cn": ["Day 1：港口+王室Copenhagen，晚上Tivoli", "Day 2：National Museum半天 + 旧城自由散步，不再增加大型收费景点"]
+    },
+    {
+      "duration": "3_days",
+      "pace": "relaxed",
+      "must_see": ["nyhavn", "amalienborg", "rosenborg-castle", "tivoli-gardens", "national-museum-denmark"],
+      "schedule_cn": ["Day 1：Nyhavn / Amalienborg / waterfront", "Day 2：Rosenborg + King's Garden + Tivoli evening", "Day 3：National Museum + canal or neighbourhood slow day"]
+    }
+  ]
+}
