@@ -1,0 +1,124 @@
+{
+  "schema_version": "2.0",
+  "status": "APPROVED_CONTENT_V2",
+  "region_id": "europe-alps-france",
+  "title": "Dolomites, Swiss Alps & France — First Visit + Autumn Weather Logic",
+  "research_date": "2026-08-11",
+  "editorial_owner": "ChatGPT",
+  "implementation_owner": "Codex",
+  "regional_rule_cn": "这一段不是按景点数量取胜。能见度、缆车季节、初雪、日照方向和驾驶疲劳决定每天做什么。★★★★★基地的机动夜属于景观本身。",
+  "stops": [
+    {
+      "order": 26,
+      "id": "val-gardena",
+      "name": "Val Gardena / Ortisei",
+      "country": "Italy",
+      "role": "five_star_autumn_mountain_base",
+      "anchor": {"latitude": 46.575208, "longitude": 11.672138, "coordinate_precision": "city_center", "locator_name": "Ortisei", "coordinate_source": "verified structured geographic data", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"name": "Seceda", "gps": [46.6005888889,11.7257944444], "focus_cn": "Odle锯齿峰、草坡断崖与低处金色落叶松；适合晴天主景观日。"},
+        {"name": "Passo Gardena", "gps": [46.55,11.8094388889], "focus_cn": "自驾signature段：Sella/Cir群峰、Ladin山谷和山口道路。"},
+        {"name": "Lago di Braies", "gps": [46.6936111111,12.085], "focus_cn": "清晨沿湖走而不是只在码头拍照；看水、Dolomite墙与金松倒影。"},
+        {"name": "Alpe di Siusi", "gps": [46.5411111111,11.6446944444], "focus_cn": "更轻松的高山草甸+落叶松选择，适合不想做高强度山日。"},
+        {"name": "Tre Cime di Lavaredo", "gps": [46.6186111111,12.3055611111], "focus_cn": "独立整日/大半日远征；地质图标+一战高山边境痕迹，不与Seceda同日。"}
+      ],
+      "four_star": ["Ortisei/Ladin village slow evening", "short golden-larch forest walks selected by current conditions"],
+      "first_visit_story_cn": "把Dolomites看成古海洋沉积岩被抬升侵蚀成石塔，再看Ladin山谷、公路和一战边境如何在人类层面进入这片地形。秋天的主角是金色落叶松与第一场雪的反差。",
+      "plans": {
+        "1_day": ["只能一天：晴天Seceda；若缆车停或低云，改Passo Gardena + Alpe di Siusi低风险组合"],
+        "2_days": ["Day 1 Seceda", "Day 2 Passo Gardena + Alpe di Siusi"],
+        "3_days": ["前两天", "Day 3 Lago di Braies清晨；Tre Cime只在道路/天气/体力都允许时替换"],
+        "4_plus": ["四晚以上才合理加入Tre Cime独立日", "保留至少1天气象机动，不提前把每一天锁死"]
+      },
+      "self_drive_cn": "山路按时间和精神负荷算，不按英里。一天只设置一个高海拔主任务；下午3点后不为了‘再看一个湖’跨山赶路。",
+      "season_logic_cn": "缆车与高山道路运营期每年不同；出发前7–14天及当天再次查官方运营。"
+    },
+    {
+      "order": 27,
+      "id": "engadin",
+      "name": "St. Moritz / Engadin",
+      "country": "Switzerland",
+      "role": "five_star_autumn_larch_base",
+      "anchor": {"latitude": 46.4972222222, "longitude": 9.8377777778, "coordinate_precision": "city_center", "locator_name": "St. Moritz", "coordinate_source": "Wikidata structured coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"name": "Engadin lake chain / Lake St. Moritz", "gps": [46.4944444444,9.8458333333], "focus_cn": "宽阔高谷、蓝湖与金松，是欧洲最典型的秋季larch组合之一。"},
+        {"name": "Muottas Muragl", "gps": [46.5219444444,9.9022222222], "focus_cn": "高处一次看完整湖链和冰川谷地结构。"}
+      ],
+      "four_star": ["Val Fex slow valley walk", "St. Moritz village only as base, not luxury-shopping objective"],
+      "plans": {"1_day": ["湖链+golden larch viewpoints", "日落Muottas Muragl仅在运营/能见度好时"], "2_days": ["Day 1 lakes", "Day 2 Muottas Muragl/Val Fex按天气选择"], "3_days": ["第三天为秋色追踪/天气机动，不新增远距离景点"]},
+      "self_drive_cn": "高谷天气变化快；若到达日已从Dolomites开了山路，只做湖边，不再上高处。"
+    },
+    {
+      "order": 28,
+      "id": "grindelwald-interlaken",
+      "name": "Grindelwald / Interlaken",
+      "country": "Switzerland",
+      "role": "five_star_high_alpine_base",
+      "anchor": {"latitude": 46.6255555556, "longitude": 8.0333333333, "coordinate_precision": "city_center", "locator_name": "Grindelwald", "coordinate_source": "Wikidata structured coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"name": "Jungfraujoch", "gps": [46.5477777778,7.9830555556], "focus_cn": "只有能见度好才值得高成本上山；主角是Aletsch Glacier与铁路工程。"},
+        {"name": "Grindelwald First", "gps": [46.6603305556,8.0529888889], "focus_cn": "Eiger前排视角、Cliff Walk和可控制强度的短步道。"},
+        {"name": "Lauterbrunnen Valley", "focus_cn": "把巨大U形冰川谷、瀑布和村庄尺度放在一起看；比连续坐第二套高山缆车更适合放松日。"}
+      ],
+      "four_star": ["Interlaken lakeside as recovery", "Zermatt/Matterhorn only as separate extension, NEVER label as a Grindelwald local attraction"],
+      "plans": {"1_day": ["最晴日Jungfraujoch；若云厚改Lauterbrunnen"], "2_days": ["Day 1晴天Jungfraujoch", "Day 2 First或Lauterbrunnen二选一"], "3_days": ["第三天把前两项剩余者做轻松版", "至少半天完全不坐交通工具追景"]},
+      "self_drive_cn": "基地停车后大量使用火车/缆车。不要在一个晴天上午结束Jungfraujoch后又跨区追第二座山。",
+      "weather_logic_cn": "昂贵高山票以短期天气预报为核心；能见度差时主动放弃是正确旅行决策。"
+    },
+    {
+      "order": 29,
+      "id": "chamonix",
+      "name": "Chamonix-Mont-Blanc",
+      "country": "France",
+      "role": "high_alpine_base",
+      "anchor": {"latitude": 45.92, "longitude": 6.87, "coordinate_precision": "lower_station_area", "locator_name": "Aiguille du Midi lower cable-car station area", "coordinate_source": "verified geographic coordinate / Chamonix lift area", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"name": "Aiguille du Midi", "gps": [45.8788888889,6.8875], "focus_cn": "Mont Blanc massif的360度垂直尺度；天气差不去。"},
+        {"name": "Mer de Glace / Montenvers", "gps": [45.9161111111,6.9372222222], "focus_cn": "从历史冰川高度标记看真实退缩，把冰川景观连接到气候变化。"}
+      ],
+      "four_star": ["Chamonix valley slow walk", "Lac Blanc only with suitable trail/weather/season"],
+      "plans": {"1_day": ["晴天Aiguille du Midi；下午只做Chamonix慢走"], "2_days": ["Day 1 Aiguille", "Day 2 Montenvers/Mer de Glace"], "3_days": ["第三天只给轻徒步或天气补考"]},
+      "self_drive_cn": "到达后停车；主景点靠缆车/火车。高海拔反应会增加疲劳，不能用普通城市日强度计算。"
+    },
+    {
+      "order": 30,
+      "id": "annecy",
+      "name": "Annecy",
+      "country": "France",
+      "role": "recovery_lake_city",
+      "anchor": {"latitude": 45.8985805556, "longitude": 6.1268305556, "coordinate_precision": "exact", "locator_name": "Palais de l’Isle", "coordinate_source": "Wikidata structured coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": ["Old Town canals + Lake Annecy as one experience"],
+      "four_star": [{"name": "Pont des Amours / lakeside", "gps": [45.9,6.13]}, "Col de la Forclaz viewpoint only if weather and driving energy support"],
+      "plans": {"1_day": ["上午旧城/Palais de l’Isle", "午后湖边长散步", "不安排大型馆"], "2_days": ["第二天才加湖岸drive/viewpoint或完全休息"]},
+      "self_drive_cn": "这是故意安排的恢复站。前面连续高山后，这一天少做就是做对。"
+    },
+    {
+      "order": 31,
+      "id": "avignon",
+      "name": "Avignon",
+      "country": "France",
+      "role": "historic_city",
+      "anchor": {"latitude": 43.9508333333, "longitude": 4.8075, "coordinate_precision": "site_center", "locator_name": "Palais des Papes", "coordinate_source": "Wikidata structured coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"name": "Palais des Papes", "gps": [43.9508333333,4.8075], "focus_cn": "14世纪教廷迁居Avignon，理解为何巨大空间像堡垒而不是浪漫宫殿。"},
+        {"name": "Pont du Gard", "gps": [43.9472222222,4.5355555556], "focus_cn": "Roman gravity-fed aqueduct engineering；自驾非常值得的半日detour。"}
+      ],
+      "four_star": [{"name": "Pont Saint-Bénézet", "gps": [43.9538888889,4.805]}],
+      "plans": {"1_day": ["上午Palais des Papes", "午后Pont Saint-Bénézet + old center"], "2_days": ["Day 2 Pont du Gard半日 + 慢Provence"]},
+      "self_drive_cn": "若只有一晚，不要同时硬做Pont du Gard；把它放在两晚或下一个转场的白天。"
+    },
+    {
+      "order": 32,
+      "id": "collioure",
+      "name": "Collioure",
+      "country": "France",
+      "role": "coastal_art_transit",
+      "anchor": {"latitude": 42.5255555556, "longitude": 3.0845833333, "coordinate_precision": "site_center", "locator_name": "Château Royal / waterfront", "coordinate_source": "verified structured geographic data", "coordinate_verified_date": "2026-08-11"},
+      "five_star": ["Waterfront + Château Royal composition at golden hour"],
+      "four_star": ["Fauvism art trail / Matisse-Derain context"],
+      "first_visit_story_cn": "这里不是普通海边小镇：Matisse和Derain在强烈地中海色彩中推动Fauvism。到了现场要主动看赭色墙、蓝海和山影的颜色关系。",
+      "plans": {"1_day": ["下午到达后harbor/Château", "golden hour完整留给waterfront", "晚饭后休息"]},
+      "self_drive_cn": "不要把它变成Barcelona前的快速午餐站；一晚的价值就是晚光和清晨。"
+    }
+  ]
+}
