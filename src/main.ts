@@ -53,14 +53,14 @@ const trip = {
 const assetBase = import.meta.env.BASE_URL;
 
 const driveSections = [
-  ["03 DRIVE 1", "Amsterdam", "Lillehammer"],
-  ["04 DRIVE 2", "Lillehammer", "Warsaw"],
-  ["05 DRIVE 3", "Warsaw", "Grindelwald"],
-  ["06 DRIVE 4", "Grindelwald", "Porto"],
-  ["07 DRIVE 5", "Porto", "Port of Barcelona"],
-  ["08 DRIVE 6", "Civitavecchia", "Shkodër"],
-  ["09 DRIVE 7", "Shkodër", "Belgrade"],
-  ["10 DRIVE 8", "Belgrade", "Amsterdam Schiphol"],
+  { name: "03 DRIVE 1", from: "Amsterdam", to: "Lillehammer", opensAt: "Amsterdam" },
+  { name: "04 DRIVE 2", from: "Lillehammer", to: "Warsaw", opensAt: "Lillehammer" },
+  { name: "05 DRIVE 3", from: "Warsaw", to: "Grindelwald", opensAt: "Warsaw" },
+  { name: "06 DRIVE 4", from: "Grindelwald", to: "Porto", opensAt: "Grindelwald" },
+  { name: "07 DRIVE 5", from: "Porto", to: "Port of Barcelona", opensAt: "Porto" },
+  { name: "08 DRIVE 6", from: "Civitavecchia", to: "Shkodër", opensAt: "Rome" },
+  { name: "09 DRIVE 7", from: "Shkodër", to: "Belgrade", opensAt: "Shkodër" },
+  { name: "10 DRIVE 8", from: "Belgrade", to: "Amsterdam Schiphol", opensAt: "Belgrade" },
 ];
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
@@ -313,6 +313,33 @@ function stopAttractions() {
   return selectedPriority === "All" ? list : list.filter((a) => a.Priority === selectedPriority);
 }
 
+function driveStartIndex(from: string) {
+  const normalizedFrom = from.toLowerCase();
+  const index = routeStops.findIndex(
+    (stop) =>
+      stop.Map_Name.toLowerCase() === normalizedFrom ||
+      stop.Map_Name.toLowerCase().includes(normalizedFrom) ||
+      stop.Location.toLowerCase().includes(normalizedFrom),
+  );
+  return Math.max(0, index);
+}
+
+function driveEndIndex(to: string) {
+  const normalizedTo = to.toLowerCase();
+  const index = routeStops.findIndex(
+    (stop) =>
+      stop.Map_Name.toLowerCase() === normalizedTo ||
+      stop.Map_Name.toLowerCase().includes(normalizedTo) ||
+      stop.Location.toLowerCase().includes(normalizedTo),
+  );
+  return index >= 0 ? index : routeStops.length - 1;
+}
+
+function setStop(index: number) {
+  selectedStop = Math.max(0, Math.min(routeStops.length - 1, index));
+  routeProgress = selectedStop / Math.max(1, routeStops.length - 1);
+}
+
 function speak() {
   const stop = routeStops[selectedStop];
   const text =
@@ -363,8 +390,17 @@ function render() {
         <aside class="stops" aria-label="Route stops">
           ${driveSections
             .map(
-              ([name, from, to]) =>
-                `<div class="drive-chip"><strong>${html(name)}</strong><span>${html(from)} → ${html(to)}</span></div>`,
+              ({ name, from, to, opensAt }) => {
+                const start = driveStartIndex(opensAt);
+                const end = driveEndIndex(to);
+                const active = selectedStop >= start && selectedStop <= end;
+                return `
+                  <button class="drive-chip ${active ? "active" : ""}" data-drive="${start}">
+                    <strong>${html(name)}</strong>
+                    <span>${html(from)} → ${html(to)}</span>
+                  </button>
+                `;
+              },
             )
             .join("")}
           <div class="stop-list">
@@ -480,19 +516,24 @@ function render() {
 function bind() {
   document.querySelectorAll<HTMLButtonElement>("[data-stop]").forEach((button) => {
     button.addEventListener("click", () => {
-      selectedStop = Number(button.dataset.stop);
-      routeProgress = selectedStop / Math.max(1, routeStops.length - 1);
+      setStop(Number(button.dataset.stop));
+      playing = false;
+      render();
+    });
+  });
+  document.querySelectorAll<HTMLButtonElement>("[data-drive]").forEach((button) => {
+    button.addEventListener("click", () => {
+      setStop(Number(button.dataset.drive));
+      playing = false;
       render();
     });
   });
   document.querySelector("#prev-stop")?.addEventListener("click", () => {
-    selectedStop = Math.max(0, selectedStop - 1);
-    routeProgress = selectedStop / Math.max(1, routeStops.length - 1);
+    setStop(selectedStop - 1);
     render();
   });
   document.querySelector("#next-stop")?.addEventListener("click", () => {
-    selectedStop = Math.min(routeStops.length - 1, selectedStop + 1);
-    routeProgress = selectedStop / Math.max(1, routeStops.length - 1);
+    setStop(selectedStop + 1);
     render();
   });
   document.querySelector("#play")?.addEventListener("click", () => {
@@ -509,8 +550,8 @@ function bind() {
     render();
   });
   document.querySelector<HTMLInputElement>("#route-progress")?.addEventListener("input", (event) => {
-    selectedStop = Number((event.target as HTMLInputElement).value);
-    routeProgress = selectedStop / Math.max(1, routeStops.length - 1);
+    setStop(Number((event.target as HTMLInputElement).value));
+    playing = false;
     render();
   });
 }
