@@ -1,0 +1,252 @@
+{
+  "schema_version": "2.0",
+  "status": "APPROVED_CONTENT_V2",
+  "region_id": "europe-greece-balkans-return",
+  "title": "Greece, Balkans, Danube & Return — First Visit + Relaxed Self-Drive",
+  "research_date": "2026-08-11",
+  "editorial_owner": "ChatGPT",
+  "implementation_owner": "Codex",
+  "regional_rule_cn": "这段已进入12月前后：日照短、山地天气与边境时间比‘公里数’更重要。大型古迹日与长驾驶日分开，Danube/Rhine回程站允许纯恢复，不强迫每晚都有★★★★★。",
+  "stops": [
+    {
+      "order": 56,
+      "id": "patras",
+      "name": "Patras",
+      "country": "Greece",
+      "role": "logistics_rest_gateway",
+      "anchor": {"latitude": 38.2423761111, "longitude": 21.7278638889, "coordinate_precision": "exact", "locator_name": "Cathedral of Saint Andrew", "coordinate_source": "verified WGS84 monument coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [],
+      "four_star": [
+        {"id":"st-andrew","name":"Cathedral of Saint Andrew","gps":[38.2423761111,21.7278638889]},
+        {"id":"roman-odeon","name":"Roman Odeon of Patras","gps":[38.2433222222,21.738275]}
+      ],
+      "plans": {"1_day":["若到达早且精神好，St Andrew或Roman Odeon二选一", "其余作为洗衣、补给、休息日"]},
+      "self_drive_cn": "Patras的价值首先是Peloponnese/西希腊物流缓冲；不要为了证明‘来过’把两处都赶完。"
+    },
+    {
+      "order": 57,
+      "id": "athens",
+      "name": "Athens",
+      "country": "Greece",
+      "role": "major_world_city",
+      "anchor": {"latitude": 37.9716666667, "longitude": 23.7261111111, "coordinate_precision": "archaeological_site", "locator_name": "Acropolis of Athens", "coordinate_source": "verified WGS84 UNESCO/heritage coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"id":"acropolis","name":"Acropolis / Parthenon","gps":[37.9716666667,23.7261111111],"why_cn":"不是一座孤立神庙，而是古典Athens把宗教、战争胜利、公民身份和城市视觉权力放到同一座高地。", "time_minutes":150},
+        {"id":"acropolis-museum","name":"Acropolis Museum","gps":[37.9684194444,23.7284694444],"why_cn":"必须在上山之后看，让雕塑、建筑碎片和Parthenon Gallery重新回到原空间关系。", "time_minutes":150},
+        {"id":"ancient-agora","name":"Ancient Agora","gps":[37.975,23.7225],"why_cn":"如果Acropolis是神圣/国家形象，Agora就是公民政治、商业和日常社会。", "time_minutes":120}
+      ],
+      "four_star": [
+        {"id":"plaka","name":"Plaka slow walk","gps":[37.9726,23.7292],"coordinate_precision":"district_anchor","why_cn":"作为古迹之间的生活性缓冲，不当成另一个任务。"},
+        {"id":"sounion","name":"Temple of Poseidon at Cape Sounion","gps":[37.65025,24.0245555556],"coordinate_precision":"exact","why_cn":"有第三天且天气清楚才做；海神庙的力量来自Aegean海上门户位置。"}
+      ],
+      "plans": {"1_day":["第一时段Acropolis", "Acropolis Museum", "晚上Plaka；不再塞Agora"], "2_days":["Day 1 Acropolis + Museum", "Day 2 Ancient Agora + old-city慢走"], "3_days":["前两天核心", "Day 3天气好才Sounion sunset；天气差留城休息/博物馆"]},
+      "self_drive_cn": "Athens核心不要开车。Sounion才取车；如果Sounion日落后夜驾，不安排第二个远程项目。",
+      "sources": [{"publisher":"Acropolis Museum official","url":"https://www.theacropolismuseum.gr/en/plan-your-visit","supports":["museum operations","museum/site separate tickets","winter hours"]}]
+    },
+    {
+      "order": 58,
+      "id": "delphi",
+      "name": "Delphi",
+      "country": "Greece",
+      "role": "archaeology_landscape",
+      "anchor": {"latitude": 38.482015, "longitude": 22.500215, "coordinate_precision": "archaeological_site", "locator_name": "Delphi Archaeological Site", "coordinate_source": "verified WGS84 archaeological coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"id":"site","name":"Delphi Archaeological Site","gps":[38.482015,22.500215],"why_cn":"Pythia/oracle的权威不只来自宗教仪式；山坡、Pleistos valley和通往Temple of Apollo的上升路线共同创造神圣感。"},
+        {"id":"museum","name":"Delphi Archaeological Museum","gps":[38.4802944444,22.4998388889],"why_cn":"把Treasury、Charioteer等出土物重新连接到刚走过的sanctuary。"}
+      ],
+      "four_star": [],
+      "plans": {"1_day":["上午site顺坡而上", "午间museum", "下午早点结束，避免冬季山路摸黑"]},
+      "self_drive_cn": "海拔和山路使Athens的温度感不适用；12月必须把日落时间写进离开计划。",
+      "sources": [{"publisher":"Visit Greece","url":"https://www.visitgreece.gr/mainland/central-greece/delphi/","supports":["oracle significance","destination context"]}]
+    },
+    {
+      "order": 59,
+      "id": "meteora",
+      "name": "Meteora",
+      "country": "Greece",
+      "role": "five_star_spiritual_landscape",
+      "anchor": {"latitude": 39.7263330556, "longitude": 21.6262869444, "coordinate_precision": "exact", "locator_name": "Great Meteoron Monastery", "coordinate_source": "verified WGS84 monastery coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"id":"great-meteoron","name":"Great Meteoron Monastery","gps":[39.7263330556,21.6262869444],"why_cn":"至少进入一座主修道院内部，才不会把Meteora变成纯岩柱摄影。"},
+        {"id":"varlaam","name":"Varlaam Monastery","gps":[39.7251938889,21.6301919444],"why_cn":"与Great Meteoron形成第二个内部样本；体力不足时二选一。"},
+        {"id":"psaropetra","name":"Psaropetra / Meteora sunset viewpoint","gps":[39.714167,21.631111],"coordinate_precision":"viewpoint","coordinate_source":"Wikimedia geotagged viewpoint record cross-checked with Meteora road geography","why_cn":"在安全固定视点看岩柱、修道院和平原随夕阳失去颜色，而不是在公路弯道随意停车。"}
+      ],
+      "four_star": [],
+      "plans": {"1_day":["上午Great Meteoron或Varlaam至少一座", "午后另一座视体力决定", "日落Psaropetra固定视点"]},
+      "plans_2_days": ["Day 1两座修道院以内", "Day 2慢景观/短步道/天气补考，不追求六座全刷"],
+      "self_drive_cn": "修道院有轮休日/冬季时段差异，前一天查当天开放；停车位与台阶时间必须计入。",
+      "sources": [{"publisher":"Visit Greece","url":"https://www.visitgreece.gr/en/experiences/nature/volcanoes/rock-climbing-at-meteora","supports":["rock-landscape and monastic history context"]}]
+    },
+    {
+      "order": 60,
+      "id": "skopje",
+      "name": "Skopje",
+      "country": "North Macedonia",
+      "role": "balkan_transit_city",
+      "anchor": {"latitude": 42.0008333333, "longitude": 21.4369444444, "coordinate_precision": "district_center", "locator_name": "Old Bazaar", "coordinate_source": "verified WGS84 historic-district coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [],
+      "four_star": [
+        {"id":"old-bazaar","name":"Old Bazaar","gps":[42.0008333333,21.4369444444]},
+        {"id":"stone-bridge","name":"Stone Bridge","gps":[41.997,21.4331111111]},
+        {"id":"matka","name":"Matka Canyon / Lake Matka","gps":[41.9522388889,21.2987777778],"availability":"DAYLIGHT_WEATHER_ONLY"}
+      ],
+      "plans": {"1_day":["Old Bazaar→Stone Bridge 2–3小时", "Matka只有早到且天气/日照好才做，不与长边境日硬拼"]},
+      "self_drive_cn": "这是跨国长线上的文化停点，没有全球★★★★★也完全正常；边境延误后直接删Matka。"
+    },
+    {
+      "order": 61,
+      "id": "nis",
+      "name": "Niš",
+      "country": "Serbia",
+      "role": "historic_transit",
+      "anchor": {"latitude": 43.3259, "longitude": 21.8954, "coordinate_precision": "site_center", "locator_name": "Niš Fortress", "coordinate_source": "verified WGS84 fortress coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [],
+      "four_star": [
+        {"id":"fortress","name":"Niš Fortress","gps":[43.3259,21.8954]},
+        {"id":"skull-tower","name":"Skull Tower","gps":[43.3122222222,21.9238888889],"why_cn":"用具体、沉重的物证理解Ottoman-Serbian conflict记忆；不适合作为娱乐打卡。"}
+      ],
+      "plans": {"1_day":["Fortress轻走", "对历史有兴趣再Skull Tower", "其余休息"]},
+      "self_drive_cn": "Skopje→Niš属于跨境转场，实际耗时可能显著高于纯导航；别锁死入场。"
+    },
+    {
+      "order": 62,
+      "id": "belgrade",
+      "name": "Belgrade",
+      "country": "Serbia",
+      "role": "major_balkan_city",
+      "anchor": {"latitude": 44.8236111111, "longitude": 20.4502777778, "coordinate_precision": "fortification_center", "locator_name": "Belgrade Fortress", "coordinate_source": "verified WGS84 fortress coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"id":"fortress","name":"Belgrade Fortress / Kalemegdan confluence","gps":[44.8236111111,20.4502777778],"why_cn":"Sava与Danube交汇解释了为什么这里两千年来反复被争夺；地理就是历史主角。"},
+        {"id":"st-sava","name":"Church of Saint Sava","gps":[44.7980555556,20.4686111111],"why_cn":"现代Serbian Orthodox国家/宗教身份的巨大空间表达，内部mosaics比外观照片更重要。"}
+      ],
+      "four_star": [
+        {"id":"knez","name":"Knez Mihailova Street","gps":[44.8177777778,20.4569444444],"coordinate_precision":"street_center","why_cn":"把现代city core步行连接到Fortress；不单独安排交通。"}
+      ],
+      "plans": {"1_day":["Knez Mihailova→Fortress/confluence", "傍晚St Sava"], "2_days":["Day 1核心两项", "Day 2才增加专题museum/neighbourhood；也可纯休息"]},
+      "self_drive_cn": "进城停车；Belgrade不是靠开车串景点。",
+      "sources": [{"publisher":"Tourist Organization of Belgrade","url":"https://www.tob.rs/en/see-belgrade/cultural-monuments-and-historic-landmarks/belgrade-fortress","supports":["fortress","Sava-Danube confluence"]},{"publisher":"Tourist Organization of Belgrade","url":"https://www.tob.rs/en/what-to-see/belgrade-attractions/st-sava-church","supports":["St Sava context"]}]
+    },
+    {
+      "order": 63,
+      "id": "novi-sad",
+      "name": "Novi Sad",
+      "country": "Serbia",
+      "role": "danube_transit",
+      "anchor": {"latitude": 45.2525, "longitude": 19.8625, "coordinate_precision": "fortification_center", "locator_name": "Petrovaradin Fortress", "coordinate_source": "verified WGS84 coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [{"id":"petrovaradin","name":"Petrovaradin Fortress","gps":[45.2525,19.8625],"rating_context":"★★★★★ within Novi Sad transit context","why_cn":"从Habsburg-Ottoman frontier到今天艺术/文化使用，最能解释Novi Sad为什么在Danube上重要。"}],
+      "four_star": [{"id":"old-center","name":"Novi Sad old center","gps":[45.255,19.845],"coordinate_precision":"city_core_anchor"}],
+      "plans": {"1_day":["下午Fortress", "过桥老城晚饭", "结束"]},
+      "self_drive_cn": "Belgrade后只有短转场，保持轻松，为Budapest入境/驾驶留余量。",
+      "sources": [{"publisher":"Novi Sad Tourism Organisation","url":"https://novisad.travel/en/petrovaradin-fortress/","supports":["fortress significance","current cultural use"]}]
+    },
+    {
+      "order": 64,
+      "id": "budapest",
+      "name": "Budapest",
+      "country": "Hungary",
+      "role": "major_city",
+      "anchor": {"latitude": 47.5069444444, "longitude": 19.0455555556, "coordinate_precision": "site_center", "locator_name": "Hungarian Parliament", "coordinate_source": "verified WGS84 monument coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"id":"parliament-danube","name":"Parliament + Danube night view","gps":[47.5069444444,19.0455555556],"why_cn":"Budapest必须从河两岸和水上读；Parliament不是孤立建筑，而是国家形象与Danube城市构图中心。"},
+        {"id":"castle-hill","name":"Fisherman’s Bastion + Matthias Church / Castle Hill","gps":[47.5021944444,19.0346944444],"secondary_gps":[47.5019444444,19.0341666667],"why_cn":"清晨从Buda看Pest和Parliament，最容易理解双城合一后的空间关系。"},
+        {"id":"szechenyi","name":"Széchenyi Thermal Bath","gps":[47.5183333333,19.0822222222],"why_cn":"长途自驾恢复本身就是正当行程；冷空气中户外温泉把Budapest地热/浴场文化变成身体体验。"}
+      ],
+      "four_star": [
+        {"id":"chain-bridge","name":"Chain Bridge","gps":[47.4988888889,19.0436111111]},
+        {"id":"market-hall","name":"Great Market Hall","gps":[47.4866944444,19.0588055556]}
+      ],
+      "plans": {"1_day":["清晨Castle Hill", "午后Pest/Parliament", "夜Danube"], "2_days":["Day 1 river city", "Day 2 Széchenyi + light city"], "3_days":["第三天Market/extra museum，但保留半天恢复"]},
+      "self_drive_cn": "车停住。温泉不是‘可有可无浪费时间’，在长线road trip里它是恢复设计。"
+    },
+    {
+      "order": 65,
+      "id": "vienna",
+      "name": "Vienna",
+      "country": "Austria",
+      "role": "major_imperial_city",
+      "anchor": {"latitude": 48.1847888889, "longitude": 16.3122694444, "coordinate_precision": "palace_center", "locator_name": "Schönbrunn Palace", "coordinate_source": "verified WGS84 monument coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"id":"schonbrunn","name":"Schönbrunn Palace + garden axis","gps":[48.1847888889,16.3122694444],"why_cn":"Habsburg summer court、state rooms和Gloriette轴线一起看；不要只刷房间。"},
+        {"id":"hofburg","name":"Hofburg / Heldenplatz imperial core","gps":[48.2063888889,16.3652777778],"why_cn":"超过七百年Habsburg统治核心逐步扩张出的巨大宫殿系统。"},
+        {"id":"khm","name":"Kunsthistorisches Museum","gps":[48.2038805556,16.3616],"why_cn":"如果只选一座Vienna艺术馆，它最能把Habsburg收藏与欧洲绘画/古典艺术联系起来。"},
+        {"id":"st-stephen","name":"St. Stephen’s Cathedral","gps":[48.2084269444,16.3732561111],"why_cn":"老城视觉/宗教核心；从街面和塔楼城市尺度理解Vienna。"}
+      ],
+      "four_star": [{"id":"ring","name":"Ringstrasse walking/tram segment","gps":[48.2047,16.3603],"coordinate_precision":"route_anchor","why_cn":"19世纪拆城防后，用博物馆、议会、歌剧院和boulevard重新展示帝国/市民现代性。"}],
+      "plans": {"1_day":["上午Schönbrunn", "下午St Stephen + old center；不要再塞KHM"], "2_days":["Day 1 Schönbrunn + center", "Day 2 Hofburg + KHM二选一为主，Ringstrasse晚间"], "3_days":["第三天才把Hofburg与KHM都完整做；保持咖啡馆/无预约时间"]},
+      "self_drive_cn": "Vienna不能一天连续三个palace/museum。车停住，U-Bahn/tram。",
+      "sources": [{"publisher":"Vienna Tourist Board","url":"https://www.wien.info/en/viennatravel-364122","supports":["first-visit must-sees"]},{"publisher":"Vienna Tourist Board","url":"https://www.wien.info/en/recommendations/vienna-in-three-days","supports":["first-time 3-day pacing"]}]
+    },
+    {
+      "order": 66,
+      "id": "linz",
+      "name": "Linz",
+      "country": "Austria",
+      "role": "recovery_transit",
+      "anchor": {"latitude": 48.3091666667, "longitude": 14.2841666667, "coordinate_precision": "site_center", "locator_name": "Ars Electronica Center", "coordinate_source": "verified WGS84 museum coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [],
+      "four_star": [{"id":"ars","name":"Ars Electronica Center","gps":[48.3091666667,14.2841666667]}, {"id":"danube","name":"Danube waterfront","gps":[48.3065,14.2854],"coordinate_precision":"waterfront_anchor"}],
+      "plans": {"1_day":["想看technology就Ars Electronica", "否则只Danube走路+休息"]},
+      "self_drive_cn": "这是明确的恢复站，允许零景点。"
+    },
+    {
+      "order": 67,
+      "id": "regensburg",
+      "name": "Regensburg",
+      "country": "Germany",
+      "role": "historic_transit",
+      "anchor": {"latitude": 49.0217777778, "longitude": 12.0972777778, "coordinate_precision": "exact", "locator_name": "Stone Bridge", "coordinate_source": "verified WGS84 monument coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [{"id":"bridge-altstadt","name":"Stone Bridge + Altstadt ensemble","gps":[49.0217777778,12.0972777778],"why_cn":"Danube trade corridor与保存异常完整的medieval city core在一段步行里完成。"}],
+      "four_star": [{"id":"cathedral","name":"Regensburg Cathedral","gps":[49.01946,12.0983019444]}],
+      "plans": {"1_day":["Stone Bridge进入old town", "Cathedral", "晚饭后结束"]},
+      "self_drive_cn": "一晚2小时高质量步行足够。"
+    },
+    {
+      "order": 68,
+      "id": "wurzburg",
+      "name": "Würzburg",
+      "country": "Germany",
+      "role": "baroque_transit",
+      "anchor": {"latitude": 49.7927980556, "longitude": 9.9388888889, "coordinate_precision": "site_center", "locator_name": "Würzburg Residence", "coordinate_source": "verified WGS84 monument coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [{"id":"residence","name":"Würzburg Residence","gps":[49.7927980556,9.9388888889],"why_cn":"Tiepolo ceiling和grand staircase把Baroque court architecture推到极致，也解释碎片化German princely states的财富表达。"}],
+      "four_star": [{"id":"marienberg","name":"Marienberg Fortress","gps":[49.7897738889,9.9211061111],"availability":"DAYLIGHT_ONLY"}],
+      "plans": {"1_day":["上午/下午Residence", "短日照下有余量才Marienberg"]},
+      "self_drive_cn": "12月优先室内Residence；不要天黑后为了fortress view赶山路。"
+    },
+    {
+      "order": 69,
+      "id": "middle-rhine",
+      "name": "Bacharach / Middle Rhine",
+      "country": "Germany",
+      "role": "scenic_return_drive",
+      "anchor": {"latitude": 50.0611111111, "longitude": 7.7694444444, "coordinate_precision": "town_center", "locator_name": "Bacharach", "coordinate_source": "verified WGS84 town coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [{"id":"rhine-drive","name":"Middle Rhine scenic corridor","gps":[50.0611111111,7.7694444444],"coordinate_precision":"route_anchor","why_cn":"窄河谷把贸易、收费城堡、vineyard terraces和Romantic Rhine想象压缩在同一走廊。"}],
+      "four_star": [{"id":"bacharach","name":"Bacharach Old Town","gps":[50.0611111111,7.7694444444]}, {"id":"stahleck","name":"Stahleck Castle viewpoint","gps":[50.0580555556,7.7655555556]}],
+      "plans": {"1_day":["白天沿Rhine只做短scenic segment", "Bacharach 1–2小时", "日落前结束驾驶"]},
+      "self_drive_cn": "12月最大限制是日照，不是里程；不要为了‘多看一个castle’把后半段变夜驾。"
+    },
+    {
+      "order": 70,
+      "id": "cologne",
+      "name": "Cologne",
+      "country": "Germany",
+      "role": "final_city_anchor",
+      "anchor": {"latitude": 50.9413888889, "longitude": 6.9583333333, "coordinate_precision": "site_center", "locator_name": "Cologne Cathedral", "coordinate_source": "verified WGS84 monument coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [{"id":"cathedral","name":"Cologne Cathedral","gps":[50.9413888889,6.9583333333],"why_cn":"从数百年建造史看Gothic建筑如何在19世纪又成为现代national symbol，是全程回到西欧后的强建筑收尾。"}],
+      "four_star": [{"id":"rhine-old-town","name":"Rhine / Old Town evening","gps":[50.9386,6.9625],"coordinate_precision":"waterfront_anchor"}],
+      "plans": {"1_day":["Cathedral内外完整看", "Rhine/Old Town晚饭", "不要再开车"]},
+      "self_drive_cn": "最后几天疲劳累积明显；这一站只保留一个★★★★★。"
+    },
+    {
+      "order": 71,
+      "id": "schiphol-return",
+      "name": "Amsterdam Schiphol Return",
+      "country": "Netherlands",
+      "role": "trip_end_logistics",
+      "anchor": {"latitude": 52.3105, "longitude": 4.7683, "coordinate_precision": "airport_area", "locator_name": "Amsterdam Airport Schiphol", "coordinate_source": "approved route source coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [],
+      "four_star": [],
+      "plans": {"return_day":["fuel/vehicle return按租车公司要求", "给大机场还车、行李和terminal移动足够缓冲", "不安排Amsterdam最后一个收费景点"]},
+      "self_drive_cn": "完整环线在这里结束。最后一天的成功标准是从容还车和登机，不是再多打一个卡。"
+    }
+  ]
+}
