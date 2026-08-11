@@ -333,6 +333,7 @@ h2 {
 .info-panel,
 .duration-ladder,
 .compiler-panel,
+.region-roadmap,
 .help-contact,
 .attraction-card {
   border: 1px solid rgba(73, 56, 35, 0.14);
@@ -345,6 +346,7 @@ h2 {
 .night-mode .info-panel,
 .night-mode .duration-ladder,
 .night-mode .compiler-panel,
+.night-mode .region-roadmap,
 .night-mode .help-contact,
 .night-mode .attraction-card {
   border-color: rgba(255, 255, 255, 0.12);
@@ -365,6 +367,26 @@ h2 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 12px;
+}
+
+.region-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.region-grid span {
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: rgba(81, 122, 84, 0.12);
+  color: #314a34;
+  font-weight: 800;
+}
+
+.night-mode .region-grid span {
+  background: rgba(158, 216, 199, 0.12);
+  color: #d9e5df;
 }
 
 .team-grid article {

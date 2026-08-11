@@ -991,4 +991,41 @@ Codex added the public Help & Contact section in the next implementation pass so
 
 ---
 
+## 28. OWNER FUTURE REGION ROADMAP — 2026-08-11
+
+Ray clarified that this platform must remain global and reusable beyond the Europe Autumn Grand Tour.
+
+Future production builds should include:
+
+- North America;
+- South America;
+- Africa;
+- East Asia;
+- South East Asia;
+- China;
+- India;
+- Russia;
+- East / Middle East;
+- Arabic World.
+
+Implementation rule:
+
+Codex should keep schemas, trip compiler logic, research-pack ingestion, maps, guide UI and Help & Contact patterns region-agnostic. Europe is the first production trip, not the only product line.
+
+ChatGPT should treat future research packs as region/trip products that can reuse the same hierarchy:
+
+`Trip → Region → City/Base → City Tour → Attraction → Sub-attraction → Story`
+
+Each future region should preserve the same standards for:
+
+- verified coordinates;
+- source provenance;
+- editorial 5★ / 4★ first-time importance;
+- duration ladders;
+- relaxed/self-drive or region-appropriate pacing;
+- weather/season logic;
+- `CONTENT_PENDING` rather than invented content.
+
+---
+
 **END BLACKBOARD**

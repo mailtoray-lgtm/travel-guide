@@ -132,6 +132,19 @@ export const themeOptions = [
   "First-Time Europe Essentials",
 ];
 
+export const futureRegionBuilds = [
+  "North America",
+  "South America",
+  "Africa",
+  "East Asia",
+  "South East Asia",
+  "China",
+  "India",
+  "Russia",
+  "East / Middle East",
+  "Arabic World",
+];
+
 export const relaxedSelfDriveRules = [
   "Target 120-180 mi/day on scenic travel days.",
   "Comfortable upper target is about 220 mi/day on ordinary transfer days.",

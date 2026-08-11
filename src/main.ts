@@ -3,6 +3,7 @@ import {
   contentPendingCityGuide,
   durationOptions,
   estimateDailyBurden,
+  futureRegionBuilds,
   relaxedSelfDriveRules,
   themeOptions,
   type CompilerInput,
@@ -584,6 +585,19 @@ function render() {
               Compiler skeleton is active. Approved city-duration packs will become the building blocks here;
               missing packs stay marked CONTENT_PENDING instead of being invented.
             </p>
+          </section>
+
+          <section class="region-roadmap">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">FUTURE REGION BUILDS</p>
+                <h3>Global guide engine roadmap</h3>
+              </div>
+              <span class="status-pill">CONTENT_PENDING</span>
+            </div>
+            <div class="region-grid">
+              ${futureRegionBuilds.map((region) => `<span>${html(region)}</span>`).join("")}
+            </div>
           </section>
 
           <section class="help-contact">
