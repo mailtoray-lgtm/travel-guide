@@ -1,7 +1,18 @@
 {
-  "status": "CONTENT_PENDING",
-  "policy": "Approved ChatGPT research packs should be added here with lightweight provenance. Codex validates and renders them without inventing missing editorial content.",
-  "city_guides": [],
+  "status": "ACTIVE",
+  "policy": "Approved ChatGPT research packs are canonical editorial inputs. Codex validates and renders them without inventing missing editorial content.",
+  "city_guides": [
+    {
+      "city_id": "amsterdam",
+      "country": "Netherlands",
+      "region": "Europe",
+      "path": "content-research/europe/amsterdam-first-visit-v1.json",
+      "status": "APPROVED_CONTENT_V1",
+      "research_date": "2026-08-11",
+      "editorial_owner": "ChatGPT",
+      "implementation_owner": "Codex"
+    }
+  ],
   "regional_guides": [],
   "theme_guides": [],
   "trip_products": []
