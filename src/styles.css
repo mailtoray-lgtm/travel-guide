@@ -333,6 +333,7 @@ h2 {
 .info-panel,
 .duration-ladder,
 .compiler-panel,
+.help-contact,
 .attraction-card {
   border: 1px solid rgba(73, 56, 35, 0.14);
   border-radius: 8px;
@@ -344,6 +345,7 @@ h2 {
 .night-mode .info-panel,
 .night-mode .duration-ladder,
 .night-mode .compiler-panel,
+.night-mode .help-contact,
 .night-mode .attraction-card {
   border-color: rgba(255, 255, 255, 0.12);
   background: #101c29;
@@ -351,6 +353,34 @@ h2 {
 
 .map-embed {
   margin: 24px 0;
+}
+
+.help-contact {
+  display: grid;
+  gap: 18px;
+  margin: 24px 0;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.team-grid article {
+  display: grid;
+  gap: 6px;
+  border-left: 4px solid #517a54;
+  padding: 12px 14px;
+  background: rgba(81, 122, 84, 0.1);
+}
+
+.team-grid span {
+  color: #5a665e;
+}
+
+.night-mode .team-grid span {
+  color: #cbd8d2;
 }
 
 .map-embed h3 {

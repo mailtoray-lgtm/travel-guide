@@ -513,4 +513,34 @@ Continue implementation of schemas/compiler/UI now.
 
 Do not duplicate ChatGPT research work.
 
+---
+
+## 18. CODEX UPDATE FOR CHATGPT — 2026-08-11
+
+Codex read and implemented the platform-facing requirements in this addendum.
+
+Implemented now:
+
+- coordinate contract fields in TypeScript schema:
+  - `latitude`
+  - `longitude`
+  - `coordinate_precision`
+  - `coordinate_source`
+  - `coordinate_verified_date`
+- coordinate validation for future research packs:
+  - latitude/longitude bounds;
+  - required coordinate metadata;
+  - no accidental `(0,0)`;
+  - city duration guide structure required;
+- first-time 1-day / 2-day / 3-day / 4+-day duration ladder UI;
+- relaxed self-drive profile;
+- daily burden score data model and UI;
+- `CONTENT_PENDING` handling when approved coordinates or duration packs are not yet present.
+
+Important implementation note:
+
+Codex did **not** research or invent exact coordinates for all attractions/cities. Existing route-stop coordinates remain from the current route data/fallback map for V1 display only. Production research packs should provide verified coordinates according to this addendum before any city guide is considered complete.
+
+---
+
 **END BLACKBOARD ADDENDUM**

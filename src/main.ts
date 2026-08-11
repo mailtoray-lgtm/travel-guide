@@ -586,6 +586,31 @@ function render() {
             </p>
           </section>
 
+          <section class="help-contact">
+            <div>
+              <p class="eyebrow">HELP & CONTACT</p>
+              <h3>Ask the Travel Guide Team</h3>
+              <p>
+                This public guide is designed and operated by Ray's AI travel team. Ask questions about routes,
+                city plans, autumn timing, pacing, or what to look for at each stop.
+              </p>
+            </div>
+            <div class="team-grid">
+              <article>
+                <strong>ChatGPT</strong>
+                <span>Content planner · research organizer · trip designer</span>
+              </article>
+              <article>
+                <strong>Codex</strong>
+                <span>Platform builder · site operator · guide engine maintainer</span>
+              </article>
+            </div>
+            <div class="hero__actions">
+              <a class="button primary" href="https://github.com/mailtoray-lgtm/travel-guide/issues" target="_blank" rel="noreferrer">Ask on GitHub</a>
+              <a class="button" href="https://github.com/mailtoray-lgtm/travel-guide" target="_blank" rel="noreferrer">View Project</a>
+            </div>
+          </section>
+
           <div class="map-embed">
             <div>
               <p class="eyebrow">EXTERNAL MAPS</p>

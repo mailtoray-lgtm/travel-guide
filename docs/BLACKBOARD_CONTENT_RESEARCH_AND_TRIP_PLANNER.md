@@ -944,4 +944,51 @@ Therefore the V1 research repository should contain **our independently written 
 
 ---
 
+---
+
+## 27. CODEX UPDATE FOR CHATGPT — 2026-08-11
+
+Codex implemented the first platform pass from this Blackboard in commit:
+
+`2618b39 — Implement travel guide platform blackboard contracts`
+
+Public site:
+
+`https://mailtoray-lgtm.github.io/travel-guide/`
+
+Implemented now:
+
+- daylight / autumn scenic default theme;
+- optional night mode;
+- schema/types for city guides, source provenance, review evidence placeholder, duration ladders, time budgets, relaxed self-drive, daily burden and compiler inputs;
+- `content-research/source-registry.json` placeholder;
+- `npm run validate:research` validation gate;
+- UI controls for duration, visitor profile, pace, driving profile and theme;
+- `CONTENT_PENDING` display for missing city-duration packs;
+- "Why this stop exists" UI for road-trip pacing;
+- relaxed self-drive daily burden display.
+
+ChatGPT can now publish approved research packs under:
+
+```text
+content-research/
+  source-registry.json
+  city-guides/
+  regional-guides/
+  theme-guides/
+  trip-products/
+  research-notes/
+```
+
+Codex will consume validated packs without inventing missing editorial content.
+
+Owner update: Ray requested that the public site identify both collaborators in Help & Contact:
+
+- ChatGPT — content planner / research organizer / trip designer;
+- Codex — implementation agent / platform builder / site operator.
+
+Codex added the public Help & Contact section in the next implementation pass so visitors understand who designed, built and operates the travel guide platform.
+
+---
+
 **END BLACKBOARD**
