@@ -1,0 +1,222 @@
+{
+  "schema_version": "1.0",
+  "status": "APPROVED_CONTENT_V1",
+  "city_id": "amsterdam",
+  "city_name": "Amsterdam",
+  "country": "Netherlands",
+  "research_date": "2026-08-11",
+  "editorial_owner": "ChatGPT",
+  "implementation_owner": "Codex",
+  "first_time_summary_cn": "第一次到阿姆斯特丹，不应把它当成景点清单，而要先理解三条主线：水如何塑造城市、17世纪商业财富如何转化成艺术与建筑、20世纪战争如何留下个人记忆。第一次到访默认只保留★★★★★与最强★★★★。",
+  "signature_story_cn": "从Dam Square的城市起点进入17世纪运河城市，再通过Rijksmuseum理解荷兰艺术与国家历史，通过Anne Frank House进入二战个人史，最后用水上视角重新理解为什么这座城市必须从运河上看。",
+  "recommended_nights_relaxed_self_drive": 3,
+  "self_drive_strategy_cn": "不要在Amsterdam中心开车逐点游览。自驾者应把车停在住宿停车场或城市外围P+R，市内用步行、tram和canal cruise。到达Amsterdam当天不要安排大型museum；离开当天也不要再塞需要预约的重点馆。",
+  "editorial_scale": {
+    "5": "第一次到访不可轻易删除",
+    "4": "很值得；时间允许应加入"
+  },
+  "attractions": [
+    {
+      "id": "rijksmuseum",
+      "name": "Rijksmuseum",
+      "editorial_rating": 5,
+      "first_time_required": true,
+      "latitude": 52.359969,
+      "longitude": 4.885331,
+      "coordinate_precision": "site_center",
+      "coordinate_source": "Wikidata Q15732586; official address Museumstraat 1 confirmed by Rijksmuseum",
+      "coordinate_verified_date": "2026-08-11",
+      "why_it_matters_cn": "如果只能选一座博物馆理解荷兰，优先这里。Rijksmuseum自己定位为荷兰国家博物馆，覆盖约800年荷兰艺术与历史；第一次游客可以把Rembrandt、Vermeer和17世纪城市财富放在同一条故事线上。",
+      "how_to_experience_cn": "不要试图把整馆刷完。先上Gallery of Honour，围绕The Night Watch、Vermeer等核心作品建立17世纪故事，再看Cuypers Library或少量装饰艺术。2至3小时已经足够形成完整第一次体验。",
+      "what_to_look_for_cn": ["The Night Watch的群像组织与光线", "Vermeer作品中的室内光", "Gallery of Honour的轴线", "Cuypers Library", "建筑本身的Gothic/Renaissance Revival混合语言"],
+      "time_required_minutes": 150,
+      "best_time": "09:00 first entry",
+      "rain_plan": true,
+      "public_review_evidence": {"rating": 4.6, "review_count": 48495, "retrieved": "2026-08-11", "source": "public local-business review index"},
+      "sources": [
+        {"source_type": "official", "publisher": "Rijksmuseum", "url": "https://www.rijksmuseum.nl/en/visit", "supports": ["significance", "highlights", "visit_planning"]},
+        {"source_type": "official", "publisher": "Rijksmuseum", "url": "https://www.rijksmuseum.nl/en/visit/practical-info/address-and-directions", "supports": ["address", "self_drive_logistics"]},
+        {"source_type": "editorial", "publisher": "Lonely Planet", "url": "https://www.lonelyplanet.com/articles/best-museums-in-amsterdam", "supports": ["first_time_priority", "visit_duration"]},
+        {"source_type": "coordinate", "publisher": "Wikidata", "url": "https://www.wikidata.org/wiki/Q15732586", "supports": ["gps"]}
+      ]
+    },
+    {
+      "id": "van-gogh-museum",
+      "name": "Van Gogh Museum",
+      "editorial_rating": 5,
+      "first_time_required": true,
+      "latitude": 52.358369,
+      "longitude": 4.881069,
+      "coordinate_precision": "site_center",
+      "coordinate_source": "Wikidata Q42296997 / Q224124",
+      "coordinate_verified_date": "2026-08-11",
+      "why_it_matters_cn": "这里最值得看的不是单独几幅名画，而是Van Gogh如何从早期暗色荷兰作品逐渐走到Paris、Arles、Saint-Rémy时期的强烈色彩和笔触。第一次来看应把它当作一个人的视觉成长史。",
+      "how_to_experience_cn": "按时间顺序看，不追求每幅都停。重点观察色彩、笔触和题材什么时候开始改变。若喜欢故事型参观，audio guide值得加。",
+      "what_to_look_for_cn": ["早期暗色作品与晚期高彩度之间的变化", "自画像作为自我观察", "Arles时期的黄色与空间", "Saint-Rémy阶段更强烈的运动感", "书信与绘画之间的关系"],
+      "time_required_minutes": 120,
+      "best_time": "first timed entry or late-day quieter slot",
+      "rain_plan": true,
+      "public_review_evidence": {"rating": 4.5, "review_count": 65888, "retrieved": "2026-08-11", "source": "public local-business review index"},
+      "sources": [
+        {"source_type": "official", "publisher": "Van Gogh Museum", "url": "https://www.vangoghmuseum.nl/en", "supports": ["collection", "story"]},
+        {"source_type": "official", "publisher": "Van Gogh Museum", "url": "https://tickets.vangoghmuseum.nl/en/tickets", "supports": ["timed_entry", "audio_guide"]},
+        {"source_type": "editorial", "publisher": "Lonely Planet", "url": "https://www.lonelyplanet.com/articles/top-things-to-do-in-amsterdam", "supports": ["first_time_priority"]},
+        {"source_type": "coordinate", "publisher": "Wikidata", "url": "https://www.wikidata.org/wiki/Q42296997", "supports": ["gps"]}
+      ]
+    },
+    {
+      "id": "anne-frank-house",
+      "name": "Anne Frank House",
+      "editorial_rating": 5,
+      "first_time_required": true,
+      "latitude": 52.375210,
+      "longitude": 4.884335,
+      "coordinate_precision": "exact",
+      "coordinate_source": "Anne Frank House Knowledge Base coordinate for Secret Annex, Prinsengracht 263",
+      "coordinate_verified_date": "2026-08-11",
+      "navigation_note_cn": "历史地点为Prinsengracht 263；公众入口在Westermarkt 20。导航时优先入口地址，故事定位用Secret Annex精确坐标。",
+      "why_it_matters_cn": "这是Amsterdam最重要的20世纪个人历史现场之一。价值不在于展品数量，而在于站进真实空间后理解迫害、隐藏生活、失去自由和个人文字如何成为历史证据。",
+      "how_to_experience_cn": "提前预约。进入前先知道Secret Annex故意保持空置，不期待复原家具。把注意力放在空间狭窄程度、楼梯、房间关系、原始痕迹和Anne的文字。参观后不要立刻塞一个喧闹娱乐项目。",
+      "what_to_look_for_cn": ["隐藏空间与前屋之间的关系", "狭窄楼梯和行动限制", "空置房间本身代表的缺席", "原始文字与家庭物件", "个人故事与Holocaust大历史之间的连接"],
+      "time_required_minutes": 90,
+      "best_time": "timed entry; choose a slot that leaves emotional breathing room afterward",
+      "rain_plan": true,
+      "public_review_evidence": {"rating": 4.5, "review_count": 64741, "retrieved": "2026-08-11", "source": "public local-business review index"},
+      "sources": [
+        {"source_type": "official", "publisher": "Anne Frank House", "url": "https://www.annefrank.org/en/museum/", "supports": ["museum_story", "visitor_experience"]},
+        {"source_type": "official", "publisher": "Anne Frank House", "url": "https://www.annefrank.org/en/museum/practical-information/", "supports": ["entrance", "average_visit_time", "access"]},
+        {"source_type": "official", "publisher": "Anne Frank House Knowledge Base", "url": "https://research.annefrank.org/en/locaties/a699d98a-eab0-4e27-a4a1-f2c76df56892/", "supports": ["gps", "historical_location"]},
+        {"source_type": "editorial", "publisher": "Lonely Planet", "url": "https://www.lonelyplanet.com/articles/top-things-to-do-in-amsterdam", "supports": ["first_time_priority"]}
+      ]
+    },
+    {
+      "id": "amsterdam-canal-cruise-damrak",
+      "name": "Amsterdam Canal Cruise — Damrak Pier 5",
+      "editorial_rating": 5,
+      "first_time_required": true,
+      "latitude": 52.376393,
+      "longitude": 4.897846,
+      "coordinate_precision": "entrance",
+      "coordinate_source": "Stromma official departure address Damrak 16 Pier 5; coordinate cross-check from public location directory",
+      "coordinate_verified_date": "2026-08-11",
+      "why_it_matters_cn": "Amsterdam是被水塑造出来的城市。第一次游客从船上看一次UNESCO canal ring，会比单靠街面步行更快理解为什么房屋这么窄、桥这么密、城市如何围绕水组织。",
+      "how_to_experience_cn": "建议第一天或第二天做1小时左右的经典cruise。白天用于理解城市结构；golden hour到blue hour更偏氛围。不要为了船餐牺牲路线本身。",
+      "what_to_look_for_cn": ["连续的gabled canal houses", "桥洞形成的层层透视", "Prinsengracht/Herengracht等主运河的尺度", "Magere Brug", "水位与房屋入口之间的城市关系"],
+      "time_required_minutes": 75,
+      "best_time": "late afternoon / golden hour; daylight for orientation",
+      "public_review_evidence": {"rating": 4.3, "review_count": 3370, "retrieved": "2026-08-11", "source": "public local-business review index"},
+      "sources": [
+        {"source_type": "official", "publisher": "I amsterdam", "url": "https://www.iamsterdam.com/en/tickets/i-amsterdam-city-card/canal-cruise-with-the-i-amsterdam-city-card", "supports": ["first_trip_orientation", "canal_experience"]},
+        {"source_type": "official_operator", "publisher": "Stromma", "url": "https://www.stromma.com/en-nl/amsterdam/customer-service/ticket-shops-departure-points/damrak/", "supports": ["departure_address"]},
+        {"source_type": "official_operator", "publisher": "Stromma", "url": "https://www.stromma.com/en-nl/amsterdam/sightseeing/canal-tours/100-highlights-cruise/", "supports": ["duration", "route_highlights"]},
+        {"source_type": "coordinate_crosscheck", "publisher": "Near Place", "url": "https://nl.near-place.com/stromma-damrak-damrak-16-pier-5-amsterdam", "supports": ["gps"]},
+        {"source_type": "editorial", "publisher": "Lonely Planet", "url": "https://www.lonelyplanet.com/articles/top-things-to-do-in-amsterdam", "supports": ["first_time_priority"]}
+      ]
+    },
+    {
+      "id": "royal-palace-amsterdam",
+      "name": "Royal Palace Amsterdam",
+      "editorial_rating": 4,
+      "first_time_required": false,
+      "latitude": 52.373167,
+      "longitude": 4.891361,
+      "coordinate_precision": "site_center",
+      "coordinate_source": "Wikidata Q1056152; official palace site confirms Dam Square",
+      "coordinate_verified_date": "2026-08-11",
+      "why_it_matters_cn": "它最有意思的地方不是王室，而是它最初是17世纪Amsterdam市政厅。也就是说，这座建筑把商业城市财富如何转化成公民权力和后来王室空间讲得非常清楚。",
+      "how_to_experience_cn": "如果只有1天，只看外观和Dam Square关系；有2至3天且开放时，再用约1小时进入Citizen's Hall。",
+      "what_to_look_for_cn": ["Citizen's Hall巨大尺度", "地面世界地图与城市自我想象", "Town Hall到Royal Palace的功能变化", "marble galleries"],
+      "time_required_minutes": 75,
+      "best_time": "midday indoor block or when weather is poor",
+      "public_review_evidence": {"rating": 4.2, "review_count": 3584, "retrieved": "2026-08-11", "source": "public local-business review index"},
+      "sources": [
+        {"source_type": "official", "publisher": "Royal Palace Amsterdam", "url": "https://www.paleisamsterdam.nl/en/about-palace/", "supports": ["history", "significance"]},
+        {"source_type": "official", "publisher": "Royal Palace Amsterdam", "url": "https://www.paleisamsterdam.nl/en/visit/", "supports": ["opening", "visit"]},
+        {"source_type": "coordinate", "publisher": "Wikidata", "url": "https://www.wikidata.org/wiki/Q1056152", "supports": ["gps"]}
+      ]
+    },
+    {
+      "id": "noordermarkt-jordaan",
+      "name": "Noordermarkt / Jordaan Walk Anchor",
+      "editorial_rating": 4,
+      "first_time_required": false,
+      "latitude": 52.379528,
+      "longitude": 4.886750,
+      "coordinate_precision": "site_center",
+      "coordinate_source": "Wikidata Q2915920",
+      "coordinate_verified_date": "2026-08-11",
+      "why_it_matters_cn": "Jordaan让第一次游客从宏大博物馆退回到有人生活的Amsterdam。Noordermarkt是一个很好的步行锚点，周边可以自然接Prinsengracht和Brouwersgracht。",
+      "how_to_experience_cn": "不要做景点式打卡。安排60到90分钟，无目标慢走；若正逢Saturday morning，可把Noordermarkt作为社区生活入口。",
+      "what_to_look_for_cn": ["窄街与运河住宅尺度", "Noordermarkt社区感", "Prinsengracht与Brouwersgracht水景", "从working-class district到gentrified neighborhood的变化"],
+      "time_required_minutes": 90,
+      "best_time": "Saturday morning for market; otherwise late afternoon",
+      "public_review_evidence": {"rating": 4.2, "review_count": 333, "retrieved": "2026-08-11", "source": "public local-business review index"},
+      "sources": [
+        {"source_type": "official_tourism", "publisher": "I amsterdam", "url": "https://www.iamsterdam.com/en/explore/neighbourhoods/centrum/things-to-do-in-the-jordaan", "supports": ["neighborhood_story", "canal_context"]},
+        {"source_type": "coordinate", "publisher": "Wikidata", "url": "https://www.wikidata.org/wiki/Q2915920", "supports": ["gps"]}
+      ]
+    },
+    {
+      "id": "magere-brug",
+      "name": "Magere Brug / Skinny Bridge",
+      "editorial_rating": 4,
+      "first_time_required": false,
+      "latitude": 52.363586,
+      "longitude": 4.902357,
+      "coordinate_precision": "exact",
+      "coordinate_source": "Wikidata Q1344400",
+      "coordinate_verified_date": "2026-08-11",
+      "why_it_matters_cn": "它不是需要专门耗时的大景点，而是最适合放在傍晚步行线中的Amsterdam水景节点。白色木桥、Amstel和夜间灯光让城市从museum mode切回生活氛围。",
+      "how_to_experience_cn": "日落前后走过桥一次即可，站边侧看河面，不要挡自行车。若当天已经坐了canal cruise，可把它当20分钟的夜景收尾。",
+      "what_to_look_for_cn": ["白色双开木桥结构", "Amstel长轴水面", "夜间灯光倒影", "桥仍作为真实交通设施而运作"],
+      "time_required_minutes": 20,
+      "best_time": "blue hour / night",
+      "public_review_evidence": {"rating": 4.0, "review_count": 412, "retrieved": "2026-08-11", "source": "public local-business review index"},
+      "sources": [
+        {"source_type": "coordinate", "publisher": "Wikidata", "url": "https://www.wikidata.org/wiki/Q1344400", "supports": ["gps", "bridge_identity"]}
+      ]
+    }
+  ],
+  "duration_plans": {
+    "1_day": {
+      "mode": "RELAXED_FIRST_TIME",
+      "must_see": ["anne-frank-house", "rijksmuseum", "amsterdam-canal-cruise-damrak"],
+      "schedule_cn": [
+        "09:00 Anne Frank House timed entry；预留约90分钟，不急着赶下一站。",
+        "10:45 沿Prinsengracht慢走，咖啡/早午餐，给历史内容留一点缓冲。",
+        "12:30 Rijksmuseum；只做2至2.5小时first-time highlights。",
+        "15:15 Museumplein休息，不再加第二座大型museum。",
+        "16:30-17:30 Canal cruise；从水上重新理解城市结构。",
+        "18:00之后自由晚餐；有精神才加Magere Brug夜景。"
+      ],
+      "do_not_add_cn": ["Van Gogh Museum", "Royal Palace interior", "第二座大型museum", "远郊风车"]
+    },
+    "2_days": {
+      "mode": "RELAXED_FIRST_TIME",
+      "day_1_cn": "Anne Frank House + Jordaan/Canal Ring慢走 + canal cruise。把第一天主题定为水城与20世纪个人史。",
+      "day_2_cn": "Rijksmuseum上午 + 午休 + Van Gogh Museum下午。两个馆中间至少留60至90分钟吃饭和休息，不做第三座museum。",
+      "must_see": ["anne-frank-house", "amsterdam-canal-cruise-damrak", "rijksmuseum", "van-gogh-museum"]
+    },
+    "3_days": {
+      "mode": "RELAXED_SELF_DRIVE_CITY_BASE",
+      "day_1_cn": "到达/适应：Dam Square外观方向感 + Royal Palace若开放且体力好 + canal cruise。尽量轻。",
+      "day_2_cn": "Rijksmuseum上午 + 长午餐/休息 + Van Gogh Museum下午 + Museumplein收尾。",
+      "day_3_cn": "Anne Frank House timed entry + Jordaan/Noordermarkt慢走 + 傍晚Magere Brug或自由晚餐。",
+      "must_see": ["rijksmuseum", "van-gogh-museum", "anne-frank-house", "amsterdam-canal-cruise-damrak"],
+      "highly_recommended": ["noordermarkt-jordaan", "royal-palace-amsterdam", "magere-brug"]
+    },
+    "4_plus_days": {
+      "mode": "SLOW_CITY_PLUS_REGION",
+      "guidance_cn": "前三天保持不变；第4天才考虑Zaanse Schans、Haarlem、Muiden等区域扩展。不要为了增加数量破坏前三天核心体验。"
+    }
+  },
+  "self_drive_relax_rules": [
+    "Amsterdam市内不按汽车路线逐景点导航。",
+    "到达日只安排轻项目；如果前一段驾驶接近220 miles，大型museum移到次日。",
+    "每个museum block后至少留45至90分钟坐下吃饭或步行恢复。",
+    "一天最多一个情绪沉重的历史项目；Anne Frank House之后不要立刻安排娱乐型高刺激项目。",
+    "一天最多两个大型室内馆；1-day版本只放一个大型艺术馆。",
+    "离开Amsterdam的驾驶日，不安排Anne Frank House或Van Gogh这类严格timed-entry项目。"
+  ],
+  "codex_instruction": "Consume this pack as approved editorial content. Do not replace star ratings, GPS, duration plans, or story text with independent LLM research. Schema/UI work may transform formatting but not editorial meaning."
+}
