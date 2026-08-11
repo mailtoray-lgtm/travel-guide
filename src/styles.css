@@ -1,9 +1,9 @@
 :root {
-  color-scheme: dark;
+  color-scheme: light;
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #071019;
-  color: #f5f7ef;
+  background: #f7f1e7;
+  color: #243126;
   letter-spacing: 0;
 }
 
@@ -14,7 +14,7 @@
 body {
   margin: 0;
   min-width: 320px;
-  background: #071019;
+  background: #f7f1e7;
 }
 
 a {
@@ -29,6 +29,13 @@ input {
 
 main {
   min-height: 100vh;
+  background: #f7f1e7;
+}
+
+.night-mode {
+  color-scheme: dark;
+  background: #071019;
+  color: #f5f7ef;
 }
 
 .hero {
@@ -36,6 +43,14 @@ main {
   display: grid;
   grid-template-columns: minmax(320px, 0.9fr) minmax(400px, 1.4fr);
   align-items: stretch;
+  background:
+    linear-gradient(90deg, rgba(246, 239, 225, 0.94), rgba(246, 239, 225, 0.5)),
+    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2200&q=80");
+  background-size: cover;
+  background-position: center;
+}
+
+.night-mode .hero {
   background:
     linear-gradient(90deg, rgba(7, 16, 25, 0.96), rgba(7, 16, 25, 0.42)),
     url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2200&q=80");
@@ -50,10 +65,14 @@ main {
 
 .eyebrow {
   margin: 0 0 10px;
-  color: #9ed8c7;
+  color: #517a54;
   font-size: 0.78rem;
   font-weight: 800;
   text-transform: uppercase;
+}
+
+.night-mode .eyebrow {
+  color: #9ed8c7;
 }
 
 h1,
@@ -67,15 +86,24 @@ p {
 h1 {
   max-width: 760px;
   margin-bottom: 16px;
+  color: #1c271f;
   font-size: clamp(3rem, 7vw, 6.7rem);
   line-height: 0.92;
   letter-spacing: 0;
 }
 
+.night-mode h1 {
+  color: #fff;
+}
+
 .hero p:not(.eyebrow) {
   max-width: 640px;
-  color: #d9e5df;
+  color: #47594b;
   font-size: clamp(1.08rem, 2vw, 1.45rem);
+}
+
+.night-mode .hero p:not(.eyebrow) {
+  color: #d9e5df;
 }
 
 .hero__actions,
@@ -83,7 +111,8 @@ h1 {
 .card-links,
 .toolbar,
 .facts,
-.attraction-tools {
+.attraction-tools,
+.planner {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -95,20 +124,35 @@ h1 {
 .card-links a,
 .icon-btn {
   min-height: 40px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(73, 56, 35, 0.2);
   border-radius: 8px;
   padding: 9px 13px;
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
+  background: rgba(255, 255, 255, 0.74);
+  color: #243126;
   text-decoration: none;
   cursor: pointer;
 }
 
+.night-mode .button,
+.night-mode .guide__links a,
+.night-mode .card-links a,
+.night-mode .icon-btn {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
 .primary {
+  background: #d9822b;
+  border-color: #d9822b;
+  color: #fff;
+  font-weight: 800;
+}
+
+.night-mode .primary {
   background: #ffcf5a;
   border-color: #ffcf5a;
   color: #17202c;
-  font-weight: 800;
 }
 
 #route-canvas {
@@ -117,14 +161,37 @@ h1 {
   min-height: 520px;
 }
 
-.toolbar {
+.toolbar,
+.planner {
   position: sticky;
-  top: 0;
   z-index: 5;
   padding: 12px clamp(14px, 4vw, 48px);
-  background: rgba(7, 16, 25, 0.94);
+  background: rgba(252, 248, 239, 0.94);
   backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(73, 56, 35, 0.14);
+}
+
+.toolbar {
+  top: 0;
+}
+
+.planner {
+  top: 65px;
+}
+
+.night-mode .toolbar,
+.night-mode .planner {
+  background: rgba(7, 16, 25, 0.94);
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+
+.planner label {
+  display: grid;
+  gap: 4px;
+  color: #5d604f;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
 .icon-btn {
@@ -135,7 +202,7 @@ h1 {
 
 #route-progress {
   flex: 1 1 220px;
-  accent-color: #ffcf5a;
+  accent-color: #d9822b;
 }
 
 .layout {
@@ -145,39 +212,57 @@ h1 {
 }
 
 .stops {
-  border-right: 1px solid rgba(255, 255, 255, 0.12);
-  background: #0d1722;
+  border-right: 1px solid rgba(73, 56, 35, 0.14);
+  background: #fffaf0;
   max-height: 100vh;
   position: sticky;
-  top: 66px;
+  top: 132px;
   overflow: auto;
   padding: 14px;
 }
 
-.drive-chip {
+.night-mode .stops {
+  border-right-color: rgba(255, 255, 255, 0.12);
+  background: #0d1722;
+}
+
+.drive-chip,
+.stop-row {
   width: 100%;
-  display: grid;
-  gap: 3px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  border-top: 0;
-  border-left: 0;
-  border-right: 0;
-  color: #f6f7ef;
+  color: #243126;
   text-align: left;
   background: transparent;
   cursor: pointer;
 }
 
+.night-mode .drive-chip,
+.night-mode .stop-row {
+  color: #f6f7ef;
+}
+
+.drive-chip {
+  display: grid;
+  gap: 3px;
+  padding: 10px 0;
+  border: 0;
+  border-bottom: 1px solid rgba(73, 56, 35, 0.12);
+}
+
 .drive-chip:hover,
 .drive-chip.active {
-  background: rgba(255, 207, 90, 0.12);
+  background: rgba(217, 130, 43, 0.12);
   padding-left: 8px;
 }
 
 .drive-chip span,
 .stop-row small,
 .facts span {
+  color: #697166;
+}
+
+.night-mode .drive-chip span,
+.night-mode .stop-row small,
+.night-mode .facts span {
   color: #aab8b4;
 }
 
@@ -186,27 +271,22 @@ h1 {
 }
 
 .stop-row {
-  width: 100%;
   display: grid;
   grid-template-columns: 34px 1fr;
   gap: 3px 10px;
-  text-align: left;
-  color: #f6f7ef;
-  background: transparent;
   border: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(73, 56, 35, 0.1);
   padding: 10px 6px;
-  cursor: pointer;
 }
 
 .stop-row span {
   grid-row: span 2;
-  color: #ffcf5a;
+  color: #b85f16;
   font-weight: 800;
 }
 
 .stop-row.active {
-  background: rgba(255, 207, 90, 0.14);
+  background: rgba(217, 130, 43, 0.14);
 }
 
 .guide {
@@ -231,47 +311,109 @@ h2 {
 }
 
 .facts span,
-.priority {
+.priority,
+.status-pill {
   border-radius: 999px;
   padding: 6px 10px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(118, 94, 60, 0.1);
 }
 
 .lead {
   max-width: 880px;
-  color: #e2ebe6;
+  color: #435147;
   font-size: 1.1rem;
   line-height: 1.7;
 }
 
-.map-embed {
-  border: 1px solid rgba(255, 255, 255, 0.14);
+.night-mode .lead {
+  color: #e2ebe6;
+}
+
+.map-embed,
+.info-panel,
+.duration-ladder,
+.compiler-panel,
+.attraction-card {
+  border: 1px solid rgba(73, 56, 35, 0.14);
   border-radius: 8px;
+  background: #fffdf7;
+  padding: clamp(16px, 3vw, 26px);
+}
+
+.night-mode .map-embed,
+.night-mode .info-panel,
+.night-mode .duration-ladder,
+.night-mode .compiler-panel,
+.night-mode .attraction-card {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: #101c29;
+}
+
+.map-embed {
   margin: 24px 0;
-  background: #101820;
-  padding: clamp(18px, 3vw, 30px);
 }
 
 .map-embed h3 {
   margin-bottom: 8px;
 }
 
-.map-embed p:not(.eyebrow) {
+.map-embed p:not(.eyebrow),
+.compiler-panel p,
+.ladder-card p {
   max-width: 760px;
-  color: #cbd8d2;
+  color: #5a665e;
   line-height: 1.55;
+}
+
+.night-mode .map-embed p:not(.eyebrow),
+.night-mode .compiler-panel p,
+.night-mode .ladder-card p {
+  color: #cbd8d2;
+}
+
+.info-grid,
+.ladder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+  margin: 22px 0;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: start;
+}
+
+.ladder-card {
+  border-left: 4px solid #d9822b;
+  padding: 10px 12px;
+  background: rgba(217, 130, 43, 0.08);
+}
+
+.ladder-card strong,
+.ladder-card span,
+.ladder-card small {
+  display: block;
 }
 
 .attraction-tools {
   justify-content: space-between;
-  margin-bottom: 14px;
+  margin: 24px 0 14px;
 }
 
 select {
   min-height: 40px;
   padding: 8px 10px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(73, 56, 35, 0.2);
   border-radius: 8px;
+  color: #243126;
+  background: #fffaf0;
+}
+
+.night-mode select {
+  border-color: rgba(255, 255, 255, 0.2);
   color: #fff;
   background: #132232;
 }
@@ -282,13 +424,6 @@ select {
   gap: 14px;
 }
 
-.attraction-card {
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
-  padding: 16px;
-  background: #101c29;
-}
-
 .attraction-card h4 {
   margin: 10px 0;
   font-size: 1.18rem;
@@ -296,8 +431,13 @@ select {
 
 .attraction-card p,
 dd {
-  color: #cbd8d2;
+  color: #58665e;
   line-height: 1.55;
+}
+
+.night-mode .attraction-card p,
+.night-mode dd {
+  color: #cbd8d2;
 }
 
 dl {
@@ -306,7 +446,7 @@ dl {
 
 dt {
   margin-top: 10px;
-  color: #ffcf5a;
+  color: #9b5317;
   font-weight: 800;
 }
 
@@ -316,7 +456,7 @@ dd {
 
 .empty,
 .error {
-  color: #ffd6d6;
+  color: #9f241e;
 }
 
 @media (max-width: 900px) {
@@ -328,6 +468,10 @@ dd {
     min-height: 430px;
   }
 
+  .planner {
+    position: static;
+  }
+
   .layout {
     grid-template-columns: 1fr;
   }
@@ -336,7 +480,7 @@ dd {
     position: static;
     max-height: 360px;
     border-right: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    border-bottom: 1px solid rgba(73, 56, 35, 0.14);
   }
 
   .guide__header {

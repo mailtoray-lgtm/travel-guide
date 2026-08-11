@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "vite build",
+    "build": "npm run validate:research && vite build",
+    "validate:research": "node scripts/validate-research.mjs",
     "preview": "vite preview --host 0.0.0.0"
   },
   "dependencies": {

@@ -1,4 +1,12 @@
 import "./styles.css";
+import {
+  contentPendingCityGuide,
+  durationOptions,
+  estimateDailyBurden,
+  relaxedSelfDriveRules,
+  themeOptions,
+  type CompilerInput,
+} from "./platform";
 
 type RouteStop = {
   Order: string;
@@ -69,6 +77,14 @@ let attractions: Attraction[] = [];
 let selectedStop = 0;
 let selectedPriority = "All";
 let language: "cn" | "en" = "cn";
+let visualMode: "daylight" | "night" = "daylight";
+let planner: CompilerInput = {
+  duration: "full",
+  visitorProfile: "first_time",
+  pace: "relaxed",
+  drivingPreference: "relaxed_self_drive",
+  theme: "Autumn Colors",
+};
 let routeProgress = 0;
 let playing = true;
 let reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -313,6 +329,29 @@ function stopAttractions() {
   return selectedPriority === "All" ? list : list.filter((a) => a.Priority === selectedPriority);
 }
 
+function bridgeStopReason(stop: RouteStop) {
+  const nights = Number(stop.Recommended_Nights || 0);
+  const miles = Number(stop.Approx_Miles_From_Previous || 0);
+  const hasLocalAttractions = attractions.some((a) => Number(a.Stop_Order) === Number(stop.Order));
+  if (nights <= 1 && miles >= 120) {
+    return {
+      route_function: "Route protection / relaxed self-drive pacing",
+      why_stop_exists:
+        "This stop keeps the road trip comfortable instead of turning the day into a bus-tour transfer.",
+      worth_sightseeing: hasLocalAttractions ? "Local guide items exist." : "CONTENT_PENDING",
+      best_60_minute_experience: hasLocalAttractions ? "Use the highest-priority nearby guide item." : "CONTENT_PENDING",
+      skip_if_tired: "Dinner, sleep, and continue without guilt.",
+    };
+  }
+  return {
+    route_function: stop.Route_Theme || "Destination base",
+    why_stop_exists: stop.Why_This_Stop || "CONTENT_PENDING",
+    worth_sightseeing: hasLocalAttractions ? "Yes, use the attraction guide below." : "CONTENT_PENDING",
+    best_60_minute_experience: hasLocalAttractions ? "Pick one nearby priority attraction." : "CONTENT_PENDING",
+    skip_if_tired: "Protect rest when arrival is late or weather is poor.",
+  };
+}
+
 function driveStartIndex(from: string) {
   const normalizedFrom = from.toLowerCase();
   const index = routeStops.findIndex(
@@ -355,6 +394,15 @@ function speak() {
 function render() {
   const stop = routeStops[selectedStop];
   const localAttractions = stopAttractions();
+  const cityGuide = contentPendingCityGuide(stop.Map_Name);
+  const whyStop = bridgeStopReason(stop);
+  const dailyBurden = estimateDailyBurden({
+    driveMiles: Number(stop.Approx_Miles_From_Previous || 0),
+    hotelChange: selectedStop > 0,
+    ferry: stop.Map_Name.toLowerCase().includes("ferry") || stop.Location.toLowerCase().includes("port"),
+    majorAttractions: Math.min(2, localAttractions.length),
+    walkingHours: localAttractions.length ? 2.5 : 1,
+  });
   const priorities = ["All", ...Array.from(new Set(attractions.map((a) => a.Priority))).filter(Boolean)];
   const stopMapsUrl = googleMapsSearch(stop.Location);
   const stopEarthUrl = googleEarthSearch(stop.Location);
@@ -363,7 +411,7 @@ function render() {
       ? googleStreetViewCoords(stop.lat, stop.lng)
       : googleStreetView(stop.Location);
   app.innerHTML = `
-    <main>
+    <main class="${visualMode === "night" ? "night-mode" : "daylight-mode"}">
       <section class="hero">
         <div class="hero__copy">
           <p class="eyebrow">PUBLIC TRAVEL GUIDE PLATFORM</p>
@@ -382,8 +430,44 @@ function render() {
         <input id="route-progress" type="range" min="0" max="${routeStops.length - 1}" value="${selectedStop}" />
         <button id="next-stop" class="icon-btn" title="Next stop">›</button>
         <button id="play" class="button">${playing ? "Pause flight" : "Play flight"}</button>
+        <button id="mode" class="button">${visualMode === "daylight" ? "Night mode" : "Daylight"}</button>
         <button id="lang" class="button">${language === "cn" ? "中文" : "English"}</button>
         <button id="narrate" class="button">Narration</button>
+      </section>
+
+      <section class="planner" aria-label="Trip compiler controls">
+        <label>Duration
+          <select id="duration">
+            ${durationOptions
+              .map(([value, label]) => `<option value="${value}" ${planner.duration === value ? "selected" : ""}>${label}</option>`)
+              .join("")}
+          </select>
+        </label>
+        <label>Visitor
+          <select id="visitor-profile">
+            <option value="first_time" ${planner.visitorProfile === "first_time" ? "selected" : ""}>First Time</option>
+            <option value="return_visitor" ${planner.visitorProfile === "return_visitor" ? "selected" : ""}>Return Visitor</option>
+          </select>
+        </label>
+        <label>Pace
+          <select id="pace">
+            <option value="relaxed" ${planner.pace === "relaxed" ? "selected" : ""}>Relaxed</option>
+            <option value="balanced" ${planner.pace === "balanced" ? "selected" : ""}>Balanced</option>
+            <option value="see_more" ${planner.pace === "see_more" ? "selected" : ""}>See More</option>
+          </select>
+        </label>
+        <label>Drive
+          <select id="drive-profile">
+            <option value="relaxed_self_drive" ${planner.drivingPreference === "relaxed_self_drive" ? "selected" : ""}>Relaxed Self-Drive</option>
+            <option value="comfortable_road_trip" ${planner.drivingPreference === "comfortable_road_trip" ? "selected" : ""}>Comfortable Road Trip</option>
+            <option value="fast_mover" ${planner.drivingPreference === "fast_mover" ? "selected" : ""}>Fast Mover</option>
+          </select>
+        </label>
+        <label>Theme
+          <select id="theme">
+            ${themeOptions.map((theme) => `<option value="${html(theme)}" ${planner.theme === theme ? "selected" : ""}>${html(theme)}</option>`).join("")}
+          </select>
+        </label>
       </section>
 
       <section class="layout">
@@ -441,6 +525,66 @@ function render() {
               ? stop.Why_This_Stop
               : `${stop.Route_Theme}. This stop anchors the route in ${stop.Country} and sets up the next drive segment.`,
           )}</p>
+
+          <section class="info-grid">
+            <article class="info-panel">
+              <p class="eyebrow">WHY THIS STOP EXISTS</p>
+              <h3>${html(whyStop.route_function)}</h3>
+              <dl>
+                <dt>Why stop</dt>
+                <dd>${html(whyStop.why_stop_exists)}</dd>
+                <dt>60-minute plan</dt>
+                <dd>${html(whyStop.best_60_minute_experience)}</dd>
+                <dt>Skip rule</dt>
+                <dd>${html(whyStop.skip_if_tired)}</dd>
+              </dl>
+            </article>
+            <article class="info-panel">
+              <p class="eyebrow">RELAXED SELF-DRIVE</p>
+              <h3>Daily burden ${dailyBurden.burden_score}/100</h3>
+              <dl>
+                <dt>Drive</dt>
+                <dd>${dailyBurden.drive_miles} mi · ${dailyBurden.drive_hours} hr estimate</dd>
+                <dt>Hotel change</dt>
+                <dd>${dailyBurden.hotel_change ? "Yes" : "No"} · attractions planned: ${dailyBurden.major_attractions}</dd>
+                <dt>Rule</dt>
+                <dd>${html(relaxedSelfDriveRules[0])}</dd>
+              </dl>
+            </article>
+          </section>
+
+          <section class="duration-ladder">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">CITY DURATION LADDER</p>
+                <h3>${html(cityGuide.name)} first-time plans</h3>
+              </div>
+              <span class="status-pill">${cityGuide.status}</span>
+            </div>
+            <div class="ladder-grid">
+              ${Object.entries(cityGuide.first_time_duration_guides)
+                .map(
+                  ([key, guide]) => `
+                    <article class="ladder-card">
+                      <strong>${html(key.replaceAll("_", " "))}</strong>
+                      <span>${html(guide.pace)}</span>
+                      <p>${html(guide.notes)}</p>
+                      <small>${html(guide.schedule[0]?.time_range ?? "CONTENT_PENDING")}</small>
+                    </article>
+                  `,
+                )
+                .join("")}
+            </div>
+          </section>
+
+          <section class="compiler-panel">
+            <p class="eyebrow">TRIP COMPILER ENGINE</p>
+            <h3>${planner.duration === "full" ? "Full Grand Tour" : `${planner.duration.replace("_plus", "+")} days`} · ${html(planner.theme)}</h3>
+            <p>
+              Compiler skeleton is active. Approved city-duration packs will become the building blocks here;
+              missing packs stay marked CONTENT_PENDING instead of being invented.
+            </p>
+          </section>
 
           <div class="map-embed">
             <div>
@@ -540,6 +684,10 @@ function bind() {
     playing = !playing;
     render();
   });
+  document.querySelector("#mode")?.addEventListener("click", () => {
+    visualMode = visualMode === "daylight" ? "night" : "daylight";
+    render();
+  });
   document.querySelector("#lang")?.addEventListener("click", () => {
     language = language === "cn" ? "en" : "cn";
     render();
@@ -552,6 +700,26 @@ function bind() {
   document.querySelector<HTMLInputElement>("#route-progress")?.addEventListener("input", (event) => {
     setStop(Number((event.target as HTMLInputElement).value));
     playing = false;
+    render();
+  });
+  document.querySelector<HTMLSelectElement>("#duration")?.addEventListener("change", (event) => {
+    planner = { ...planner, duration: (event.target as HTMLSelectElement).value as CompilerInput["duration"] };
+    render();
+  });
+  document.querySelector<HTMLSelectElement>("#visitor-profile")?.addEventListener("change", (event) => {
+    planner = { ...planner, visitorProfile: (event.target as HTMLSelectElement).value as CompilerInput["visitorProfile"] };
+    render();
+  });
+  document.querySelector<HTMLSelectElement>("#pace")?.addEventListener("change", (event) => {
+    planner = { ...planner, pace: (event.target as HTMLSelectElement).value as CompilerInput["pace"] };
+    render();
+  });
+  document.querySelector<HTMLSelectElement>("#drive-profile")?.addEventListener("change", (event) => {
+    planner = { ...planner, drivingPreference: (event.target as HTMLSelectElement).value as CompilerInput["drivingPreference"] };
+    render();
+  });
+  document.querySelector<HTMLSelectElement>("#theme")?.addEventListener("change", (event) => {
+    planner = { ...planner, theme: (event.target as HTMLSelectElement).value };
     render();
   });
 }
