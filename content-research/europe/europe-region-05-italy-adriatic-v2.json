@@ -1,0 +1,209 @@
+{
+  "schema_version": "2.0",
+  "status": "APPROVED_CONTENT_V2",
+  "region_id": "europe-italy-adriatic",
+  "title": "Italy & Adriatic — First Visit + Relaxed Self-Drive",
+  "research_date": "2026-08-11",
+  "editorial_owner": "ChatGPT",
+  "implementation_owner": "Codex",
+  "regional_rule_cn": "意大利大城市采用停车后步行/公共交通。一天最多一个高密度大型遗址或博物馆主任务；Adriatic段进入晚11月后，日照、风雨、船班与国家公园季节运营优先于原计划。",
+  "sources_policy": "Primary historical/operational facts use official archaeological parks, museums, national parks and destination-management sites. Coordinates use verified WGS84 structured data or specifically documented operational terminals.",
+  "stops": [
+    {
+      "order": 45,
+      "id": "rome-vatican",
+      "name": "Rome / Vatican City",
+      "country": "Italy / Vatican City",
+      "role": "major_world_city",
+      "arrival_logistics": {
+        "name": "Civitavecchia Grimaldi vehicle-ferry terminal area",
+        "latitude": 42.098286,
+        "longitude": 11.788158,
+        "coordinate_precision": "terminal_area",
+        "coordinate_source": "Grimaldi official port address Via Prato del Turco 1 cross-checked with ferry-terminal mapping",
+        "coordinate_source_url": "https://www.grimaldi-lines.com/en/harbor/civitavecchia/",
+        "coordinate_verified_date": "2026-08-11",
+        "note_cn": "实际船票、当日港口标牌与船司check-in指示永远优先于静态pin。"
+      },
+      "anchor": {"latitude": 41.8902777778, "longitude": 12.4922222222, "coordinate_precision": "site_center", "locator_name": "Colosseum", "coordinate_source": "verified WGS84 monument coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"id": "colosseum", "name": "Colosseum", "gps": [41.8902777778,12.4922222222], "coordinate_precision": "site_center", "why_cn": "不是只看巨大圆形残墙，而是理解帝国如何组织数万观众、阶层和公共娱乐。", "look_for_cn": ["看台分层与社会等级", "arena与地下服务空间关系", "入口/环廊如何快速分流人群"], "time_minutes": 90},
+        {"id": "roman-forum-palatine", "name": "Roman Forum + Palatine", "gps": [41.8922222222,12.4852777778], "secondary_gps": [41.8883333333,12.4869444444], "coordinate_precision": "archaeological_site", "why_cn": "Forum是政治/法律/宗教城市中心，Palatine是精英与皇帝居住高地；两者一起才解释Rome权力机器。", "time_minutes": 150},
+        {"id": "pantheon", "name": "Pantheon", "gps": [41.8986111111,12.4769444444], "coordinate_precision": "exact", "why_cn": "保存最完整的古罗马大型室内空间之一；站在圆顶下观察oculus和几何比例，比拍外墙重要。", "time_minutes": 60},
+        {"id": "vatican-museums", "name": "Vatican Museums + Sistine Chapel", "gps": [41.9063888889,12.4544444444], "coordinate_precision": "entrance_area", "why_cn": "把古典收藏、Renaissance艺术和教皇权力放进同一条路线，不把Sistine Chapel当孤立天花板。", "time_minutes": 240},
+        {"id": "st-peters", "name": "St. Peter’s Basilica", "gps": [41.9022222222,12.4534166667], "coordinate_precision": "site_center", "why_cn": "空间尺度、Bernini/Basilica轴线和基督教世界象征意义都属于第一次Rome核心。", "time_minutes": 120}
+      ],
+      "four_star": [
+        {"id": "trevi", "name": "Trevi Fountain", "gps": [41.9008333333,12.4830555556], "coordinate_precision": "exact", "why_cn": "把古代供水传统转译成Baroque城市剧场；清晨/深夜作为短体验。"},
+        {"id": "trastevere-slow-evening", "name": "Trastevere slow evening", "gps": [41.8894444444,12.4691666667], "coordinate_precision": "district_anchor", "locator_name": "Santa Maria in Trastevere", "why_cn": "不是再加一座馆，而是给石头和博物馆密集的Rome一天留下生活节奏。"}
+      ],
+      "first_visit_story_cn": "Rome按权力连续性来玩：Republic/Empire的城市机器→保存至今的Pantheon→基督教与教皇Rome→Baroque城市舞台。这样Colosseum和Vatican不是两组无关打卡。",
+      "plans": {
+        "1_day": ["只适合极短访问：Colosseum + Forum/Palatine，晚上Pantheon/Trevi；不要硬塞Vatican"],
+        "2_days": ["Day 1 Ancient Rome：Colosseum + Forum/Palatine + Pantheon", "Day 2 Vatican Museums + St Peter’s；晚上轻松散步"],
+        "3_days": ["Day 1 Ancient Rome", "Day 2 Vatican", "Day 3 Pantheon/Baroque core + Trastevere；节奏明显放慢"],
+        "4_plus": ["第四天才增加专题馆、地下遗址或郊外；至少半天无预约自由时间"]
+      },
+      "self_drive_cn": "从Civitavecchia到Rome后把车停住。Rome和Vatican两大重日不能安排同一天；石板路、排队和站立时间比公里数更耗体力。",
+      "sources": [
+        {"publisher":"Parco archeologico del Colosseo","url":"https://colosseo.it/en/opening-times-and-tickets/","supports":["Colosseum/Forum/Palatine integration","timed-entry operations"]},
+        {"publisher":"St. Peter's Basilica official","url":"https://www.basilicasanpietro.va/en/","supports":["official visit planning","basilica significance"]},
+        {"publisher":"Vatican Museums","url":"https://www.museivaticani.va/","supports":["museum and Sistine official content"]}
+      ]
+    },
+    {
+      "order": 46,
+      "id": "florence-tuscany",
+      "name": "Florence / Tuscany",
+      "country": "Italy",
+      "role": "major_art_city_plus_countryside",
+      "anchor": {"latitude": 43.7731158611, "longitude": 11.2555686389, "coordinate_precision": "site_center", "locator_name": "Cathedral of Santa Maria del Fiore", "coordinate_source": "verified structured monument coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"id":"duomo","name":"Duomo complex","gps":[43.7731158611,11.2555686389],"why_cn":"Brunelleschi穹顶是Renaissance工程自信的实体证据；不要只拍彩色marble façade。", "time_minutes":150},
+        {"id":"uffizi","name":"Uffizi Gallery","gps":[43.7683333333,11.2552777778],"why_cn":"用少量作品看中世纪图像如何走向Renaissance空间、身体与humanism，不刷全馆。", "time_minutes":180},
+        {"id":"chianti-drive","name":"Chianti landscape drive: Greve → Panzano","gps":[43.5833333333,11.3166666667],"secondary_gps":[43.5457305556,11.3136055556],"coordinate_precision":"route_waypoints","why_cn":"Tuscany的‘自然风景’其实是长期农业、vineyard、cypress、stone farm和hill town共同塑造的文化景观。", "time_minutes":300}
+      ],
+      "four_star": [
+        {"id":"accademia","name":"Accademia / Michelangelo David","gps":[43.7769444444,11.2588888889],"why_cn":"雕塑主题非常强，但普通第一次访问若只有两天，不能为一件名作牺牲整个城市节奏。"},
+        {"id":"ponte-vecchio","name":"Ponte Vecchio + Oltrarno evening","gps":[43.767989,11.253163],"coordinate_precision":"bridge_center","why_cn":"作为步行城市连接和晚间生活段，而非单独排一个小时拍桥。"}
+      ],
+      "plans": {"1_day":["上午Duomo complex", "下午Uffizi", "傍晚Arno/Ponte Vecchio，结束"], "2_days":["Day 1 Duomo + city core", "Day 2 Uffizi + Oltrarno/Accademia二选一"], "3_days":["Day 1 architecture", "Day 2 art", "Day 3 Chianti自驾，只做短loop和少量停车"]},
+      "self_drive_cn": "Florence中心车不动；Chianti才重新取车。自驾品酒必须把酒精和驾驶分开，景观停靠比多跑村庄更重要。",
+      "sources": [{"publisher":"Uffizi Galleries official","url":"https://www.uffizi.it/en/visit","supports":["visit planning","official museum"]},{"publisher":"Visit Tuscany","url":"https://www.visittuscany.com/en/","supports":["regional cultural landscape context"]}]
+    },
+    {
+      "order": 47,
+      "id": "venice",
+      "name": "Venice",
+      "country": "Italy",
+      "role": "major_world_city",
+      "anchor": {"latitude": 45.4338888889, "longitude": 12.3380555556, "coordinate_precision": "site_center", "locator_name": "Piazza San Marco", "coordinate_source": "verified WGS84 square coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"id":"san-marco","name":"St Mark’s Square + Basilica","gps":[45.4344444444,12.3397222222],"why_cn":"从Byzantine mosaics和lagoon-facing piazza理解Venice与东地中海贸易联系。"},
+        {"id":"doges-palace","name":"Doge’s Palace","gps":[45.4336666667,12.3404166667],"why_cn":"海上共和国的政治、司法与外交机器；Bridge of Sighs应放在这个系统里，而非独立浪漫景点。"},
+        {"id":"grand-canal","name":"Grand Canal by vaporetto","gps":[45.437984,12.335898],"coordinate_precision":"route_anchor_rialto_area","why_cn":"水才是Venice真正主街。公共vaporetto能连续读商人palazzi、水门和城市物流。"}
+      ],
+      "four_star": [
+        {"id":"rialto","name":"Rialto Bridge / market area","gps":[45.4380,12.3359]},
+        {"id":"burano","name":"Burano","gps":[45.4853,12.4167],"coordinate_precision":"island_center","why_cn":"天气好且有半天才加；不要挤掉Venice本岛核心。"},
+        {"id":"gondola","name":"Gondola on quiet side canals","gps":[45.4358,12.3359],"coordinate_precision":"experience_anchor","why_cn":"可选视角体验，不是第一次Venice的知识核心。"}
+      ],
+      "plans": {"1_day":["清晨San Marco/Basilica", "Doge’s Palace", "午后vaporetto Grand Canal + Rialto"], "2_days":["Day 1 San Marco political/maritime core", "Day 2 neighborhoods + vaporetto；Burano仅天气好再替换半天"], "3_days":["第三天才做lagoon islands或艺术专题"]},
+      "self_drive_cn": "车在mainland/parking terminal结束任务。Venice步行和水运；不要按陆路城市逻辑计算‘距离’。"
+    },
+    {
+      "order": 48,
+      "id": "ljubljana",
+      "name": "Ljubljana",
+      "country": "Slovenia",
+      "role": "recovery_story_city",
+      "anchor": {"latitude": 46.0488888889, "longitude": 14.5088888889, "coordinate_precision": "site_center", "locator_name": "Ljubljana Castle", "coordinate_source": "verified structured coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"id":"castle-old-town","name":"Ljubljana Castle + Old Town river sequence","gps":[46.0488888889,14.5088888889],"why_cn":"城堡给城市盆地全景，河边/Triple Bridge则展示Plečnik如何把交通结构做成公共生活空间。"}
+      ],
+      "four_star": [{"id":"triple-bridge","name":"Triple Bridge / Prešeren Square","gps":[46.0514,14.5060],"coordinate_precision":"site_center"}],
+      "plans": {"1_day":["河边Old Town", "Triple Bridge", "funicular/castle", "晚饭后结束"]},
+      "self_drive_cn": "作为Venice→Plitvice之间恢复站，2–3小时高质量体验足够。",
+      "sources": [{"publisher":"Visit Ljubljana","url":"https://www.visitljubljana.com/en/visitors/plan-your-visit/tours-and-trips/historical-city-centre-and-ljubljana-castle/","supports":["Plečnik/old-town sequence","castle visit"]}]
+    },
+    {
+      "order": 49,
+      "id": "plitvice",
+      "name": "Plitvice Lakes National Park",
+      "country": "Croatia",
+      "role": "nature_weather_conditional",
+      "anchor": {"latitude": 44.88045, "longitude": 15.6160388889, "coordinate_precision": "park_core", "locator_name": "Plitvice Lakes National Park", "coordinate_source": "verified WGS84 protected-area coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"id":"lower-lakes-veliki-slap","name":"Lower Lakes + Veliki Slap","gps":[44.9023738889,15.6088930556],"why_cn":"waterfall只是其中一幕；重点是湖、canyon和travertine barrier如何持续塑造水路。"}
+      ],
+      "four_star": [{"id":"upper-lakes","name":"Upper Lakes","gps":[44.8747,15.6036],"coordinate_precision":"lake_zone_anchor","availability":"WEATHER_AND_SEASON_CONDITIONAL"}],
+      "plans": {"1_day":["按官方当天开放program选路线，不自行拼接关闭栈道", "late-Nov优先Lower Lakes可用线路", "在短日照前返回停车区"]},
+      "season_logic_cn": "官方FAQ明确：冬季Lower Lakes通常开放，Upper Lakes通常关闭并受天气决定。官方tour programme也会临时关闭某些线路。因此本行程晚11月不得默认执行夏季4–6小时完整上下湖路线。",
+      "self_drive_cn": "前晚住附近或尽早到。湿滑、冰雪、短日照时主动缩短路线；自然景观不是完成步数比赛。",
+      "sources": [{"publisher":"Plitvice Lakes National Park official","url":"https://np-plitvicka-jezera.hr/en/plan-your-visit/istrazite-jezera/activities/lake-tour-programmes/","supports":["official route choices","temporary closures"]},{"publisher":"Plitvice official FAQ","url":"https://np-plitvicka-jezera.hr/en/faq/","supports":["winter Lower/Upper Lakes availability"]}]
+    },
+    {
+      "order": 50,
+      "id": "split",
+      "name": "Split",
+      "country": "Croatia",
+      "role": "historic_transit_city",
+      "anchor": {"latitude": 43.5080555556, "longitude": 16.4383333333, "coordinate_precision": "site_center", "locator_name": "Diocletian’s Palace", "coordinate_source": "verified WGS84 palace coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"id":"diocletian-palace","name":"Diocletian’s Palace living-city walk","gps":[43.5080555556,16.4383333333],"why_cn":"它不是冻结遗址：Roman imperial palace逐渐被居民、教堂、商店和街巷改造成现代城市。", "sub_attractions":["Peristyle","substructures/cellars","Golden Gate","Cathedral of St Domnius"]}
+      ],
+      "four_star": [{"id":"marjan","name":"Marjan viewpoint/park","gps":[43.5088,16.4193],"coordinate_precision":"park_anchor","why_cn":"若到得早且天气好，用作Adriatic城市恢复，不必强求。"}],
+      "plans": {"1_day":["Peristyle→cellars→lanes→Golden Gate", "傍晚Riva；有体力再Marjan"]},
+      "self_drive_cn": "停车后Palace全步行。不要把Split当只有一堆Roman ruins；留时间观察现代生活如何嵌进古墙。",
+      "sources": [{"publisher":"Tourist Board of Split","url":"https://visitsplit.com/en/448/diocletian-palace","supports":["palace layout","living-city continuity"]}]
+    },
+    {
+      "order": 51,
+      "id": "dubrovnik",
+      "name": "Dubrovnik",
+      "country": "Croatia",
+      "role": "major_adriatic_city",
+      "anchor": {"latitude": 42.64, "longitude": 18.108, "coordinate_precision": "fortification_system", "locator_name": "Dubrovnik City Walls", "coordinate_source": "verified WGS84 fortification coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"id":"walls","name":"Dubrovnik City Walls","gps":[42.64,18.108],"why_cn":"完整绕城能同时看海防、陆防、港口与红屋顶；这是理解Ragusa如何靠贸易、外交和防御生存的最佳视角。", "time_minutes":150},
+        {"id":"old-town","name":"Old Town civic core","gps":[42.6408888889,18.1091111111],"why_cn":"Stradun、Rector/Sponza一带要看成一座海上共和国的市民/行政系统。"},
+        {"id":"srd","name":"Mount Srđ viewpoint","gps":[42.65,18.11],"coordinate_precision":"summit_area","availability":"WEATHER_CONDITIONAL","why_cn":"从上方一次看完整城墙平面、Lokrum和陆地山界。"}
+      ],
+      "four_star": [{"id":"lokrum","name":"Lokrum Island","gps":[42.6276,18.1195],"coordinate_precision":"island_center","availability":"SEASONAL_BOAT_ONLY"}],
+      "plans": {"1_day":["开门早走Walls", "午后Old Town", "晴天日落Srđ"], "2_days":["Day 1 walls+old city", "Day 2 Srđ/慢城；Lokrum仅船班实际运行才替换半天"]},
+      "self_drive_cn": "车停城外/酒店停车。台阶和城墙风大；下雨不要为了计划硬走全圈。"
+    },
+    {
+      "order": 52,
+      "id": "kotor",
+      "name": "Kotor",
+      "country": "Montenegro",
+      "role": "bay_fortress_city",
+      "anchor": {"latitude": 42.42539, "longitude": 18.7711911111, "coordinate_precision": "old_town_center", "locator_name": "Kotor Old Town", "coordinate_source": "verified WGS84 historic-core coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"id":"old-town","name":"Kotor Old Town","gps":[42.42539,18.7711911111],"why_cn":"小尺度Venetian-influenced海湾城，重点是城墙、街巷和黑山逼近海湾的空间压迫感。"},
+        {"id":"fortifications","name":"Kotor Fortifications / climb as conditions allow","gps":[42.4248861111,18.7710430556],"coordinate_precision":"fortification_lower_anchor","why_cn":"高度变化能把天然海湾与人工防御放在同一画面；湿滑或体力差就只走低段。"}
+      ],
+      "four_star": [],
+      "plans": {"1_day":["清晨Old Town", "天气干燥且体力允许才爬fortifications", "午后bay慢走/休息"]},
+      "self_drive_cn": "只有60 miles级短转场，更应该慢。湿石阶不值得为了‘5★’冒险。"
+    },
+    {
+      "order": 53,
+      "id": "shkoder",
+      "name": "Shkodër",
+      "country": "Albania",
+      "role": "historic_transit",
+      "anchor": {"latitude": 42.0463318889, "longitude": 19.493, "coordinate_precision": "site_center", "locator_name": "Rozafa Castle", "coordinate_source": "verified WGS84 fortress coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [{"id":"rozafa","name":"Rozafa Castle","gps":[42.0463318889,19.493],"why_cn":"从城堡同时看河流、湖区和道路节点，再读Rozafa牺牲传说，地理与文化记忆会连在一起。"}],
+      "four_star": [{"id":"marubi","name":"Marubi National Museum of Photography","gps":[42.0686,19.51557],"coordinate_precision":"entrance_building","coordinate_source":"official address Rruga Kolë Idromeno No.32 cross-checked with OSM building","why_cn":"若天气差或想理解近现代Albania社会视觉史，这是最值得的室内补充。"}],
+      "plans": {"1_day":["傍晚Rozafa", "天气差或早到才加Marubi", "其余时间休息"]},
+      "self_drive_cn": "Kotor→Shkodër距离短，但边境时间不稳定；不要因为地图里程短就预约紧凑入场。"
+    },
+    {
+      "order": 54,
+      "id": "gjirokaster",
+      "name": "Gjirokastër",
+      "country": "Albania",
+      "role": "stone_city",
+      "anchor": {"latitude": 40.074, "longitude": 20.141, "coordinate_precision": "site_center", "locator_name": "Gjirokastër Fortress", "coordinate_source": "verified WGS84 fortress coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [{"id":"fortress","name":"Gjirokastër Fortress","gps":[40.074,20.141],"why_cn":"先从高处看山谷和石屋城市，再下城，比反过来更容易理解Ottoman-era防御地形。"}],
+      "four_star": [{"id":"zekate","name":"Zekate House","gps":[40.0788888889,20.1333333333],"why_cn":"通过传统大宅内部理解stone city不只是屋顶摄影。"}],
+      "plans": {"1_day":["早Fortress", "下坡Bazaar/stone lanes", "Zekate House体力允许再进"]},
+      "self_drive_cn": "坡度和石板比距离累；停车后不要反复取车。"
+    },
+    {
+      "order": 55,
+      "id": "ioannina",
+      "name": "Ioannina",
+      "country": "Greece",
+      "role": "lake_history_recovery",
+      "anchor": {"latitude": 39.6688888889, "longitude": 20.8555555556, "coordinate_precision": "fortified_core", "locator_name": "Ioannina Castle", "coordinate_source": "verified WGS84 castle coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [{"id":"castle-lake","name":"Ioannina Castle + Lake Pamvotis","gps":[39.6688888889,20.8555555556],"secondary_gps":[39.6636111111,20.8522222222],"why_cn":"Byzantine/Ottoman/Greek/Jewish层次和湖城地理在一个轻松步行中完成，适合连续Balkan驾驶后的恢复。"}],
+      "four_star": [{"id":"silversmithing","name":"Silversmithing Museum","gps":[39.67018,20.86079],"coordinate_precision":"building","coordinate_source":"PIOP official Its Kale address + OSM/Wikidata building","why_cn":"Ioannina银器传统是城市工艺身份的重要部分，馆址本身就在Its Kale fortification内。"}],
+      "plans": {"1_day":["Castle/Its Kale", "Silversmithing Museum可选", "lakefront傍晚，不再加远程项目"]},
+      "self_drive_cn": "这是刻意的恢复夜；55 miles级短转场后也不需要把空出来的时间重新塞满。",
+      "sources": [{"publisher":"PIOP Silversmithing Museum","url":"https://www.piop.gr/en/diktuo-mouseion/silversmithing-museum/","supports":["official museum","Its Kale address","craft context"]}]
+    }
+  ]
+}
