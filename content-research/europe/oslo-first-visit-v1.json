@@ -1,0 +1,160 @@
+{
+  "schema_version": "1.0",
+  "status": "APPROVED_CONTENT_V1",
+  "city_id": "oslo",
+  "city_name": "Oslo",
+  "country": "Norway",
+  "research_date": "2026-08-11",
+  "editorial_owner": "ChatGPT",
+  "implementation_owner": "Codex",
+  "first_time_summary_cn": "Oslo第一次到访最值得看的不是传统老城，而是三种Norway身份叠在一起：Vigeland的人性雕塑、MUNCH的现代艺术、Fram的极地探索，再用Opera House与Akershus Fortress把现代滨水城市和中世纪防御历史连起来。1天不要硬塞Bygdøy+所有museum；2天才完整。",
+  "signature_story_cn": "先在Vigeland Park看Norway用公共雕塑讨论人生，再到Bjørvika看MUNCH和Opera House代表现代文化国家，第二天坐到Bygdøy登上真实Fram极地船，最后回到Akershus理解Oslo为什么从防御港口发展成今天的首都。",
+  "recommended_nights_relaxed_self_drive": 2,
+  "self_drive_strategy_cn": "Oslo核心区停车成本和城市交通都不适合逐点自驾。抵达后停好车，Vigeland用tram/bus，Bjørvika步行，Bygdøy用bus或季节性ferry。若当天已从Gothenburg开约180 miles，只安排Opera/MUNCH waterfront或Vigeland其中一组，不安排完整Bygdøy。",
+  "editorial_scale": {"5": "第一次到访不可轻易删除", "4": "很值得；时间允许应加入"},
+  "attractions": [
+    {
+      "id": "vigeland-sculpture-park",
+      "name": "Vigeland Sculpture Park",
+      "editorial_rating": 5,
+      "first_time_required": true,
+      "latitude": 59.927667,
+      "longitude": 10.698889,
+      "coordinate_precision": "site_center",
+      "coordinate_source": "Wikidata Q7460945",
+      "coordinate_verified_date": "2026-08-11",
+      "why_it_matters_cn": "这里不是散落雕像公园，而是一整套关于出生、家庭、欲望、冲突、衰老和死亡的人生叙事。VisitOSLO把它列为Oslo最重要景点之一。",
+      "how_to_experience_cn": "按Bridge→Fountain→Monolith的轴线顺序走，不要看到某一座搞笑雕像就结束。秋天上午或傍晚光线最好，至少留90分钟。",
+      "what_to_look_for_cn": ["Bridge上的人物关系", "Sinnataggen/Angry Boy的尺度与表情", "Fountain的人生循环", "Monolith的121个人体组合", "轴线、台阶和公园秋树如何共同构图"],
+      "time_required_minutes": 105,
+      "best_time": "morning or late afternoon",
+      "autumn_focus_cn": "黄叶与花岗岩/青铜的色彩反差非常强，是Oslo最值得的城市秋景之一。",
+      "sub_attractions": [
+        {"id": "vigeland-bridge", "name": "The Bridge", "editorial_rating": 5, "latitude": 59.926111, "longitude": 10.703611, "coordinate_precision": "exact", "time_required_minutes": 25},
+        {"id": "vigeland-fountain", "name": "The Fountain", "editorial_rating": 5, "time_required_minutes": 20},
+        {"id": "vigeland-monolith", "name": "The Monolith plateau", "editorial_rating": 5, "time_required_minutes": 30}
+      ],
+      "sources": [
+        {"source_type": "official", "publisher": "VisitOSLO", "url": "https://www.visitoslo.com/en/articles/vigeland-in-oslo/", "supports": ["significance", "park_story"]},
+        {"source_type": "official", "publisher": "VisitOSLO", "url": "https://www.visitoslo.com/es/actividades-y-atracciones/10-sugerencias/atracciones-mas-grandes/", "supports": ["top_attraction_status"]},
+        {"source_type": "coordinate", "publisher": "Wikidata", "url": "https://www.wikidata.org/wiki/Q7460945", "supports": ["gps"]}
+      ]
+    },
+    {
+      "id": "munch",
+      "name": "MUNCH",
+      "editorial_rating": 5,
+      "first_time_required": true,
+      "latitude": 59.905750,
+      "longitude": 10.755194,
+      "coordinate_precision": "exact",
+      "coordinate_source": "Wikidata Q79355426; official address Edvard Munchs plass 1",
+      "coordinate_verified_date": "2026-08-11",
+      "why_it_matters_cn": "这是理解Edvard Munch最完整的地点。馆方收藏约28,000件艺术作品和42,000多件独特museum objects，并以多个长期collection displays展示他的艺术跨度。",
+      "how_to_experience_cn": "不要只冲The Scream。先看Infinite建立代表作，再选Monumental或Up Close理解大尺幅与木刻；最后去高层看Oslofjord，把Munch的艺术和Norwegian landscape连接起来。",
+      "what_to_look_for_cn": ["The Scream不同版本轮换展示机制", "Madonna与Vampire", "Infinite collection的生涯跨度", "Monumental的大尺幅公共作品", "高层城市/峡湾视野"],
+      "time_required_minutes": 150,
+      "best_time": "afternoon; Wed-Sat can support later hours",
+      "rain_plan": true,
+      "sub_attractions": [
+        {"id": "munch-infinite", "name": "Edvard Munch Infinite", "editorial_rating": 5, "time_required_minutes": 60},
+        {"id": "munch-scream", "name": "The Scream display", "editorial_rating": 5, "time_required_minutes": 15},
+        {"id": "munch-monumental", "name": "Edvard Munch Monumental", "editorial_rating": 4, "time_required_minutes": 30}
+      ],
+      "sources": [
+        {"source_type": "official", "publisher": "MUNCH", "url": "https://www.munch.no/en/our-collection/", "supports": ["collection_scale", "collection_story"]},
+        {"source_type": "official", "publisher": "MUNCH", "url": "https://www.munch.no/en/visit-us/summer-at-MUNCH/", "supports": ["scream", "first_visit_highlights"]},
+        {"source_type": "coordinate", "publisher": "Wikidata", "url": "https://www.wikidata.org/wiki/Q79355426", "supports": ["gps"]}
+      ]
+    },
+    {
+      "id": "fram-museum",
+      "name": "Fram Museum",
+      "editorial_rating": 5,
+      "first_time_required": true,
+      "latitude": 59.903331,
+      "longitude": 10.699439,
+      "coordinate_precision": "exact",
+      "coordinate_source": "Wikidata Q941250; official museum location Bygdøy",
+      "coordinate_verified_date": "2026-08-11",
+      "why_it_matters_cn": "如果只选一个museum理解Norway为什么与polar exploration如此紧密，Fram最有力量，因为核心展品就是实际参与三次重要极地远征的Fram号，游客可以登船进入船舱。",
+      "how_to_experience_cn": "先看5分钟intro film，再登Fram进入cabins、saloon、cargo hold和engine room；之后若还有时间再去Gjøa building。重点不是'看一艘老船'，而是理解Nansen如何设计一艘能承受pack ice挤压的船。",
+      "what_to_look_for_cn": ["Fram圆厚船体与抗冰设计逻辑", "船员生活空间", "Nansen、Sverdrup、Amundsen三次远征的不同目标", "Gjøa与Northwest Passage", "极地探索中技术与风险的关系"],
+      "time_required_minutes": 150,
+      "best_time": "morning half-day on Bygdøy",
+      "rain_plan": true,
+      "sub_attractions": [
+        {"id": "fram-ship", "name": "Polar ship Fram", "editorial_rating": 5, "latitude": 59.903333, "longitude": 10.699444, "coordinate_precision": "exact", "time_required_minutes": 75},
+        {"id": "gjoa-building", "name": "Gjøa / Northwest Passage exhibition", "editorial_rating": 4, "time_required_minutes": 40}
+      ],
+      "sources": [
+        {"source_type": "official", "publisher": "Fram Museum", "url": "https://frammuseum.no/our-exhibitions/", "supports": ["ship_access", "exhibition_highlights"]},
+        {"source_type": "official", "publisher": "Fram Museum", "url": "https://frammuseum.no/polar-history/vessels/", "supports": ["expedition_history", "ship_design"]},
+        {"source_type": "official", "publisher": "Fram Museum", "url": "https://frammuseum.no/the-museum/plan-your-visit/", "supports": ["visit_sequence", "Bygdoy_access"]},
+        {"source_type": "coordinate", "publisher": "Wikidata", "url": "https://www.wikidata.org/wiki/Q941250", "supports": ["gps"]}
+      ]
+    },
+    {
+      "id": "oslo-opera-house",
+      "name": "Oslo Opera House",
+      "editorial_rating": 4,
+      "first_time_required": false,
+      "latitude": 59.906944,
+      "longitude": 10.753611,
+      "coordinate_precision": "exact",
+      "coordinate_source": "Wikidata Q43280; official address Kirsten Flagstads plass 1",
+      "coordinate_verified_date": "2026-08-11",
+      "why_it_matters_cn": "这栋Snøhetta建筑最有价值的不是看一场opera，而是理解一个文化建筑如何被设计成公共地形：白色屋顶从fjord边升起，任何人都可以走上去。",
+      "how_to_experience_cn": "从海边低处沿屋顶斜坡走上去，回头看Bjørvika、fjord和MUNCH，再进入foyer看oak wall。除非本身喜欢建筑/舞台技术，否则不必强求guided tour。",
+      "what_to_look_for_cn": ["可步行屋顶作为public space", "白色Carrara marble与fjord关系", "foyer的oak wall", "She Lies水上雕塑", "Opera与MUNCH构成的新waterfront文化区"],
+      "time_required_minutes": 60,
+      "best_time": "golden hour or clear morning",
+      "sources": [
+        {"source_type": "official", "publisher": "Norwegian National Opera & Ballet", "url": "https://www.operaen.no/en/about-us-oslo-operahouse/about-the-oslo-opera-house/", "supports": ["architecture", "materials", "public_roof"]},
+        {"source_type": "coordinate", "publisher": "Wikidata", "url": "https://www.wikidata.org/wiki/Q43280", "supports": ["gps"]}
+      ]
+    },
+    {
+      "id": "akershus-fortress",
+      "name": "Akershus Fortress",
+      "editorial_rating": 4,
+      "first_time_required": false,
+      "latitude": 59.906611,
+      "longitude": 10.736250,
+      "coordinate_precision": "site_center",
+      "coordinate_source": "Wikidata Q644464",
+      "coordinate_verified_date": "2026-08-11",
+      "why_it_matters_cn": "Oslo的新waterfront很现代，Akershus提供必要的反差：这里从约1300年前后的castle/fortress发展起来，解释首都港口的防御历史。",
+      "how_to_experience_cn": "把它当60至90分钟的城墙与视野散步，不一定每个museum都进。重点看fjord/harbour方向、城墙层次和城堡核心。对二战史特别有兴趣再加Resistance Museum。",
+      "what_to_look_for_cn": ["fortress高地与港口控制关系", "中世纪castle核心", "后期堡垒改造", "从古防御区看现代Oslo waterfront"],
+      "time_required_minutes": 75,
+      "best_time": "late afternoon",
+      "sources": [
+        {"source_type": "official", "publisher": "VisitOSLO", "url": "https://www.visitoslo.com/es/actividades-y-atracciones/10-sugerencias/atracciones-mas-grandes/", "supports": ["top_attraction_status", "first_time_priority"]},
+        {"source_type": "coordinate", "publisher": "Wikidata", "url": "https://www.wikidata.org/wiki/Q644464", "supports": ["gps"]}
+      ]
+    }
+  ],
+  "mini_tours": [
+    {
+      "duration": "1_day",
+      "pace": "relaxed",
+      "must_see": ["vigeland-sculpture-park", "munch"],
+      "optional": ["oslo-opera-house"],
+      "schedule_cn": ["上午：Vigeland Park 1.5至2小时", "午后：MUNCH 2至2.5小时", "傍晚：Opera House屋顶；若当天是长途抵达日，Vigeland或MUNCH二选一，绝不硬塞两组"]
+    },
+    {
+      "duration": "2_days",
+      "pace": "relaxed",
+      "must_see": ["vigeland-sculpture-park", "munch", "fram-museum", "oslo-opera-house"],
+      "optional": ["akershus-fortress"],
+      "schedule_cn": ["Day 1：Vigeland上午 + MUNCH/Opera waterfront下午到黄昏", "Day 2：Bygdøy Fram半天 + Akershus/harbour轻松下午"]
+    },
+    {
+      "duration": "3_days",
+      "pace": "relaxed",
+      "must_see": ["vigeland-sculpture-park", "munch", "fram-museum", "oslo-opera-house", "akershus-fortress"],
+      "schedule_cn": ["Day 1：Vigeland + 城市慢走", "Day 2：MUNCH + Opera + Akershus waterfront", "Day 3：Bygdøy Fram + fjord/forest recovery；不再增加大型museum"]
+    }
+  ]
+}
