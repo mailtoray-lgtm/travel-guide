@@ -1,0 +1,356 @@
+{
+  "type": "FeatureCollection",
+  "name": "90-Day Euro Epic Road Trip (AMS Start)",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 1: Amsterdam, Netherlands",
+        "leg": "1 - Windmills & Fjords",
+        "day": "D01-D02",
+        "description": "Must-See: Dam Square, Van Gogh Museum, Canal Cruise | Optional: Zaanse Schans"
+      },
+      "geometry": { "type": "Point", "coordinates": [4.9041, 52.3676] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 1: Hamburg, Germany",
+        "leg": "1 - Windmills & Fjords",
+        "day": "D03-D04",
+        "description": "Drive: 290 mi / 4h 40m | Must-See: Miniatur Wunderland, Speicherstadt | Optional: Elbphilharmonie"
+      },
+      "geometry": { "type": "Point", "coordinates": [9.9937, 53.5511] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 1: Copenhagen, Denmark",
+        "leg": "1 - Windmills & Fjords",
+        "day": "D05-D06",
+        "description": "Drive: 295 mi / 5h | Must-See: Nyhavn, Little Mermaid, Amalienborg Palace | Optional: Tivoli Gardens"
+      },
+      "geometry": { "type": "Point", "coordinates": [12.5683, 55.6761] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 1: Gothenburg, Sweden",
+        "leg": "1 - Windmills & Fjords",
+        "day": "D07",
+        "description": "Drive: 195 mi / 3h 30m | Must-See: Haga Old Town, Volvo Museum | Optional: Botanical Garden"
+      },
+      "geometry": { "type": "Point", "coordinates": [11.9745, 57.7089] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 1: Oslo, Norway",
+        "leg": "1 - Windmills & Fjords",
+        "day": "D08-D09",
+        "description": "Drive: 180 mi / 3h 20m | Must-See: Vigeland Park, Munch Museum, Royal Palace | Optional: Aker Brygge"
+      },
+      "geometry": { "type": "Point", "coordinates": [10.7522, 59.9139] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 1: Flåm / Sognefjord, Norway",
+        "leg": "1 - Windmills & Fjords",
+        "day": "D10-D12",
+        "description": "Drive: 215 mi / 4h 40m | Must-See: Flåmsbana Railway, Stegastein Viewpoint, Nærøyfjord Cruise"
+      },
+      "geometry": { "type": "Point", "coordinates": [7.1126, 60.8608] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 1: Geiranger / Trollstigen, Norway",
+        "leg": "1 - Windmills & Fjords",
+        "day": "D13-D15",
+        "description": "Drive: 170 mi / 4h 30m | Must-See: Geirangerfjord, Trollstigen Pass, Atlantic Ocean Road"
+      },
+      "geometry": { "type": "Point", "coordinates": [7.2058, 62.1008] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 1: Stockholm, Sweden",
+        "leg": "1 - Windmills & Fjords",
+        "day": "D16-D17",
+        "description": "Drive: 525 mi / 9h 30m | Must-See: Gamla Stan, Vasa Museum, City Hall | Optional: Drottningholm"
+      },
+      "geometry": { "type": "Point", "coordinates": [18.0686, 59.3293] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 1: Odense, Denmark",
+        "leg": "1 - Windmills & Fjords",
+        "day": "D18",
+        "description": "Drive: 425 mi / 7h 15m | Must-See: Hans Christian Andersen Museum, Historic Old Town"
+      },
+      "geometry": { "type": "Point", "coordinates": [10.3883, 55.4038] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 2: Berlin, Germany",
+        "leg": "2 - Eastern Europe & Baltic Fall",
+        "day": "D19-D20",
+        "description": "Drive: 270 mi / 4h 40m | Must-See: Brandenburg Gate, Reichstag, East Side Gallery"
+      },
+      "geometry": { "type": "Point", "coordinates": [13.4050, 52.5200] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 2: Warsaw, Poland",
+        "leg": "2 - Eastern Europe & Baltic Fall",
+        "day": "D21-D23",
+        "description": "Drive: 355 mi / 5h 30m | Must-See: Old Town Market Square, Royal Castle, Łazienki Park"
+      },
+      "geometry": { "type": "Point", "coordinates": [21.0122, 52.2297] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 2: Kraków, Poland",
+        "leg": "2 - Eastern Europe & Baltic Fall",
+        "day": "D24-D26",
+        "description": "Drive: 180 mi / 3h 30m | Must-See: Main Square, Wawel Castle, Wieliczka Salt Mine"
+      },
+      "geometry": { "type": "Point", "coordinates": [19.9450, 50.0647] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 2: Prague, Czech Republic",
+        "leg": "2 - Eastern Europe & Baltic Fall",
+        "day": "D27-D30",
+        "description": "Drive: 335 mi / 5h 20m | Must-See: Charles Bridge, Prague Castle, Astronomical Clock"
+      },
+      "geometry": { "type": "Point", "coordinates": [14.4378, 50.0755] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 2: Český Krumlov, Czech Republic",
+        "leg": "2 - Eastern Europe & Baltic Fall",
+        "day": "D31-D32",
+        "description": "Drive: 110 mi / 2h 15m | Must-See: Castle Tower, Vltava River Horseshoe Bend"
+      },
+      "geometry": { "type": "Point", "coordinates": [14.3175, 48.8127] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 2: Hallstatt / Salzburg, Austria",
+        "leg": "2 - Eastern Europe & Baltic Fall",
+        "day": "D33",
+        "description": "Drive: 130 mi / 2h 40m | Must-See: Hallstatt Postcard View, Hohensalzburg Fortress"
+      },
+      "geometry": { "type": "Point", "coordinates": [13.6493, 47.5622] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 3: Dolomites (Val Gardena), Italy",
+        "leg": "3 - Alps & Dolomites High Passes",
+        "day": "D34-D38",
+        "description": "Drive: 190 mi / 3h 50m | Must-See: Tre Cime di Lavaredo, Seceda Cable Car, Lago di Braies"
+      },
+      "geometry": { "type": "Point", "coordinates": [11.7719, 46.5562] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 3: Interlaken / Grindelwald, Switzerland",
+        "leg": "3 - Alps & Dolomites High Passes",
+        "day": "D39-D42",
+        "description": "Drive: 290 mi / 6h | Must-See: Jungfraujoch Railway, Matterhorn Views in Zermatt"
+      },
+      "geometry": { "type": "Point", "coordinates": [8.0414, 46.6242] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 3: Chamonix / Mont Blanc, France",
+        "leg": "3 - Alps & Dolomites High Passes",
+        "day": "D43-D44",
+        "description": "Drive: 85 mi / 2h 15m | Must-See: Aiguille du Midi Cable Car, Mer de Glace"
+      },
+      "geometry": { "type": "Point", "coordinates": [6.8694, 45.9237] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 3: Avignon / Provence, France",
+        "leg": "3 - Alps & Dolomites High Passes",
+        "day": "D45",
+        "description": "Drive: 240 mi / 3h 50m | Must-See: Palais des Papes, Pont d'Avignon"
+      },
+      "geometry": { "type": "Point", "coordinates": [4.8055, 43.9493] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 4: Barcelona, Spain",
+        "leg": "4 - Iberian Sun & Mediterranean Coast",
+        "day": "D46-D49",
+        "description": "Drive: 270 mi / 4h 15m | Must-See: Sagrada Família, Park Güell, Casa Batlló"
+      },
+      "geometry": { "type": "Point", "coordinates": [2.1734, 41.3851] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 4: Madrid, Spain",
+        "leg": "4 - Iberian Sun & Mediterranean Coast",
+        "day": "D50-D53",
+        "description": "Drive: 385 mi / 5h 50m | Must-See: Prado Museum, Royal Palace, Plaza Mayor"
+      },
+      "geometry": { "type": "Point", "coordinates": [-3.7038, 40.4168] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 4: Lisbon / Sintra, Portugal",
+        "leg": "4 - Iberian Sun & Mediterranean Coast",
+        "day": "D54-D57",
+        "description": "Drive: 390 mi / 5h 45m | Must-See: Pena Palace, Cabo da Roca, Belém Tower"
+      },
+      "geometry": { "type": "Point", "coordinates": [-9.1393, 38.7223] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 4: Porto, Portugal",
+        "leg": "4 - Iberian Sun & Mediterranean Coast",
+        "day": "D58-D59",
+        "description": "Drive: 195 mi / 3h | Must-See: Dom Luís I Bridge, Livraria Lello, São Bento Station"
+      },
+      "geometry": { "type": "Point", "coordinates": [-8.6291, 41.1579] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 4: Seville, Spain",
+        "leg": "4 - Iberian Sun & Mediterranean Coast",
+        "day": "D60-D61",
+        "description": "Drive: 295 mi / 4h 40m | Must-See: Plaza de España, Royal Alcázar of Seville"
+      },
+      "geometry": { "type": "Point", "coordinates": [-5.9845, 37.3891] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 4: Barcelona Ferry Port, Spain",
+        "leg": "4 - Iberian Sun & Mediterranean Coast",
+        "day": "D62",
+        "description": "Transit: Board Grimaldi Lines Overnight Car Ferry to Civitavecchia (20h)"
+      },
+      "geometry": { "type": "Point", "coordinates": [2.1819, 41.3702] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 5: Rome / Vatican City, Italy",
+        "leg": "5 - Italian Heritage & Adriatic Coast",
+        "day": "D63-D67",
+        "description": "Drive: 50 mi / 1h 10m from port | Must-See: Colosseum, Roman Forum, Vatican Museums, Trevi Fountain"
+      },
+      "geometry": { "type": "Point", "coordinates": [12.4964, 41.9028] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 5: Tuscany (Florence / Chianti), Italy",
+        "leg": "5 - Italian Heritage & Adriatic Coast",
+        "day": "D68-D71",
+        "description": "Drive: 170 mi / 3h 10m | Must-See: Duomo, Uffizi Gallery, Chianti Cypress Road Driving"
+      },
+      "geometry": { "type": "Point", "coordinates": [11.2558, 43.7696] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 5: Venice, Italy",
+        "leg": "5 - Italian Heritage & Adriatic Coast",
+        "day": "D72-D73",
+        "description": "Drive: 160 mi / 2h 45m | Must-See: St. Mark's Square, Grand Canal Gondola, Bridge of Sighs"
+      },
+      "geometry": { "type": "Point", "coordinates": [12.3155, 45.4408] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 5: Dubrovnik, Croatia",
+        "leg": "5 - Italian Heritage & Adriatic Coast",
+        "day": "D74-D76",
+        "description": "Drive: 420 mi / 7h 30m via D8 Coast Highway | Must-See: Old Town Walls Walk, Mt. Srđ Cable Car"
+      },
+      "geometry": { "type": "Point", "coordinates": [18.0944, 42.6507] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 5: Ancona Ferry Port, Italy",
+        "leg": "5 - Italian Heritage & Adriatic Coast",
+        "day": "D77",
+        "description": "Transit: Board ANEK/Superfast Overnight Car Ferry across Adriatic Sea to Patras, Greece (21h)"
+      },
+      "geometry": { "type": "Point", "coordinates": [13.5101, 43.6158] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 6: Athens, Greece",
+        "leg": "6 - Ancient Greece & Balkan Return Loop",
+        "day": "D78-D82",
+        "description": "Drive: 135 mi / 2h 30m from Patras | Must-See: Acropolis, Parthenon, Acropolis Museum"
+      },
+      "geometry": { "type": "Point", "coordinates": [23.7275, 37.9838] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 6: Meteora, Greece",
+        "leg": "6 - Ancient Greece & Balkan Return Loop",
+        "day": "D83-D84",
+        "description": "Drive: 220 mi / 4h | Must-See: Great Meteoron Monastery, Cliffside Sunset Viewpoints"
+      },
+      "geometry": { "type": "Point", "coordinates": [21.6306, 39.7217] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 6: Belgrade, Serbia",
+        "leg": "6 - Ancient Greece & Balkan Return Loop",
+        "day": "D85-D86",
+        "description": "Drive: 390 mi / 7h | Must-See: Kalemegdan Fortress, Church of Saint Sava"
+      },
+      "geometry": { "type": "Point", "coordinates": [20.4489, 44.7866] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 6: Budapest, Hungary",
+        "leg": "6 - Ancient Greece & Balkan Return Loop",
+        "day": "D87-D89",
+        "description": "Drive: 235 mi / 4h | Must-See: Parliament Night Cruise, Fisherman's Bastion, Chain Bridge"
+      },
+      "geometry": { "type": "Point", "coordinates": [19.0402, 47.4979] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leg 6: Amsterdam Schiphol Airport (Return)",
+        "leg": "6 - Ancient Greece & Balkan Return Loop",
+        "day": "D90",
+        "description": "Drive: Return to Amsterdam Schiphol (AMS) to drop off rental vehicle and complete 90-day loop."
+      },
+      "geometry": { "type": "Point", "coordinates": [4.7683, 52.3105] }
+    }
+  ]
+}
