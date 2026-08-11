@@ -1,0 +1,129 @@
+{
+  "schema_version": "1.0",
+  "status": "APPROVED_CONTENT_V1",
+  "city_id": "gothenburg",
+  "city_name": "Gothenburg",
+  "country": "Sweden",
+  "research_date": "2026-08-11",
+  "editorial_owner": "ChatGPT",
+  "implementation_owner": "Codex",
+  "first_time_summary_cn": "Gothenburg在这条欧洲秋季自驾里只停1晚，因此不应该把它排成完整城市刷景点。第一次到访最值得抓三件事：Haga的人情尺度、Skansen Kronan的城市视野、Volvo作为这座城市最有代表性的工业/设计故事。若有第二天或天气很好，再把Botanical Garden加入秋色主题。",
+  "signature_story_cn": "从Haga的木屋与工人/水手城市记忆开始，爬到Skansen Kronan理解旧防御地形，再到World of Volvo看Gothenburg如何从海港工业城市走到安全、设计和现代工程。",
+  "recommended_nights_relaxed_self_drive": 1,
+  "self_drive_strategy_cn": "这是短停站。到达后不要再开车追景点，优先步行Haga；World of Volvo可放抵达前后用车顺路处理。若当天从Copenhagen长途开来，最多安排一个主要室内点+一个轻松街区。",
+  "editorial_scale": {"5": "第一次到访不可轻易删除", "4": "很值得；时间允许应加入"},
+  "attractions": [
+    {
+      "id": "haga-nygata",
+      "name": "Haga / Haga Nygata",
+      "editorial_rating": 5,
+      "first_time_required": true,
+      "latitude": 57.698397,
+      "longitude": 11.957481,
+      "coordinate_precision": "exact",
+      "coordinate_source": "Wikidata Q18331032 for Haga Nygata",
+      "coordinate_verified_date": "2026-08-11",
+      "why_it_matters_cn": "Haga是Gothenburg最容易读懂的老街区之一：17世纪就开始规划，今天仍能看到鹅卵石路和典型landshövdingehus木砖混合住宅。",
+      "how_to_experience_cn": "不要安排购物清单。沿Haga Nygata慢走，找一家fika咖啡馆，观察住宅尺度，再接Skansen Kronan。整个体验的价值是放慢。",
+      "what_to_look_for_cn": ["landshövdingehus：底层砖、上层木的Gothenburg住宅类型", "鹅卵石步行街", "独立店铺与传统fika", "从旧工人/水手街区到今日生活街区的转变"],
+      "time_required_minutes": 75,
+      "best_time": "late morning or late afternoon",
+      "sources": [
+        {"source_type": "official", "publisher": "Gothenburg Official Visitor Guide", "url": "https://www.goteborg.com/en/guides/architecture-in-gothenburg", "supports": ["history", "architecture", "first_time_context"]},
+        {"source_type": "coordinate", "publisher": "Wikidata", "url": "https://www.wikidata.org/wiki/Q18331032", "supports": ["gps"]}
+      ]
+    },
+    {
+      "id": "skansen-kronan",
+      "name": "Skansen Kronan",
+      "editorial_rating": 4,
+      "first_time_required": false,
+      "latitude": 57.696111,
+      "longitude": 11.955111,
+      "coordinate_precision": "exact",
+      "coordinate_source": "Wikidata Q1570303",
+      "coordinate_verified_date": "2026-08-11",
+      "why_it_matters_cn": "它把Haga从可爱街区变成有地理解释的城市：17世纪防御设施建在高点，今天最有价值的是从外部和山丘看Gothenburg。",
+      "how_to_experience_cn": "从Haga步行上坡即可。不要期待随时进入内部；官方说明它不是自由开放参观的室内景点。到顶后重点看城市方向和旧街区关系。",
+      "what_to_look_for_cn": ["高地防御位置", "旧Haga屋顶", "1700年前后防御建筑外观", "城市由低地向外扩展的视角"],
+      "time_required_minutes": 45,
+      "best_time": "clear late afternoon",
+      "autumn_focus_cn": "山坡和周边成熟树木可作为短时秋色观景。",
+      "sources": [
+        {"source_type": "official", "publisher": "Gothenburg Official Visitor Guide", "url": "https://www.goteborg.com/en/places/skansen-kronan", "supports": ["history", "access", "viewpoint"]},
+        {"source_type": "coordinate", "publisher": "Wikidata", "url": "https://www.wikidata.org/wiki/Q1570303", "supports": ["gps"]}
+      ]
+    },
+    {
+      "id": "world-of-volvo",
+      "name": "World of Volvo",
+      "editorial_rating": 5,
+      "first_time_required": true,
+      "latitude": 57.689964,
+      "longitude": 11.997269,
+      "coordinate_precision": "exact",
+      "coordinate_source": "Wikidata Q125401260; official address Lyckholms Torg 1",
+      "coordinate_verified_date": "2026-08-11",
+      "why_it_matters_cn": "Volvo是Gothenburg最有辨识度的工业、设计与安全故事之一。旧Volvo Museum已于2023年关闭，World of Volvo承接历史并把重点扩大到工程、设计、安全和未来移动。",
+      "how_to_experience_cn": "不要只找老车。按'起源→安全创新→设计/工程→未来移动'这条线看，体验互动装置；官方建议多数游客会花2至4小时，短停版控制2小时。",
+      "what_to_look_for_cn": ["Volvo早期车辆与品牌起源", "安全创新", "互动风洞/工程体验", "iconic vehicles", "新建筑本身的北欧木结构表达"],
+      "time_required_minutes": 150,
+      "best_time": "afternoon or bad-weather block",
+      "rain_plan": true,
+      "sub_attractions": [
+        {"id": "volvo-main-exhibition", "name": "World of Volvo Main Exhibition", "editorial_rating": 5, "time_required_minutes": 90},
+        {"id": "volvo-safety", "name": "Safety innovation story", "editorial_rating": 5, "time_required_minutes": 30},
+        {"id": "volvo-history-collection", "name": "Historic vehicles from former Volvo Museum collection", "editorial_rating": 4, "time_required_minutes": 30}
+      ],
+      "sources": [
+        {"source_type": "official", "publisher": "World of Volvo", "url": "https://www.worldofvolvo.com/en/about-us/volvo-museum/", "supports": ["museum_transition", "history"]},
+        {"source_type": "official", "publisher": "World of Volvo", "url": "https://www.worldofvolvo.com/en/exhibition/world-of-volvo-exhibition/", "supports": ["experience", "highlights"]},
+        {"source_type": "official", "publisher": "World of Volvo", "url": "https://www.worldofvolvo.com/en/visit/summer-at-world-of-volvo/", "supports": ["visit_duration"]},
+        {"source_type": "coordinate", "publisher": "Wikidata", "url": "https://www.wikidata.org/wiki/Q125401260", "supports": ["gps"]}
+      ]
+    },
+    {
+      "id": "gothenburg-botanical-garden",
+      "name": "Gothenburg Botanical Garden",
+      "editorial_rating": 4,
+      "first_time_required": false,
+      "latitude": 57.682881,
+      "longitude": 11.950389,
+      "coordinate_precision": "site_center",
+      "coordinate_source": "Wikidata Q956772; official address Carl Skottsbergs Gata 22A",
+      "coordinate_verified_date": "2026-08-11",
+      "why_it_matters_cn": "对这条秋季路线，它比普通城市花园更有价值：成熟树木、Rock Garden、日本谷地和邻近arboretum让它成为真正的季节自然点。",
+      "how_to_experience_cn": "只有天气和时间允许才加入。优先Rock Garden→Japanese Dell→树木区域，不要把20,000种植物当清单。玻璃温室目前处于重建期，不要把温室作为主卖点。",
+      "what_to_look_for_cn": ["Rock Garden", "Japanese Dell", "arboretum / mature trees", "秋季叶色层次"],
+      "time_required_minutes": 120,
+      "best_time": "dry autumn afternoon",
+      "autumn_focus_cn": "这是Gothenburg最适合加入秋色主题的城市点；10月树木变化比夏季花卉更重要。",
+      "sources": [
+        {"source_type": "official", "publisher": "Gothenburg Botanical Garden", "url": "https://www.botaniska.se/en", "supports": ["garden_areas", "current_glasshouse_status"]},
+        {"source_type": "official", "publisher": "Gothenburg Official Visitor Guide", "url": "https://www.goteborg.com/en/places/gothenburg-botanical-garden", "supports": ["garden_scale", "autumn_context"]},
+        {"source_type": "coordinate", "publisher": "Wikidata", "url": "https://www.wikidata.org/wiki/Q956772", "supports": ["gps"]}
+      ]
+    }
+  ],
+  "mini_tours": [
+    {
+      "duration": "1_day",
+      "pace": "relaxed",
+      "must_see": ["world-of-volvo", "haga-nygata"],
+      "optional": ["skansen-kronan"],
+      "schedule_cn": ["上午/抵达前后：World of Volvo约2至2.5小时", "下午：Haga慢走+fika", "天气好、有体力：上Skansen Kronan看城市；否则直接休息"]
+    },
+    {
+      "duration": "2_days",
+      "pace": "relaxed",
+      "must_see": ["world-of-volvo", "haga-nygata", "skansen-kronan", "gothenburg-botanical-garden"],
+      "schedule_cn": ["Day 1：World of Volvo + Haga", "Day 2：Botanical Garden半天 + 城市自由时间，不再增加大型馆"]
+    },
+    {
+      "duration": "3_days",
+      "pace": "relaxed",
+      "must_see": ["world-of-volvo", "haga-nygata", "skansen-kronan", "gothenburg-botanical-garden"],
+      "schedule_cn": ["Day 1：Volvo工业/设计主题", "Day 2：Haga + Skansen + city life", "Day 3：Botanical autumn + 可选archipelago慢日"]
+    }
+  ]
+}
