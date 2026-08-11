@@ -11,6 +11,36 @@
       "research_date": "2026-08-11",
       "editorial_owner": "ChatGPT",
       "implementation_owner": "Codex"
+    },
+    {
+      "city_id": "copenhagen",
+      "country": "Denmark",
+      "region": "Europe",
+      "path": "content-research/europe/copenhagen-first-visit-v1.json",
+      "status": "APPROVED_CONTENT_V1",
+      "research_date": "2026-08-11",
+      "editorial_owner": "ChatGPT",
+      "implementation_owner": "Codex"
+    },
+    {
+      "city_id": "gothenburg",
+      "country": "Sweden",
+      "region": "Europe",
+      "path": "content-research/europe/gothenburg-first-visit-v1.json",
+      "status": "APPROVED_CONTENT_V1",
+      "research_date": "2026-08-11",
+      "editorial_owner": "ChatGPT",
+      "implementation_owner": "Codex"
+    },
+    {
+      "city_id": "oslo",
+      "country": "Norway",
+      "region": "Europe",
+      "path": "content-research/europe/oslo-first-visit-v1.json",
+      "status": "APPROVED_CONTENT_V1",
+      "research_date": "2026-08-11",
+      "editorial_owner": "ChatGPT",
+      "implementation_owner": "Codex"
     }
   ],
   "regional_guides": [],
