@@ -1,0 +1,148 @@
+{
+  "schema_version": "2.0",
+  "status": "APPROVED_CONTENT_V2",
+  "region_id": "europe-central",
+  "title": "Central Europe — First Visit + Relaxed Self-Drive",
+  "research_date": "2026-08-11",
+  "editorial_owner": "ChatGPT",
+  "implementation_owner": "Codex",
+  "stops": [
+    {
+      "order": 17,
+      "id": "berlin",
+      "name": "Berlin",
+      "country": "Germany",
+      "role": "major_city",
+      "anchor": {"latitude": 52.5163888889, "longitude": 13.3777777778, "coordinate_precision": "exact", "locator_name": "Brandenburg Gate", "coordinate_source": "Wikidata structured coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"name": "Brandenburg Gate + Reichstag government quarter", "gps": [52.5163888889,13.3777777778], "focus_cn": "同一城市轴线经历普鲁士、纳粹、分裂与统一；Reichstag把透明穹顶变成统一后民主象征。"},
+        {"name": "Memorial to the Murdered Jews of Europe", "gps": [52.5138888889,13.3788888889], "focus_cn": "不是拍照装置，而是必须慢下来体验尺度、失序和记忆。"},
+        {"name": "Museum Island", "focus_cn": "如果只给Berlin一个大型博物馆半天，按个人兴趣从岛上选一馆，不刷馆。"}
+      ],
+      "four_star": [{"name": "East Side Gallery", "gps": [52.5030555556,13.4447222222]}, "Topography of Terror / Wall history depending interest"],
+      "plans": {"1_day": ["上午 Brandenburg/Reichstag + Holocaust Memorial", "午后Museum Island选一馆", "傍晚Spree/城市轴线"], "2_days": ["Day 1国家权力与战争记忆", "Day 2 Cold War：Wall/East Side Gallery + 选一个documentation site"], "3_days": ["第三天才增加专题馆/街区，不再堆大型地标"]},
+      "self_drive_cn": "车停酒店；Berlin用U/S-Bahn和步行。城市内容重，不要把到达日晚间塞成历史马拉松。"
+    },
+    {
+      "order": 18,
+      "id": "poznan",
+      "name": "Poznań",
+      "country": "Poland",
+      "role": "historic_transit",
+      "anchor": {"latitude": 52.4082569444, "longitude": 16.9335388889, "coordinate_precision": "site_center", "locator_name": "Old Market Square", "coordinate_source": "Wikidata structured coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [],
+      "four_star": ["Old Market Square", "Cathedral Island / Ostrów Tumski"],
+      "plans": {"1_day": ["Old Market Square 60–90min", "若精神好再去Cathedral Island", "否则晚饭休息"]},
+      "self_drive_cn": "它主要负责拆开Berlin→Warsaw；不要因为住一晚就制造完整城市清单。"
+    },
+    {
+      "order": 19,
+      "id": "warsaw",
+      "name": "Warsaw",
+      "country": "Poland",
+      "role": "major_city",
+      "anchor": {"latitude": 52.2497, "longitude": 21.0122, "coordinate_precision": "site_center", "locator_name": "Old Town Market Square", "coordinate_source": "Wikidata structured coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"name": "Old Town + Royal Castle", "gps": [52.2477777778,21.0141666667], "focus_cn": "重点是战后重建本身：一个城市决定把被毁的历史空间重新建回来。"},
+        {"name": "Warsaw Uprising Museum", "gps": [52.232222,20.980833], "focus_cn": "理解1944起义、城市毁灭与战后记忆。"}
+      ],
+      "four_star": [{"name": "Łazienki Park", "gps": [52.21512,21.03582], "focus_cn": "秋季恢复体力的最好城市空间之一。"}, "POLIN Museum for deeper Jewish-history day"],
+      "plans": {"1_day": ["上午 Old Town + Royal Castle", "下午 Warsaw Uprising Museum或Łazienki二选一"], "2_days": ["Day 1重建与王城", "Day 2 Uprising Museum + Łazienki"], "3_days": ["第三天才加POLIN/专题历史"]},
+      "self_drive_cn": "市中心停车后不用车。历史内容情绪密度高，一天最多一个大型历史馆。"
+    },
+    {
+      "order": 20,
+      "id": "krakow",
+      "name": "Kraków",
+      "country": "Poland",
+      "role": "major_city",
+      "anchor": {"latitude": 50.0616944444, "longitude": 19.9371944444, "coordinate_precision": "site_center", "locator_name": "Rynek Główny", "coordinate_source": "Wikidata structured coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"name": "Rynek Główny / Main Market Square", "gps": [50.0616944444,19.9371944444]},
+        {"name": "Wawel Royal Castle + Cathedral hill", "gps": [50.0544,19.9366]},
+        {"name": "Wieliczka Salt Mine", "focus_cn": "盐的国家财富、矿工工程与地下宗教艺术，适合雨天半日。"}
+      ],
+      "special_memorial": {"name": "Auschwitz-Birkenau Memorial", "classification": "OPTIONAL_SIGNIFICANT_NOT_SIGHTSEEING", "guidance_cn": "若去，安排独立半日/大半日并保持后续日程安静；不能把它当普通4★/5★娱乐景点。"},
+      "four_star": ["Kazimierz for Jewish/urban history if 3rd day"],
+      "plans": {"1_day": ["Rynek清晨", "Wawel半日", "晚间老城慢走"], "2_days": ["Day 1 Old Town + Wawel", "Day 2 Wieliczka + 轻松晚间"], "3_days": ["第三天选择Auschwitz memorial或Kazimierz，二者不要都塞满"]},
+      "self_drive_cn": "老城全步行；Wieliczka/Auschwitz才开车或参加交通。"
+    },
+    {
+      "order": 21,
+      "id": "olomouc",
+      "name": "Olomouc",
+      "country": "Czechia",
+      "role": "historic_transit",
+      "anchor": {"latitude": 49.59402, "longitude": 17.2504919444, "coordinate_precision": "exact", "locator_name": "Holy Trinity Column / Upper Square", "coordinate_source": "Wikidata structured coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [],
+      "four_star": [{"name": "Holy Trinity Column + Upper Square", "gps": [49.59402,17.2504919444]}, {"name": "St Wenceslas Cathedral", "gps": [49.5977777778,17.2625]}],
+      "plans": {"1_day": ["Upper Square + Trinity Column", "步行到Cathedral", "早晚餐后休息"]},
+      "self_drive_cn": "这是Kraków→Prague之间真正值得停的Moravian古城，不需要超过半天核心游览。"
+    },
+    {
+      "order": 22,
+      "id": "prague",
+      "name": "Prague",
+      "country": "Czechia",
+      "role": "major_city",
+      "anchor": {"latitude": 50.09, "longitude": 14.4, "coordinate_precision": "site_center", "locator_name": "Prague Castle", "coordinate_source": "Wikidata structured coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"name": "Prague Castle + St Vitus", "gps": [50.09,14.4]},
+        {"name": "Charles Bridge", "gps": [50.0863888889,14.4119444444]},
+        {"name": "Old Town Square + Astronomical Clock", "gps": [50.0869888889,14.4207]}
+      ],
+      "four_star": ["Jewish Quarter", "Vyšehrad for quieter river/park context"],
+      "first_visit_story_cn": "Prague最重要的是城堡高地—Charles Bridge—Old Town三段连续空间。先理解城市构图，再看单个钟、教堂或雕像。",
+      "plans": {"1_day": ["早 Prague Castle", "步行下坡经Charles Bridge", "下午Old Town；晚上停"]},
+      "plans_2_3": {"2_days": ["Day 1 Castle→Bridge→Old Town", "Day 2 Jewish Quarter + 河岸/公园"], "3_days": ["第三天Vyšehrad/专题建筑，留咖啡和无目的散步时间"]},
+      "self_drive_cn": "住进中心后车不动；石板路+高低坡比地图距离更累。"
+    },
+    {
+      "order": 23,
+      "id": "cesky-krumlov",
+      "name": "Český Krumlov",
+      "country": "Czechia",
+      "role": "five_star_autumn_town",
+      "anchor": {"latitude": 48.8125, "longitude": 14.3152777778, "coordinate_precision": "site_center", "locator_name": "Český Krumlov Castle", "coordinate_source": "Wikidata structured coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"name": "Castle complex + tower", "gps": [48.8125,14.3152777778]},
+        {"name": "Historic Centre / Vltava horseshoe composition", "gps": [48.8113888889,14.3147222222]}
+      ],
+      "four_star": ["Castle Garden / quieter upper viewpoints"],
+      "first_visit_story_cn": "河流把古城包成舞台，城堡又压在河湾上方；秋天真正看的是红屋顶、黄叶与Vltava曲线构成整体。",
+      "plans": {"1_day": ["清晨无人古城", "上午Castle", "下午河湾/街巷", "golden hour高处再看一次整体"], "2_days": ["Day 1核心古城+Castle", "Day 2慢走花园/河岸，等更好光线，不增加远郊"]},
+      "self_drive_cn": "住一晚比日游价值大；车停住宿/外围，古城不用车。"
+    },
+    {
+      "order": 24,
+      "id": "hallstatt",
+      "name": "Hallstatt",
+      "country": "Austria",
+      "role": "five_star_autumn_lake",
+      "anchor": {"latitude": 47.56245, "longitude": 13.6485388889, "coordinate_precision": "settlement_center", "locator_name": "Hallstatt historic village", "coordinate_source": "Wikidata structured coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"name": "Hallstatt lake-village composition at sunrise", "gps": [47.56245,13.6485388889]},
+        {"name": "Hallstatt Salt Mine", "gps": [47.5648055556,13.6313055556], "focus_cn": "解释这里为何几千年来存在：盐，而不是Instagram。"}
+      ],
+      "four_star": ["Skywalk if operating/visibility good"],
+      "plans": {"1_day": ["住一晚：日出经典湖村视角", "上午村内+salt story", "运营允许再上Salt Mine/Skywalk"], "2_days": ["第二天只在天气/秋色极佳时慢湖区，不新增拥挤打卡"]},
+      "self_drive_cn": "停车限制与游客高峰决定玩法；核心是住一晚抢清晨，不是中午开进来两小时。"
+    },
+    {
+      "order": 25,
+      "id": "salzburg",
+      "name": "Salzburg",
+      "country": "Austria",
+      "role": "major_story_city",
+      "anchor": {"latitude": 47.795, "longitude": 13.0469444444, "coordinate_precision": "site_center", "locator_name": "Hohensalzburg Fortress", "coordinate_source": "Wikidata structured coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"name": "Hohensalzburg Fortress", "gps": [47.795,13.0469444444]},
+        {"name": "Old Town + Mozart birthplace context", "gps": [47.8,13.0433333333]}
+      ],
+      "four_star": [{"name": "Salzburg Cathedral", "gps": [47.7977777778,13.0469444444]}, {"name": "Mirabell Gardens", "gps": [47.8041111111,13.0426111111]}],
+      "first_visit_story_cn": "Salzburg不只是Mozart与电影背景；核心是prince-archbishops怎样在阿尔卑斯入口建立一个宗教领主城市。",
+      "plans": {"1_day": ["早 Fortress", "午后Old Town/Mozart context", "傍晚Salzach两岸"], "2_days": ["Day 1 fortress+old town", "Day 2 Mirabell/Cathedral + 慢城市，给第二天Dolomites留体力"], "3_days": ["第三天才做郊区专题"]},
+      "self_drive_cn": "中心停车后步行；不要在离开去Dolomites前安排高强度第三个大馆。"
+    }
+  ]
+}
