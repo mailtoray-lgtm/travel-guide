@@ -1,0 +1,189 @@
+{
+  "schema_version": "2.0",
+  "status": "APPROVED_CONTENT_V2",
+  "region_id": "europe-iberia",
+  "title": "Iberia — First Visit + Relaxed Self-Drive",
+  "research_date": "2026-08-11",
+  "editorial_owner": "ChatGPT",
+  "implementation_owner": "Codex",
+  "stops": [
+    {
+      "order": 33,
+      "id": "barcelona",
+      "name": "Barcelona",
+      "country": "Spain",
+      "role": "major_city",
+      "anchor": {"latitude": 41.4036888889, "longitude": 2.1743305556, "coordinate_precision": "site_center", "locator_name": "Sagrada Família", "coordinate_source": "Wikidata structured coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"name": "Sagrada Família", "gps": [41.4036888889,2.1743305556], "focus_cn": "把结构、自然、宗教叙事和光线作为一个系统看。"},
+        {"name": "Park Güell", "gps": [41.4136111111,2.1527777778], "focus_cn": "除了mosaic，重点看山坡、排水、桥廊和garden-city原始逻辑。"},
+        {"name": "Casa Batlló", "gps": [41.3915805556,2.1649194444]},
+        {"name": "Gothic Quarter", "gps": [41.3827777778,2.1769444444]}
+      ],
+      "four_star": ["Montjuïc", "La Boqueria as a short market stop", "La Rambla only as connector"],
+      "first_visit_story_cn": "第一次Barcelona不要把Gaudí建筑拆成五个孤立打卡点。重点是他怎样同时处理结构、采光、通风、自然形态与城市地形，再用Gothic Quarter补上Gaudí之前的城市。",
+      "plans": {"1_day": ["早Sagrada", "午后Gothic Quarter", "傍晚Casa Batlló/Eixample外观线"], "2_days": ["Day 1 Sagrada + Gothic", "Day 2 Park Güell + Casa Batlló"], "3_days": ["第三天Montjuïc/market/海边，保持半天自由"]},
+      "self_drive_cn": "Barcelona中心停车后不用车。热门Gaudí景点必须错开时段，不要连续预约到没有吃饭/休息时间。"
+    },
+    {
+      "order": 34,
+      "id": "zaragoza",
+      "name": "Zaragoza",
+      "country": "Spain",
+      "role": "historic_transit",
+      "anchor": {"latitude": 41.6568833333, "longitude": -0.8783277778, "coordinate_precision": "site_center", "locator_name": "Basílica del Pilar", "coordinate_source": "Wikidata structured coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [{"name": "Basílica del Pilar + Ebro river view", "gps": [41.6568833333,-0.8783277778]}],
+      "four_star": [{"name": "Aljafería Palace", "gps": [41.65649,-0.89708]}],
+      "plans": {"1_day": ["抵达后先Ebro河岸看Basilica整体", "进广场/教堂", "若早到且体力好再Aljafería"]},
+      "self_drive_cn": "它主要负责拆开Barcelona→Madrid；只安排一个主景点，保证第二天精神。"
+    },
+    {
+      "order": 35,
+      "id": "madrid",
+      "name": "Madrid",
+      "country": "Spain",
+      "role": "major_city",
+      "anchor": {"latitude": 40.4138888889, "longitude": -3.6922222222, "coordinate_precision": "site_center", "locator_name": "Prado Museum", "coordinate_source": "Wikidata structured coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"name": "Prado Museum", "gps": [40.4138888889,-3.6922222222], "focus_cn": "围绕Velázquez、Goya与西班牙王权建立故事，不刷全馆。"},
+        {"name": "Royal Palace", "gps": [40.4179611111,-3.7143444444]},
+        {"name": "Retiro Park", "gps": [40.415,-3.6838888889], "focus_cn": "秋季恢复体力的核心，不应被当成‘有空再去’。"}
+      ],
+      "four_star": [{"name": "Plaza Mayor / old Madrid", "gps": [40.4154,-3.7074]}, {"name": "Reina Sofía", "gps": [40.4086111111,-3.6938888889], "focus_cn": "现代西班牙艺术/Guernica兴趣者加入"}],
+      "plans": {"1_day": ["上午Prado", "午后Retiro", "晚上Plaza Mayor/old Madrid"], "2_days": ["Day 1 Prado+Retiro", "Day 2 Royal Palace + old Madrid"], "3_days": ["第三天Reina Sofía或完全慢城市日，不再堆第二个大馆"]},
+      "self_drive_cn": "车留住宿停车；Madrid用Metro/步行。大型博物馆日最多一个主馆。"
+    },
+    {
+      "order": 36,
+      "id": "salamanca",
+      "name": "Salamanca",
+      "country": "Spain",
+      "role": "historic_transit",
+      "anchor": {"latitude": 40.965, "longitude": -5.6641, "coordinate_precision": "site_center", "locator_name": "Plaza Mayor", "coordinate_source": "Wikidata structured coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"name": "Plaza Mayor at late-afternoon/golden light", "gps": [40.965,-5.6641]},
+        {"name": "University Quarter + Old/New Cathedral ensemble", "gps": [40.9613376111,-5.6669251111]}
+      ],
+      "four_star": ["Old Cathedral interior if open and energy supports"],
+      "first_visit_story_cn": "Salamanca真正的统一感来自金色砂岩。要在日落前后看同一批建筑颜色如何改变，再理解大学城几百年的知识传统。",
+      "plans": {"1_day": ["下午University Quarter", "Cathedral ensemble", "日落回Plaza Mayor"]},
+      "self_drive_cn": "一晚高质量体验足够；晚上不用再开车。"
+    },
+    {
+      "order": 37,
+      "id": "porto",
+      "name": "Porto",
+      "country": "Portugal",
+      "role": "major_city",
+      "anchor": {"latitude": 41.1397219444, "longitude": -8.6094438889, "coordinate_precision": "exact", "locator_name": "Dom Luís I Bridge", "coordinate_source": "Wikidata structured coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"name": "Ribeira + Dom Luís I Bridge", "gps": [41.1406480556,-8.61268], "focus_cn": "用桥上高视角和河边低视角理解Douro峡谷两岸城市。"},
+        {"name": "São Bento Station", "gps": [41.1454166667,-8.6104027778], "focus_cn": "把azulejo当葡萄牙历史叙事，不只是蓝白背景。"},
+        {"name": "Douro Valley", "focus_cn": "只有两晚以上或另加一天时才做；葡萄酒是被人长期塑造的河谷文化景观。"}
+      ],
+      "four_star": [{"name": "Livraria Lello", "gps": [41.1469444444,-8.6147222222], "focus_cn": "建筑/书文化，拥挤严重时可跳"}],
+      "plans": {"1_day": ["早São Bento/中心", "Ribeira", "日落Dom Luís上层"], "2_days": ["Day 1城市核心", "Day 2 Douro Valley；若自驾品酒则严格控制酒精或选择司机/游船"]},
+      "self_drive_cn": "Porto坡度大；中心停车后步行+transit。Douro是独立驾驶日，不与城市半天硬拼。"
+    },
+    {
+      "order": 38,
+      "id": "lisbon-sintra",
+      "name": "Lisbon / Sintra",
+      "country": "Portugal",
+      "role": "major_city_plus_daytrip",
+      "anchor": {"latitude": 38.6978461111, "longitude": -9.2056011111, "coordinate_precision": "site_center", "locator_name": "Jerónimos Monastery", "coordinate_source": "Wikidata structured coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"name": "Belém / Jerónimos + maritime expansion context", "gps": [38.6978461111,-9.2056011111]},
+        {"name": "Alfama / Castelo urban hill experience", "focus_cn": "用坡度、巷道、视野理解旧Lisbon，不追逐每个tram photo。"},
+        {"name": "Pena Palace", "gps": [38.7877777778,-9.3905555556]},
+        {"name": "Quinta da Regaleira", "gps": [38.7963527778,-9.3960305556]}
+      ],
+      "four_star": [{"name": "Belém Tower", "gps": [38.6913888889,-9.2158333333]}, "Baixa/Chiado", "Cabo da Roca if coast weather is good"],
+      "plans": {"1_day": ["若只Lisbon：Belém上午 + Alfama下午"], "2_days": ["Day 1 Lisbon", "Day 2 Sintra：Pena + Regaleira，不再塞三座宫"], "3_days": ["Day 1 Belém", "Day 2 Sintra", "Day 3 Alfama/Baixa慢城 + rest"], "4_plus": ["第四天才加Cabo da Roca/Cascais或纯休息"]},
+      "self_drive_cn": "Lisbon中心车停住；Sintra不建议开车逐宫殿找停车，优先公共交通/当地交通。四晚安排里必须有一个低强度半天。"
+    },
+    {
+      "order": 39,
+      "id": "evora",
+      "name": "Évora",
+      "country": "Portugal",
+      "role": "historic_transit",
+      "anchor": {"latitude": 38.5726469444, "longitude": -7.90729, "coordinate_precision": "exact", "locator_name": "Roman Temple", "coordinate_source": "Wikidata structured coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": ["Roman Temple + cathedral/whitewashed historic core as one walk"],
+      "four_star": [{"name": "Chapel of Bones", "gps": [38.5688888889,-7.9083333333]}],
+      "plans": {"1_day": ["Roman Temple", "Cathedral/old lanes", "Chapel of Bones optional", "早点结束"]},
+      "self_drive_cn": "作为Lisbon→Seville中间的真正历史停点；核心2–3小时够，不拖成整天。"
+    },
+    {
+      "order": 40,
+      "id": "seville",
+      "name": "Seville",
+      "country": "Spain",
+      "role": "major_city",
+      "anchor": {"latitude": 37.3844305556, "longitude": -5.9911888889, "coordinate_precision": "site_center", "locator_name": "Royal Alcázar", "coordinate_source": "Wikidata / Andalusian heritage coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"name": "Royal Alcázar", "gps": [37.3844305556,-5.9911888889], "focus_cn": "Mudéjar、水、阴影与权力连续性。"},
+        {"name": "Seville Cathedral + Giralda", "gps": [37.3857388889,-5.9931]},
+        {"name": "Plaza de España", "gps": [37.3770805556,-5.9869], "coordinate_source": "Andalusian heritage/Wikidata", "focus_cn": "1929 exposition的国家形象工程，不是假古迹。"}
+      ],
+      "four_star": ["Triana + serious flamenco performance", "Setas de Sevilla at sunset if architecture interest"],
+      "plans": {"1_day": ["早Alcázar", "Cathedral/Giralda", "傍晚Plaza de España"], "2_days": ["Day 1三大核心但保持午休", "Day 2 Triana + slow neighborhoods + flamenco"], "3_days": ["第三天只增加专题/市场，不再加远程day trip"]},
+      "self_drive_cn": "中心停车后步行；炎热/长途驾驶后必须保留午间恢复，即使秋季也不要全天无休。"
+    },
+    {
+      "order": 41,
+      "id": "granada",
+      "name": "Granada",
+      "country": "Spain",
+      "role": "major_story_city",
+      "anchor": {"latitude": 37.1763388889, "longitude": -3.5882111111, "coordinate_precision": "site_center", "locator_name": "Alhambra", "coordinate_source": "Wikidata structured coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"name": "Alhambra + Generalife", "gps": [37.1763388889,-3.5882111111], "focus_cn": "水、几何、书法、框景和Nasrid王权的脆弱感；至少半天。"},
+        {"name": "Albaicín + Mirador de San Nicolás", "gps": [37.1811111111,-3.5927777778], "focus_cn": "从旧居住区隔河看Alhambra，城市历史地理立刻清楚。"}
+      ],
+      "four_star": ["Cathedral + Royal Chapel for 1492 transition story"],
+      "plans": {"1_day": ["上午Alhambra完整半天", "下午休息", "日落Albaicín/Mirador"], "2_days": ["Day 1核心两项", "Day 2 Cathedral/Royal Chapel + old city慢走"]},
+      "self_drive_cn": "Alhambra预约时间决定当天；不要在前面安排会延误的长项目。Albaicín坡陡，累时用bus/taxi上去。"
+    },
+    {
+      "order": 42,
+      "id": "alicante",
+      "name": "Alicante",
+      "country": "Spain",
+      "role": "coastal_rest_transit",
+      "anchor": {"latitude": 38.349, "longitude": -0.478, "coordinate_precision": "site_center", "locator_name": "Santa Bárbara Castle", "coordinate_source": "Wikidata structured coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [{"name": "Santa Bárbara Castle", "gps": [38.349,-0.478], "rating_context": "★★★★★ only within Alicante transit-stop context"}],
+      "four_star": ["Explanada / seafront evening"],
+      "plans": {"1_day": ["到得早看castle", "否则只海边晚饭+睡觉"]},
+      "self_drive_cn": "这一站是为了避免Granada→Barcelona方向过长。休息价值高于景点数量。"
+    },
+    {
+      "order": 43,
+      "id": "valencia",
+      "name": "Valencia",
+      "country": "Spain",
+      "role": "city_transit",
+      "anchor": {"latitude": 39.4544444444, "longitude": -0.3502777778, "coordinate_precision": "site_center", "locator_name": "City of Arts and Sciences", "coordinate_source": "Wikidata structured coordinate", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [
+        {"name": "City of Arts and Sciences exterior / architecture axis", "gps": [39.4544444444,-0.3502777778]},
+        {"name": "Central Market + Lonja de la Seda", "gps": [39.4735030556,-0.3789419444], "coordinate_source": "Valencian heritage/Wikidata Central Market"}
+      ],
+      "four_star": ["Turia Gardens", "Old Town"],
+      "plans": {"1_day": ["上午Central Market/Lonja", "下午Turia→City of Arts exterior", "不强迫进所有science complex venues"]},
+      "self_drive_cn": "若下一天要赶Barcelona ferry，Valencia晚上必须早结束。"
+    },
+    {
+      "order": 44,
+      "id": "barcelona-ferry-terminal",
+      "name": "Barcelona Grimaldi Ferry Terminal",
+      "country": "Spain",
+      "role": "vehicle_ferry_logistics",
+      "anchor": {"latitude": 41.36349, "longitude": 2.17337, "coordinate_precision": "ferry_terminal", "locator_name": "Terminal F3 Grimaldi Terminal Barcelona / Moll de Costa", "coordinate_source": "OpenStreetMap terminal geometry cross-checked against Grimaldi official Muelle de Costa address", "coordinate_source_url": "https://www.grimaldi-lines.com/en/harbor/barcelona/", "coordinate_verified_date": "2026-08-11"},
+      "five_star": [],
+      "four_star": [],
+      "operational_cn": "这是车辆登船点，不是Barcelona sightseeing marker。Grimaldi官方当前写明Barcelona→Civitavecchia在Muelle de Costa Terminal Grimaldi办理，并要求最迟约开船前2小时到boarding。实际船票/当日指示优先于静态坐标。",
+      "plans": {"ferry_day": ["白天不要排高风险迟到项目", "车辆、证件、overnight bag提前整理", "至少按船司要求提前到港并给城市交通/港区排队留额外余量"]},
+      "self_drive_cn": "此处到Civitavecchia是FERRY GAP，网站和Trip Compiler绝不能自动改为经法国陆路驾驶。"
+    }
+  ]
+}
