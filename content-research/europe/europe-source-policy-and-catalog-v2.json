@@ -1,0 +1,80 @@
+{
+  "schema_version": "2.0",
+  "status": "APPROVED_SOURCE_POLICY_V2",
+  "research_date": "2026-08-11",
+  "editorial_owner": "ChatGPT",
+  "purpose": "Canonical source hierarchy for European first-visit editorial ratings, stories, GPS, operations and future refreshes.",
+  "rating_policy": {
+    "five_star": "First-time essential. Removing it materially weakens the visitor's understanding or signature experience of that city/base.",
+    "four_star": "Strong recommendation. Add when time, weather, interest and driving energy support it.",
+    "not_public_rating": "Editorial 4/5 stars are NOT Google/Tripadvisor star averages.",
+    "public_review_role": "Public-review scores/counts may be stored as separate evidence through licensed/approved APIs. They never automatically determine editorial rating and review text must not be bulk copied or scraped.",
+    "low_priority_policy": "3-star and lower content stays hidden from default first-time guide unless a theme explicitly needs it."
+  },
+  "source_tiers": [
+    {
+      "tier": "A",
+      "name": "Primary / official",
+      "use_for": ["historical facts", "operations", "tickets", "seasonality", "entrances", "closures", "official visitor advice"],
+      "examples": [
+        "official city/national tourism boards",
+        "official museum/monument sites",
+        "national parks and scenic-road authorities",
+        "UNESCO World Heritage Centre",
+        "official ferry/rail/lift operators"
+      ]
+    },
+    {
+      "tier": "B",
+      "name": "Structured geographic evidence",
+      "use_for": ["GPS cross-check", "entity identity", "site-center geometry"],
+      "examples": ["Wikidata", "Wikimedia geotagged records", "OpenStreetMap where official coordinates are unavailable"],
+      "rule": "Never present a vague city geocode as an exact attraction coordinate."
+    },
+    {
+      "tier": "C",
+      "name": "Independent travel editorial",
+      "use_for": ["first-time consensus", "visit sequencing", "practical tradeoffs", "what experienced visitors commonly prioritize"],
+      "examples": ["Lonely Planet", "Rick Steves", "National Geographic Travel", "reputable specialist road/hiking/cultural guides"],
+      "rule": "Summarize independently; do not copy protected guide text."
+    },
+    {
+      "tier": "D",
+      "name": "Crowd evidence",
+      "use_for": ["rating/count evidence", "recurring practical complaint patterns when legally available"],
+      "examples": ["Google Places API", "Tripadvisor licensed Content API"],
+      "rule": "Keep numeric crowd evidence separate from editorial stars; do not scrape or republish bulk reviews."
+    }
+  ],
+  "canonical_domains": {
+    "Netherlands": ["iamsterdam.com", "rijksmuseum.nl", "vangoghmuseum.nl", "annefrank.org", "dezaanseschans.nl", "giethoorn.com"],
+    "Germany": ["hamburg.com", "miniatur-wunderland.com", "elbphilharmonie.de", "luebeck-tourismus.de", "visitberlin.de", "bundestag.de", "germany.travel", "koelner-dom.de"],
+    "Denmark": ["visitcopenhagen.com", "kongernessamling.dk", "tivoli.dk", "hcandersenshus.dk"],
+    "Sweden": ["goteborg.com", "worldofvolvo.com", "botaniska.se", "visitstockholm.com", "vasamuseet.se", "kungligaslotten.se", "novisad.travel"],
+    "Norway": ["visitoslo.com", "munch.no", "frammuseum.no", "norwaysbest.com", "nasjonaleturistveger.no", "stavechurch.com"],
+    "Poland": ["warsawtour.pl", "zamek-krolewski.pl", "lazienki-krolewskie.pl", "krakow.travel", "wawel.krakow.pl", "wieliczka-saltmine.com", "auschwitz.org"],
+    "Czechia": ["prague.eu", "hrad.cz", "ckrumlov.info"],
+    "Austria": ["hallstatt.net", "salzburg.info", "salzburg-burgen.at", "wien.info", "linztourismus.at"],
+    "Italy": ["valgardena.it", "drei-zinnen.info", "colosseo.it", "museivaticani.va", "basilicasanpietro.va", "uffizi.it", "visittuscany.com", "veneziaunica.it"],
+    "Switzerland": ["engadin.ch", "jungfrau.ch", "zermatt.swiss"],
+    "France": ["montblancnaturalresort.com", "montenvers.com", "lac-annecy.com", "avignon-tourisme.com", "pontdugard.fr", "collioure.com"],
+    "Spain": ["barcelonaturisme.com", "sagradafamilia.org", "parkguell.barcelona", "esmadrid.com", "museodelprado.es", "patrimonionacional.es", "visitasevilla.es", "alcazarsevilla.org", "alhambra-patronato.es", "visitvalencia.com"],
+    "Portugal": ["visitporto.travel", "visitlisboa.com", "visitportugal.com", "parquesdesintra.pt", "regaleira.pt"],
+    "Slovenia": ["visitljubljana.com"],
+    "Croatia": ["np-plitvicka-jezera.hr", "visitsplit.com", "tzdubrovnik.hr"],
+    "Montenegro": ["montenegro.travel"],
+    "Albania": ["albania.al", "marubi.gov.al"],
+    "Greece": ["visitgreece.gr", "theacropolismuseum.gr", "culture.gov.gr", "piop.gr"],
+    "North Macedonia": ["official destination/cultural heritage sources to be preferred on refresh"],
+    "Serbia": ["tob.rs", "novisad.travel"],
+    "Hungary": ["budapestinfo.hu", "szechenyibath.hu"],
+    "ferry": ["grimaldi-lines.com"]
+  },
+  "refresh_policy": {
+    "gps": "Reverify if an entrance/terminal moved, not on every content refresh.",
+    "operations": "Refresh close to travel date and at least annually for public guide data that states season/open status.",
+    "mountain_and_park": "Check 7–14 days before travel and same day for lifts, mountain roads, weather, snow/ice and park-route closures.",
+    "ferry": "Current ticket and terminal instructions override static guide data.",
+    "public_review_evidence": "If added, timestamp retrieval and never overwrite editorial rating automatically."
+  }
+}
