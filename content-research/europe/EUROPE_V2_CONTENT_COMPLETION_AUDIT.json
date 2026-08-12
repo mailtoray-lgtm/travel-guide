@@ -1,0 +1,65 @@
+{
+  "audit_version": "2.0",
+  "date": "2026-08-11",
+  "editorial_owner": "ChatGPT",
+  "implementation_owner": "Codex",
+  "overall_editorial_status": "COMPLETE_FOR_V2_INTEGRATION",
+  "route_scope": {
+    "approved_route_stops": 71,
+    "covered_stop_orders": "1-71",
+    "regional_pack_count": 6,
+    "coverage": [
+      {"file":"europe-region-01-north-v2.json","orders":"1-16"},
+      {"file":"europe-region-02-central-v2.json","orders":"17-25"},
+      {"file":"europe-region-03-alps-france-v2.json","orders":"26-32"},
+      {"file":"europe-region-04-iberia-v2.json","orders":"33-44"},
+      {"file":"europe-region-05-italy-adriatic-v2.json","orders":"45-55"},
+      {"file":"europe-region-06-greece-balkans-return-v2.json","orders":"56-71"}
+    ]
+  },
+  "editorial_system": {
+    "first_time_5_star_4_star_selection": "COMPLETE_V2",
+    "relaxed_self_drive_logic": "COMPLETE_V2",
+    "autumn_weather_season_logic": "COMPLETE_V2",
+    "functional_transit_stop_explanations": "COMPLETE_V2",
+    "major_city_duration_matrix_1_2_3_4_plus": "COMPLETE_V2",
+    "duration_trip_compiler_3_to_120_days": "COMPLETE_V1",
+    "theme_compiler_inputs": "COMPLETE_V1",
+    "five_star_sub_attraction_story_pack": "COMPLETE_V1",
+    "source_hierarchy_and_review_policy": "COMPLETE_V2",
+    "precise_locator_gap_registry": "COMPLETE_V2_FOR_KNOWN_EDITORIAL_GAPS"
+  },
+  "gps_contract": {
+    "requirement": "Every visible physical 4-star/5-star entity must resolve to approved precise inline GPS, locator-registry GPS, or explicit parent-site inheritance. Dynamic condition-based experiences must be dynamic_nonpin.",
+    "editorial_locator_registry": "content-research/europe/europe-poi-locator-registry-v2.json",
+    "known_special_cases": [
+      "indoor sub-attractions inherit parent site and do not create duplicate outdoor pins",
+      "multi-stop walking/corridor experiences use route_anchor/area_anchor instead of pretending to be an entrance",
+      "current-condition golden-larch walks are dynamic_nonpin until an actual itinerary date is compiled",
+      "ferry terminal ticket/current operator directions override static planning coordinates"
+    ],
+    "machine_validation_status": "REQUIRED_BY_CODEX_BEFORE_PUBLIC_INTEGRATION_PASS",
+    "reason": "Only the implementation parser can prove that every rendered 4/5-star entity resolves after all V1/V2 merge precedence rules. Codex must hard-fail rather than silently geocode any unresolved item."
+  },
+  "high_quality_corrections_locked": [
+    "Barcelona to Civitavecchia remains a vehicle-ferry discontinuity and never becomes a land route.",
+    "Gothenburg uses World of Volvo, not the closed old Volvo Museum.",
+    "Zermatt/Matterhorn is a separate Swiss extension, not a local Grindelwald attraction.",
+    "Plitvice late-November itinerary is official-current-route dependent and does not assume summer Upper Lakes access.",
+    "Trollstigen and high mountain roads/lifts are conditional on official opening and same-day weather/road state.",
+    "Auschwitz-Birkenau is classified as a significant memorial visit, not an entertainment 4/5-star sightseeing item.",
+    "Transit/recovery bases are allowed to have no global 5-star attraction; their role may be safe pacing and rest.",
+    "Editorial stars are not Google/Tripadvisor star averages and public-review text is not scraped."
+  ],
+  "codex_next_actions": [
+    "Read source-registry.json and BLACKBOARD_EUROPE_V2_CONTENT_INTEGRATION.md.",
+    "Build the V2 merge/parser without modifying editorial rankings.",
+    "Add hard GPS-resolution validation and report every unresolved entity by exact id/name/source pack.",
+    "Expose 1/2/3/4+ city duration selector and 3/5/7/10/15/21/30/45/60/90/120 trip compiler.",
+    "Render five-star sub-attraction guide inside parent attractions.",
+    "Use Daylight / Autumn Scenic as default visual mood; night remains optional/contextual.",
+    "Run public-site integration tests and report actual pass/fail; do not call integration PASS merely because content files exist."
+  ],
+  "editorial_blockers": [],
+  "owner_action_required_for_editorial_content": "NONE"
+}
