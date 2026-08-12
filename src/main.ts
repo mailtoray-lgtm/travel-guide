@@ -53,10 +53,7 @@ type GeoPoint = {
 const trip = {
   title: "Europe Autumn Grand Tour",
   subtitle: "3D Virtual Road Trip Across Europe",
-  myMaps:
-    "https://www.google.com/maps/d/u/0/embed?mid=1msDendyXwmU4o2SLgb1RbBBB7nJCBa4&ehbc=2E312F",
-  myMapsOpen:
-    "https://www.google.com/maps/d/edit?mid=1msDendyXwmU4o2SLgb1RbBBB7nJCBa4",
+  myMapsStatus: "MY_MAPS_PUBLIC_LINK_UNAVAILABLE",
 };
 
 const assetBase = import.meta.env.BASE_URL;
@@ -128,6 +125,10 @@ function parseCsv(text: string): Record<string, string>[] {
 
 function googleMapsSearch(query: string) {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+}
+
+function googleDirections(url: string, fallbackQuery: string) {
+  return safeUrl(url, googleMapsSearch(fallbackQuery));
 }
 
 function googleEarthSearch(query: string) {
@@ -406,6 +407,7 @@ function render() {
   });
   const priorities = ["All", ...Array.from(new Set(attractions.map((a) => a.Priority))).filter(Boolean)];
   const stopMapsUrl = googleMapsSearch(stop.Location);
+  const stopDirectionsUrl = googleDirections(stop.Google_Directions_URL, stop.Location);
   const stopEarthUrl = googleEarthSearch(stop.Location);
   const stopStreetViewUrl =
     typeof stop.lat === "number" && typeof stop.lng === "number"
@@ -419,7 +421,7 @@ function render() {
           <h1>${html(trip.title)}</h1>
           <p>${html(trip.subtitle)}</p>
           <div class="hero__actions">
-            <a class="button primary" href="${trip.myMapsOpen}" target="_blank" rel="noreferrer">Open My Maps</a>
+            <a class="button primary" href="${stopDirectionsUrl}" target="_blank" rel="noreferrer">Open Route in Maps</a>
             <a class="button" href="${stopEarthUrl}" target="_blank" rel="noreferrer">Google Earth 3D</a>
           </div>
         </div>
@@ -630,11 +632,11 @@ function render() {
               <p class="eyebrow">EXTERNAL MAPS</p>
               <h3>Continue in Google</h3>
               <p>
-                The public guide keeps the route and attraction data available here, with direct handoff
-                links for Google's map, Earth, and Street View experiences.
+                The public guide keeps the route and attraction data available here. The original Google My Maps
+                share link is currently unavailable, so these handoffs open working Google Maps, Earth and Street View links.
               </p>
               <div class="hero__actions">
-                <a class="button primary" href="${trip.myMapsOpen}" target="_blank" rel="noreferrer">Open My Maps</a>
+                <a class="button primary" href="${stopDirectionsUrl}" target="_blank" rel="noreferrer">Open Route in Maps</a>
                 <a class="button" href="${stopMapsUrl}" target="_blank" rel="noreferrer">Open Maps</a>
                 <a class="button" href="${stopEarthUrl}" target="_blank" rel="noreferrer">Open Earth</a>
                 <a class="button" href="${stopStreetViewUrl}" target="_blank" rel="noreferrer">Street View</a>
