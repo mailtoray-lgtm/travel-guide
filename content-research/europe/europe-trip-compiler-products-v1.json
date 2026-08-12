@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0",
+  "status": "APPROVED_TRIP_COMPILER_INPUT_V1",
+  "trip_id": "europe-autumn-grand-tour",
+  "title": "Europe First-Visit Trip Compiler — Duration, Theme & Pace",
+  "research_date": "2026-08-11",
+  "editorial_owner": "ChatGPT",
+  "implementation_owner": "Codex",
+  "core_rule": "A shorter trip is NOT the first N days of the 71-stop Grand Tour. The compiler selects a geographically coherent story with enough time to experience its 5-star anchors and relax between drives.",
+  "duration_options_days": [3,5,7,10,15,21,30,45,60,90,120],
+  "duration_scope_rules": {
+    "3": "One major city/base only. No inter-country driving unless the transfer itself is the subject.",
+    "5": "One city plus one nearby base/day-trip, or one compact scenic base. Maximum 2 lodging bases preferred.",
+    "7": "One coherent regional story; 2–3 bases maximum for relaxed self-drive.",
+    "10": "One corridor; normally 3–4 bases and at least one light/rest half-day.",
+    "15": "One major region; 5–7 bases maximum depending road complexity.",
+    "21": "One major region or two tightly connected regions; at least 2 recovery/light days.",
+    "30": "Multi-region trip, but preserve 2–4-night stays at major 5-star scenic bases.",
+    "45": "Large Europe arc. Skip lower-value transit nodes unless they protect the <=220-mile comfort rule.",
+    "60": "Broad Europe sampler with repeated 2–3-night city/scenic bases and weather buffers.",
+    "90": "Near-grand-tour; still prioritize quality over completing every route stop.",
+    "120": "Full relaxed reference Grand Tour using the approved 71-stop structure and flex nights."
+  },
+  "traveler_modes": [
+    {"id":"first_time","rule":"Prefer editorial 5-star; add strongest 4-star only after core story and recovery needs are satisfied."},
+    {"id":"return_visitor","rule":"Allow 4-star neighborhoods, smaller museums, special architecture and alternate viewpoints before repeating every iconic 5-star."}
+  ],
+  "pace_modes": [
+    {"id":"relaxed","daily_sightseeing_load_max":5,"preferred_drive_miles":"120–180 scenic; <=220 normal","rule":"One major morning anchor + one afternoon anchor + optional evening. Late arrival is not a sightseeing day."},
+    {"id":"balanced","daily_sightseeing_load_max":7,"preferred_drive_miles":"<=220","rule":"Up to two major anchors when no heavy drive/high-altitude activity occurs."},
+    {"id":"see_more","daily_sightseeing_load_max":9,"preferred_drive_miles":"<=220 by default","rule":"May add more 4-star stops, but never overrides safety, mountain weather, closures or ferry/border constraints."}
+  ],
+  "load_model": {
+    "major_museum_or_archaeological_half_day": 3,
+    "high_alpine_excursion": 4,
+    "scenic_mountain_drive": 3,
+    "major_palace_or_castle": 3,
+    "90_minute_city_anchor": 2,
+    "short_viewpoint_or_square": 1,
+    "long_border_or_ferry_transition": 3,
+    "drive_181_to_220_miles": 3,
+    "drive_121_to_180_miles": 2,
+    "drive_under_120_miles": 1,
+    "rule": "Relaxed mode usually keeps combined drive + sightseeing load <=7 and sightseeing-only load <=5."
+  },
+  "hard_pacing_rules": [
+    "No scheduled major timed attraction after a late arrival unless explicitly marked optional.",
+    "After a 181–220 mile transfer, default to one light city experience, not two museums.",
+    "After two consecutive high-load days, insert a light half-day or two-night base before the next high-load day.",
+    "Never schedule two separate high-alpine systems on the same day.",
+    "Weather-sensitive 5-star mountain bases keep flex capacity; ordinary city attractions cannot consume those flex days in advance.",
+    "Historic city cores use park-once + walk/transit unless the attraction itself is a scenic drive.",
+    "Border crossings add uncertainty and cannot be treated as zero-time map lines.",
+    "Barcelona→Civitavecchia remains a vehicle-ferry discontinuity and is never land-routed by the compiler.",
+    "Winter/late-autumn daylight is a resource: Rhine, Delphi, Meteora, Plitvice and mountain-road itineraries must end risky outdoor driving before dark where practical."
+  ],
+  "themes": [
+    {"id":"autumn","label":"Autumn Colors","weights":{"autumn_priority":5,"scenic_landscape":4,"city_museum":1},"hero_regions":["Norwegian fjords","Český Krumlov","Hallstatt","Val Gardena/Dolomites","Engadin","Bernese Alps","Middle Rhine if foliage remains"]},
+    {"id":"first_time_classic","label":"First-Time Europe Essentials","weights":{"editorial_5_star":5,"story_significance":4,"logistics_efficiency":2}},
+    {"id":"mountains_alps","label":"Mountains & Alps","hero_regions":["Flåm/Geiranger","Dolomites","Engadin","Grindelwald","Chamonix","Meteora"]},
+    {"id":"scenic_drive","label":"Scenic Driving","hero_regions":["Norway Scenic Routes","Passo Gardena","Chianti","Adriatic coast","Middle Rhine"]},
+    {"id":"ancient_history","label":"Ancient History","hero_regions":["Rome","Athens","Delphi","Split","Évora"]},
+    {"id":"castles_royal","label":"Castles & Royal Europe","hero_regions":["Copenhagen","Schwerin","Prague","Salzburg","Madrid","Vienna"]},
+    {"id":"art_museums","label":"Art & Museums","hero_regions":["Amsterdam","Oslo","Madrid","Florence","Vienna"]},
+    {"id":"coast_fjords","label":"Coast & Fjords","hero_regions":["Norway fjords","Collioure","Portugal Atlantic","Adriatic","Kotor"]},
+    {"id":"photography","label":"Photography","weights":{"best_time_of_day":4,"viewpoint":4,"autumn_priority":3,"crowd_avoidance":2}},
+    {"id":"wine_countryside","label":"Wine & Countryside","hero_regions":["Douro Valley","Chianti","Middle Rhine","Würzburg/Franconia"]},
+    {"id":"architecture","label":"Architecture","hero_regions":["Barcelona/Gaudí","Prague","Vienna","Florence","Rome","Venice","Ljubljana/Plečnik"]}
+  ],
+  "approved_short_products": [
+    {"id":"amsterdam-3","days":3,"themes":["first_time_classic","art_museums"],"bases":["Amsterdam"],"summary_cn":"Dutch Golden Age + Van Gogh + Anne Frank + canals；不需要租车在中心移动。"},
+    {"id":"prague-3","days":3,"themes":["first_time_classic","architecture","castles_royal"],"bases":["Prague"],"summary_cn":"Castle→Charles Bridge→Old Town主轴 + Jewish Quarter/Vyšehrad轻松第二层。"},
+    {"id":"rome-3","days":3,"themes":["ancient_history","first_time_classic"],"bases":["Rome"],"summary_cn":"Ancient Rome一天、Vatican一天、Pantheon/Baroque/Trastevere一天。"},
+    {"id":"vienna-3","days":3,"themes":["castles_royal","art_museums"],"bases":["Vienna"],"summary_cn":"Schönbrunn、Hofburg/inner city、KHM/St Stephen；不连续刷三宫。"},
+    {"id":"barcelona-3","days":3,"themes":["architecture","first_time_classic"],"bases":["Barcelona"],"summary_cn":"Gaudí作为完整设计系统 + Gothic city core + 慢半天。"},
+    {"id":"athens-3","days":3,"themes":["ancient_history"],"bases":["Athens"],"summary_cn":"Acropolis+Museum、Agora、第三天天气好才Sounion。"},
+    {"id":"dolomites-5","days":5,"themes":["autumn","mountains_alps","photography"],"bases":["Val Gardena / Ortisei"],"summary_cn":"单基地避免搬酒店；Seceda、Passo Gardena/Alpe di Siusi、Braies，另留天气flex；Tre Cime仅条件好替换。"},
+    {"id":"lisbon-sintra-5","days":5,"themes":["first_time_classic","architecture","coast_fjords"],"bases":["Lisbon"],"summary_cn":"Lisbon 3慢日 + Sintra 1完整日 + coast/rest 1日。"},
+    {"id":"norway-fjords-7","days":7,"themes":["autumn","mountains_alps","coast_fjords","scenic_drive"],"bases":["Oslo","Flåm / Aurland","Geiranger"],"allocation_days":[2,2,3],"summary_cn":"Oslo文化入口→Flåm三视角峡湾→Geiranger水面/高处/公路；这是短版中最完整的Norway故事。"},
+    {"id":"dolomites-engadin-7","days":7,"themes":["autumn","mountains_alps","photography"],"bases":["Val Gardena / Ortisei","St. Moritz / Engadin"],"allocation_days":[4,3],"summary_cn":"Dolomite石塔+金松→Engadin湖链+金松，必须保留天气弹性。"},
+    {"id":"central-autumn-10","days":10,"themes":["autumn","architecture","castles_royal"],"bases":["Prague","Český Krumlov","Hallstatt","Salzburg"],"allocation_days":[3,2,2,3],"summary_cn":"城市构图、河湾古镇、湖村和Baroque Alps；短距离但不换酒店竞速。"},
+    {"id":"alpine-autumn-15","days":15,"themes":["autumn","mountains_alps","scenic_drive"],"bases":["Salzburg","Val Gardena / Ortisei","St. Moritz / Engadin","Grindelwald","Chamonix"],"allocation_days":[2,4,3,4,2],"summary_cn":"完整Alpine fall corridor；至少3个基地保留weather-flex选择权。"},
+    {"id":"scandinavia-fjords-15","days":15,"themes":["autumn","coast_fjords","scenic_drive","first_time_classic"],"bases":["Copenhagen","Gothenburg","Oslo","Flåm / Aurland","Geiranger","Lillehammer","Karlstad","Stockholm"],"allocation_days":[2,1,2,2,3,1,1,3],"summary_cn":"城市与峡湾平衡，Lillehammer/Karlstad是保护驾驶节奏的功能站，不强行升级成观光日。"}
+  ],
+  "long_product_strategy": {
+    "21_days": "Choose one deep region: Iberia complete, North/Fjords deep, or Central+Alps. Do not stitch three distant highlight clusters.",
+    "30_days": "Choose 2 adjacent regional packs and preserve all 5-star multi-night scenic bases; prune 4-star transit sightseeing before pruning rest.",
+    "45_days": "Choose 3–4 connected regions. Default target 70–80% of selected region 5-star content, not every route node.",
+    "60_days": "Broad Europe sampler with major-city 2–3-night stays, mountain 3–4-night stays and recurring recovery days.",
+    "90_days": "Near-full loop but compiler may skip low-value transit sightseeing and retain overnight-only nodes for driving comfort.",
+    "120_days": "Reference relaxed Grand Tour: all 71 route nodes available, but sightseeing remains conditional by weather/energy/season."
+  },
+  "compiler_output_contract": [
+    "For every day output: sleep_base, drive_miles, estimated_drive_hours, border/ferry overhead if applicable, AM anchor, PM anchor, optional evening, rest logic, booking flags, weather fallback.",
+    "For every included POI output exact GPS and coordinate precision/source metadata.",
+    "Explain WHY a functional transit stop exists even if it has no 5-star attraction.",
+    "Always show what to delete first when tired: optional 4-star before 5-star, and sightseeing before unsafe late driving.",
+    "A relaxed itinerary may intentionally contain zero-attraction arrival or recovery days."
+  ]
+}
