@@ -16,13 +16,7 @@
       "tier": "A",
       "name": "Primary / official",
       "use_for": ["historical facts", "operations", "tickets", "seasonality", "entrances", "closures", "official visitor advice"],
-      "examples": [
-        "official city/national tourism boards",
-        "official museum/monument sites",
-        "national parks and scenic-road authorities",
-        "UNESCO World Heritage Centre",
-        "official ferry/rail/lift operators"
-      ]
+      "examples": ["official city/national tourism boards", "official museum/monument sites", "national parks and scenic-road authorities", "UNESCO World Heritage Centre", "official ferry/rail/lift operators"]
     },
     {
       "tier": "B",
@@ -50,7 +44,7 @@
     "Netherlands": ["iamsterdam.com", "rijksmuseum.nl", "vangoghmuseum.nl", "annefrank.org", "dezaanseschans.nl", "giethoorn.com"],
     "Germany": ["hamburg.com", "miniatur-wunderland.com", "elbphilharmonie.de", "luebeck-tourismus.de", "visitberlin.de", "bundestag.de", "germany.travel", "koelner-dom.de"],
     "Denmark": ["visitcopenhagen.com", "kongernessamling.dk", "tivoli.dk", "hcandersenshus.dk"],
-    "Sweden": ["goteborg.com", "worldofvolvo.com", "botaniska.se", "visitstockholm.com", "vasamuseet.se", "kungligaslotten.se", "novisad.travel"],
+    "Sweden": ["goteborg.com", "worldofvolvo.com", "botaniska.se", "visitstockholm.com", "vasamuseet.se", "kungligaslotten.se"],
     "Norway": ["visitoslo.com", "munch.no", "frammuseum.no", "norwaysbest.com", "nasjonaleturistveger.no", "stavechurch.com"],
     "Poland": ["warsawtour.pl", "zamek-krolewski.pl", "lazienki-krolewskie.pl", "krakow.travel", "wawel.krakow.pl", "wieliczka-saltmine.com", "auschwitz.org"],
     "Czechia": ["prague.eu", "hrad.cz", "ckrumlov.info"],
