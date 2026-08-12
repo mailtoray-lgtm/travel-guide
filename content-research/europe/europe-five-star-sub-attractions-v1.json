@@ -1,0 +1,292 @@
+{
+  "schema_version": "1.0",
+  "status": "APPROVED_SUB_ATTRACTION_CONTENT_V1",
+  "research_date": "2026-08-11",
+  "editorial_owner": "ChatGPT",
+  "implementation_owner": "Codex",
+  "purpose": "Curated internal highlights for major five-star first-visit sites. These prevent the UI from reducing a large museum, palace, archaeological park or landscape to a single generic pin.",
+  "locator_rule": "Indoor rooms/features inside one visitor complex inherit the approved parent locator and are not separate outdoor pins. A geographically separate child gets its own GPS.",
+  "parents": [
+    {
+      "parent_id":"rijksmuseum","city_id":"amsterdam","parent_name":"Rijksmuseum","source_url":"https://www.rijksmuseum.nl/en/visit",
+      "sub_attractions":[
+        {"name":"Gallery of Honour","rating":5,"locator_mode":"inherit_parent","why_cn":"先用这条主轴建立17世纪Dutch art视觉词汇，不必先钻支馆。"},
+        {"name":"The Night Watch","rating":5,"locator_mode":"inherit_parent","why_cn":"重点看人物组织、光线与群像如何制造行动感，而不是只因为它最有名。"},
+        {"name":"Vermeer works","rating":5,"locator_mode":"inherit_parent","why_cn":"看日常室内光、安静空间与小尺度叙事，和Rembrandt形成反差。"},
+        {"name":"Cuypers Library","rating":4,"locator_mode":"inherit_parent","why_cn":"建筑内部本身就是19世纪国家博物馆想象的一部分。"}
+      ]
+    },
+    {
+      "parent_id":"anne-frank-house","city_id":"amsterdam","parent_name":"Anne Frank House","source_url":"https://www.annefrank.org/en/museum/",
+      "sub_attractions":[
+        {"name":"Original house / front building","rating":5,"locator_mode":"inherit_parent","why_cn":"先理解正常商业/居住空间与后方隐藏空间的关系。"},
+        {"name":"Movable bookcase / Secret Annex access","rating":5,"locator_mode":"inherit_parent","why_cn":"空间转换是迫害如何进入日常生活的实体证据。"},
+        {"name":"Secret Annex rooms","rating":5,"locator_mode":"inherit_parent","why_cn":"房间保持空置本身就是失去、驱逐与缺席的表达，不要期待复原家具。"}
+      ]
+    },
+    {
+      "parent_id":"rosenborg-castle","city_id":"copenhagen","parent_name":"Rosenborg Castle","source_url":"https://www.kongernessamling.dk/en/rosenborg/",
+      "sub_attractions":[
+        {"name":"Knights' Hall / coronation thrones","rating":5,"locator_mode":"inherit_parent","why_cn":"王权仪式与国家象征最集中空间。"},
+        {"name":"Silver lions","rating":4,"locator_mode":"inherit_parent","why_cn":"和thrones一起看，理解Baroque王权剧场。"},
+        {"name":"Treasury / Crown Jewels","rating":5,"locator_mode":"inherit_parent","why_cn":"比平均看几十个房间更值得留时间。"},
+        {"name":"King's Garden","rating":4,"latitude":55.685278,"longitude":12.579722,"coordinate_precision":"garden_center","coordinate_source":"Rosenborg/Kongens Have mapped garden coordinate","locator_mode":"distinct_pin","why_cn":"秋季用成熟树林给密集王室室内内容一个恢复段。"}
+      ]
+    },
+    {
+      "parent_id":"vigeland","city_id":"oslo","parent_name":"Vigeland Sculpture Park","source_url":"https://vigeland.museum.no/en/vigelandpark",
+      "sub_attractions":[
+        {"name":"The Bridge","rating":5,"locator_mode":"inherit_parent","why_cn":"从儿童、家庭、冲突等人际关系开始进入整套生命叙事。"},
+        {"name":"The Fountain","rating":5,"locator_mode":"inherit_parent","why_cn":"生命循环主题从单个人体扩展成整体结构。"},
+        {"name":"Monolith Plateau","rating":5,"locator_mode":"inherit_parent","why_cn":"整条轴线的高潮；不要只到这里拍塔而跳过前面的叙事顺序。"}
+      ]
+    },
+    {
+      "parent_id":"flam-railway","city_id":"flam-aurland","parent_name":"Flåm Railway","source_url":"https://www.norwaysbest.com/flam/the-flam-railway/",
+      "sub_attractions":[
+        {"name":"Flåm Station","rating":5,"latitude":60.8628194444,"longitude":7.1136888889,"coordinate_precision":"station","coordinate_source":"approved V2 locator","locator_mode":"distinct_pin","why_cn":"从fjord-level起点开始观察海拔变化。"},
+        {"name":"Kjosfossen waterfall stop","rating":5,"latitude":60.7475,"longitude":7.135,"coordinate_precision":"waterfall_station_area","coordinate_source":"mapped Kjosfossen stop/waterfall coordinate","locator_mode":"distinct_pin","why_cn":"铁路如何在陡谷中借隧道、曲线与瀑布空间爬升的直观节点。"},
+        {"name":"Myrdal Station","rating":4,"latitude":60.7352777778,"longitude":7.1233333333,"coordinate_precision":"station","coordinate_source":"verified railway-station coordinate","locator_mode":"distinct_pin","why_cn":"用终点海拔/高原环境反看Flåm起点，理解工程尺度。"}
+      ]
+    },
+    {
+      "parent_id":"naeroyfjord","city_id":"flam-aurland","parent_name":"Nærøyfjord","source_url":"https://whc.unesco.org/en/list/1195/",
+      "sub_attractions":[
+        {"name":"Gudvangen fjord head","rating":5,"latitude":60.8780555556,"longitude":6.8386111111,"coordinate_precision":"village_fjord_terminal_area","coordinate_source":"verified geographic coordinate","locator_mode":"distinct_pin","why_cn":"在最窄fjord端观察巨岩、waterfall和人类聚落比例。"},
+        {"name":"Bakka / narrow fjord settlement context","rating":4,"latitude":60.9136,"longitude":6.8719,"coordinate_precision":"settlement_area","coordinate_source":"mapped village coordinate","locator_mode":"distinct_pin","why_cn":"小农场/聚落使‘巨大自然’有了人类尺度。"}
+      ]
+    },
+    {
+      "parent_id":"geirangerfjord","city_id":"geiranger","parent_name":"Geirangerfjord","source_url":"https://whc.unesco.org/en/list/1195/",
+      "sub_attractions":[
+        {"name":"Seven Sisters waterfall","rating":5,"latitude":62.1070277778,"longitude":7.0942222222,"coordinate_precision":"waterfall","coordinate_source":"approved V2 regional coordinate","locator_mode":"distinct_pin","why_cn":"从水面看waterfall和垂直wall比例。"},
+        {"name":"Flydalsjuvet","rating":5,"latitude":62.089302,"longitude":7.223597,"coordinate_precision":"exact_viewpoint","coordinate_source":"Norwegian Scenic Routes official GPS","locator_mode":"distinct_pin","why_cn":"经典高视角，但重点是村庄、fjord、山体纵深同时入画。"},
+        {"name":"Dalsnibba / Geiranger Skywalk","rating":5,"latitude":62.0486111111,"longitude":7.2691666667,"coordinate_precision":"summit_viewpoint","coordinate_source":"approved V2 coordinate","locator_mode":"distinct_pin","why_cn":"极晴时才执行，用海拔差一次看高原—山谷—fjord。"}
+      ]
+    },
+    {
+      "parent_id":"vasa-museum","city_id":"stockholm","parent_name":"Vasa Museum","source_url":"https://www.vasamuseet.se/en",
+      "sub_attractions":[
+        {"name":"Full ship overview from multiple levels","rating":5,"locator_mode":"inherit_parent","why_cn":"先理解整艘ship尺寸，再进入细节。"},
+        {"name":"Stern carvings / sculpture programme","rating":5,"locator_mode":"inherit_parent","why_cn":"王权宣传不仅在火炮，也在视觉符号。"},
+        {"name":"Why Vasa sank / stability story","rating":5,"locator_mode":"inherit_parent","why_cn":"把皇家野心、造船决策和工程失败放在一起。"},
+        {"name":"Conservation science","rating":4,"locator_mode":"inherit_parent","why_cn":"理解为什么一艘17世纪木船能今天站在你面前。"}
+      ]
+    },
+    {
+      "parent_id":"prague-castle","city_id":"prague","parent_name":"Prague Castle","source_url":"https://www.hrad.cz/en",
+      "sub_attractions":[
+        {"name":"St. Vitus Cathedral","rating":5,"latitude":50.0908333333,"longitude":14.4005555556,"coordinate_precision":"site_center","coordinate_source":"verified cathedral coordinate","locator_mode":"distinct_pin","why_cn":"Gothic verticality、royal tombs与Bohemian/Czech state symbolism核心。"},
+        {"name":"Old Royal Palace / Vladislav Hall","rating":5,"locator_mode":"inherit_parent","why_cn":"从城堡外观进入真正的中世纪/早现代国家仪式空间。"},
+        {"name":"Golden Lane","rating":4,"latitude":50.0919,"longitude":14.4041,"coordinate_precision":"street_anchor","coordinate_source":"mapped castle-street anchor","locator_mode":"distinct_pin","why_cn":"小尺度居住/工作空间给巨大王城一个人类尺度；拥挤时可缩短。"},
+        {"name":"South gardens / city overlook","rating":4,"locator_mode":"inherit_parent","why_cn":"秋季颜色和Old Town/river视野是参观结束的最佳恢复段。"}
+      ]
+    },
+    {
+      "parent_id":"cesky-krumlov-castle","city_id":"cesky-krumlov","parent_name":"Český Krumlov Castle","source_url":"https://www.ckrumlov.info/en/cesky-krumlov-castle/",
+      "sub_attractions":[
+        {"name":"Castle Tower","rating":5,"locator_mode":"inherit_parent","why_cn":"先从高处理解河湾、old town和castle的空间关系。"},
+        {"name":"Cloak Bridge","rating":5,"latitude":48.8122,"longitude":14.3126,"coordinate_precision":"bridge_center","coordinate_source":"mapped castle-complex bridge coordinate","locator_mode":"distinct_pin","why_cn":"多层桥梁把宫殿、剧院和花园高处连接起来，是complex最戏剧化的结构。"},
+        {"name":"Castle courtyards","rating":4,"locator_mode":"inherit_parent","why_cn":"彩绘立面和逐层上升空间帮助读贵族宫殿扩张。"}
+      ]
+    },
+    {
+      "parent_id":"hohensalzburg","city_id":"salzburg","parent_name":"Hohensalzburg Fortress","source_url":"https://www.salzburg-burgen.at/en/hohensalzburg-castle/",
+      "sub_attractions":[
+        {"name":"Fortress courtyards / defensive layout","rating":5,"locator_mode":"inherit_parent","why_cn":"先理解它为什么能控制Salzburg和河谷。"},
+        {"name":"Prince's Chambers","rating":4,"locator_mode":"inherit_parent","why_cn":"看prince-archbishop权力不只靠军事，也靠court display。"},
+        {"name":"Old Town / Alps overlook","rating":5,"locator_mode":"inherit_parent","why_cn":"城市、Salzach和山地门户一次看完，空间解释力高于多看一个室内房间。"}
+      ]
+    },
+    {
+      "parent_id":"seceda","city_id":"val-gardena","parent_name":"Seceda","source_url":"https://www.valgardena.it/en/summer-holidays-dolomites/summer-lifts/seceda/",
+      "sub_attractions":[
+        {"name":"Seceda upper lift / ridge arrival","rating":5,"latitude":46.6005888889,"longitude":11.7257944444,"coordinate_precision":"ridge_area","coordinate_source":"approved V2 coordinate","locator_mode":"distinct_pin","why_cn":"先在上站附近看完整Odle，然后再决定走多远。"},
+        {"name":"Fermeda / Odle ridge composition","rating":5,"locator_mode":"inherit_parent","why_cn":"主景观是锯齿石峰和向下草坡的强烈几何，不是某一个自拍石头。"},
+        {"name":"golden-larch lower-slope context","rating":5,"locator_mode":"dynamic_nonpin","why_cn":"金松最佳点随年份/海拔变化，临行根据当前颜色选择，不造假固定pin。"}
+      ]
+    },
+    {
+      "parent_id":"jungfraujoch","city_id":"grindelwald-interlaken","parent_name":"Jungfraujoch","source_url":"https://www.jungfrau.ch/en-gb/jungfraujoch-top-of-europe/",
+      "sub_attractions":[
+        {"name":"Sphinx / high-alpine panorama","rating":5,"locator_mode":"inherit_parent","why_cn":"晴天把Mönch/Jungfrau和冰原尺度拉开。"},
+        {"name":"Aletsch Glacier view","rating":5,"locator_mode":"inherit_parent","why_cn":"真正主角之一；看glacier流向和巨大冰体，不只在snow平台玩雪。"},
+        {"name":"Ice Palace","rating":4,"locator_mode":"inherit_parent","why_cn":"天气短暂变差时的室内补充，不应压过glacier outdoor view。"},
+        {"name":"Jungfrau Railway engineering story","rating":5,"locator_mode":"parent_journey","why_cn":"上山过程本身属于景点：铁路穿入Eiger/Mönch体系是20世纪初alpine tourism工程野心。"}
+      ]
+    },
+    {
+      "parent_id":"aiguille-du-midi","city_id":"chamonix","parent_name":"Aiguille du Midi","source_url":"https://www.montblancnaturalresort.com/en/aiguille-du-midi",
+      "sub_attractions":[
+        {"name":"Summit terraces","rating":5,"locator_mode":"inherit_parent","why_cn":"不同方向露台分别解释Mont Blanc massif、Chamonix valley和冰川系统。"},
+        {"name":"Step into the Void","rating":4,"locator_mode":"inherit_parent","why_cn":"有趣体验，但不能为了排队牺牲高山能见度好的户外时间。"},
+        {"name":"Mont Blanc / glacier panorama","rating":5,"locator_mode":"inherit_parent","why_cn":"先看地理尺度，再玩装置。"}
+      ]
+    },
+    {
+      "parent_id":"sagrada-familia","city_id":"barcelona","parent_name":"Sagrada Família","source_url":"https://sagradafamilia.org/en/",
+      "sub_attractions":[
+        {"name":"Nativity Façade","rating":5,"locator_mode":"inherit_parent","why_cn":"Gaudí亲自参与最多的一面；自然形态和宗教叙事高度密集。"},
+        {"name":"Passion Façade","rating":5,"locator_mode":"inherit_parent","why_cn":"与Nativity刻意形成冷峻、几何化反差。"},
+        {"name":"Nave / branching columns","rating":5,"locator_mode":"inherit_parent","why_cn":"这是理解‘石头森林’结构逻辑的核心，不是彩窗背景。"},
+        {"name":"Stained-glass light","rating":5,"locator_mode":"inherit_parent","why_cn":"留意不同朝向色温如何改变内部空间；光是建筑材料的一部分。"}
+      ]
+    },
+    {
+      "parent_id":"park-guell","city_id":"barcelona","parent_name":"Park Güell","source_url":"https://parkguell.barcelona/en",
+      "sub_attractions":[
+        {"name":"Hypostyle Room","rating":5,"locator_mode":"inherit_parent","why_cn":"柱阵既是空间也是上方广场的结构/排水系统。"},
+        {"name":"Nature Square / serpentine bench","rating":5,"locator_mode":"inherit_parent","why_cn":"从城市视野、座椅人体曲线和雨水工程一起看。"},
+        {"name":"Viaducts","rating":4,"locator_mode":"inherit_parent","why_cn":"石构路径如何顺着坡地而不是强行削平地形。"}
+      ]
+    },
+    {
+      "parent_id":"prado","city_id":"madrid","parent_name":"Prado Museum","source_url":"https://www.museodelprado.es/en",
+      "sub_attractions":[
+        {"name":"Velázquez / Las Meninas","rating":5,"locator_mode":"inherit_parent","why_cn":"重点看视线、镜子、画家本人和权力空间如何互相嵌套。"},
+        {"name":"Goya — court to darker works","rating":5,"locator_mode":"inherit_parent","why_cn":"把同一艺术家的宫廷、战争和晚期心理转变连起来。"},
+        {"name":"Bosch / The Garden of Earthly Delights","rating":5,"locator_mode":"inherit_parent","why_cn":"与Spanish court collection history一起看，不只把它当奇幻细节图。"}
+      ]
+    },
+    {
+      "parent_id":"pena-palace","city_id":"lisbon-sintra","parent_name":"Pena Palace","source_url":"https://www.parquesdesintra.pt/en/parks-monuments/park-and-national-palace-of-pena/",
+      "sub_attractions":[
+        {"name":"Exterior terraces / color composition","rating":5,"locator_mode":"inherit_parent","why_cn":"先用山脊、颜色和不同历史风格混搭理解Romanticism。"},
+        {"name":"Courtyard / palace exterior circuit","rating":5,"locator_mode":"inherit_parent","why_cn":"外部空间往往比拥挤室内更能解释Pena的建筑幻想。"},
+        {"name":"Pena Park","rating":4,"locator_mode":"inherit_parent","why_cn":"雾、湿林和秋季植被能增强Romantic landscape感；时间不足不必全走。"}
+      ]
+    },
+    {
+      "parent_id":"regaleira","city_id":"lisbon-sintra","parent_name":"Quinta da Regaleira","source_url":"https://www.regaleira.pt/en/",
+      "sub_attractions":[
+        {"name":"Initiation Well","rating":5,"locator_mode":"inherit_parent","why_cn":"不要只拍螺旋楼梯；把下降、隧道和重新出现理解成被设计的symbolic journey。"},
+        {"name":"Tunnels / grotto network","rating":5,"locator_mode":"inherit_parent","why_cn":"与井共同构成体验，不能把井孤立。"},
+        {"name":"Palace / garden axes","rating":4,"locator_mode":"inherit_parent","why_cn":"为神秘主义园林补上owner与Romantic estate背景。"}
+      ]
+    },
+    {
+      "parent_id":"seville-alcazar","city_id":"seville","parent_name":"Royal Alcázar of Seville","source_url":"https://www.alcazarsevilla.org/en/",
+      "sub_attractions":[
+        {"name":"Patio de las Doncellas","rating":5,"locator_mode":"inherit_parent","why_cn":"水、反射、tile和Mudéjar宫廷空间最清楚。"},
+        {"name":"Hall of Ambassadors","rating":5,"locator_mode":"inherit_parent","why_cn":"穹顶与装饰直接服务royal audience和权力展示。"},
+        {"name":"Gardens","rating":5,"locator_mode":"inherit_parent","why_cn":"宫殿不是室内盒子；水渠、橙树、遮阴和路径一起组成Andalusian court experience。"}
+      ]
+    },
+    {
+      "parent_id":"alhambra","city_id":"granada","parent_name":"Alhambra","source_url":"https://www.alhambra-patronato.es/en",
+      "sub_attractions":[
+        {"name":"Nasrid Palaces","rating":5,"locator_mode":"inherit_parent","why_cn":"整个Alhambra最不能错过的室内核心，timed entry决定当天。"},
+        {"name":"Court of the Myrtles","rating":5,"locator_mode":"inherit_parent","why_cn":"长水池用反射和轴线扩大空间，是‘水作为建筑’的典型。"},
+        {"name":"Court of the Lions","rating":5,"locator_mode":"inherit_parent","why_cn":"柱廊、比例和水系统比狮子喷泉本身更重要。"},
+        {"name":"Generalife","rating":5,"latitude":37.1778,"longitude":-3.5853,"coordinate_precision":"garden_palace_center","coordinate_source":"mapped Generalife site coordinate","locator_mode":"distinct_pin","why_cn":"把royal retreat、garden、水和Sierra Nevada视野补进宫城故事。"}
+      ]
+    },
+    {
+      "parent_id":"colosseum","city_id":"rome-vatican","parent_name":"Colosseum","source_url":"https://colosseo.it/en/",
+      "sub_attractions":[
+        {"name":"Seating / cavea social hierarchy","rating":5,"locator_mode":"inherit_parent","why_cn":"从座位分层理解Roman society如何被空间化。"},
+        {"name":"Arena level","rating":5,"locator_mode":"inherit_parent","why_cn":"站在表演平面看观众席和地下系统关系。"},
+        {"name":"Hypogeum / underground","rating":4,"locator_mode":"inherit_parent","why_cn":"若票型包含才看；服务通道、升降机制解释spectacle logistics。"}
+      ]
+    },
+    {
+      "parent_id":"roman-forum-palatine","city_id":"rome-vatican","parent_name":"Roman Forum + Palatine","source_url":"https://colosseo.it/en/area/the-roman-forum/",
+      "sub_attractions":[
+        {"name":"Via Sacra / Forum civic core","rating":5,"locator_mode":"inherit_parent","why_cn":"把temples、basilicas和state ritual放回一条可走的城市街。"},
+        {"name":"Temple / Senate / basilica remains","rating":5,"locator_mode":"inherit_parent","why_cn":"用少量建筑类型理解政治、法律、宗教功能，不追每块石头名称。"},
+        {"name":"Palatine terraces / imperial palace context","rating":5,"locator_mode":"inherit_parent","why_cn":"从高处反看Forum，权力的居住与公共舞台关系立刻清楚。"}
+      ]
+    },
+    {
+      "parent_id":"vatican-museums","city_id":"rome-vatican","parent_name":"Vatican Museums","source_url":"https://www.museivaticani.va/",
+      "sub_attractions":[
+        {"name":"Classical sculpture core / Laocoön context","rating":5,"locator_mode":"inherit_parent","why_cn":"先理解papal collection如何吸收古典世界，再进入Renaissance。"},
+        {"name":"Raphael Rooms","rating":5,"locator_mode":"inherit_parent","why_cn":"如果路线开放/体力允许，连接philosophy、theology与papal patronage。"},
+        {"name":"Sistine Chapel","rating":5,"locator_mode":"inherit_parent","why_cn":"把ceiling与Last Judgment放进空间/礼仪功能，而不是只数名画。"}
+      ]
+    },
+    {
+      "parent_id":"florence-duomo","city_id":"florence-tuscany","parent_name":"Florence Duomo complex","source_url":"https://duomo.firenze.it/en/home",
+      "sub_attractions":[
+        {"name":"Brunelleschi's Dome","rating":5,"locator_mode":"inherit_parent","why_cn":"真正核心是如何不用传统满堂脚手架完成巨大masonry dome。"},
+        {"name":"Baptistery / bronze doors context","rating":5,"latitude":43.773258,"longitude":11.254657,"coordinate_precision":"site_center","coordinate_source":"mapped Baptistery coordinate","locator_mode":"distinct_pin","why_cn":"Renaissance视觉竞争与城市宗教仪式从这里进入。"},
+        {"name":"Piazza / exterior marble ensemble","rating":5,"locator_mode":"inherit_parent","why_cn":"先在街面读Cathedral、Campanile、Baptistery作为一个城市系统。"}
+      ]
+    },
+    {
+      "parent_id":"uffizi","city_id":"florence-tuscany","parent_name":"Uffizi Gallery","source_url":"https://www.uffizi.it/en",
+      "sub_attractions":[
+        {"name":"Botticelli rooms","rating":5,"locator_mode":"inherit_parent","why_cn":"用Birth of Venus/Primavera等看myth、人文主义和Medici文化，而不是只自拍。"},
+        {"name":"Leonardo / early Renaissance development","rating":5,"locator_mode":"inherit_parent","why_cn":"看空间、人体和观察自然的方法怎样改变。"},
+        {"name":"Michelangelo / High Renaissance transition","rating":4,"locator_mode":"inherit_parent","why_cn":"在体力允许时作为时间线后段，不必刷完整馆。"}
+      ]
+    },
+    {
+      "parent_id":"san-marco-venice","city_id":"venice","parent_name":"St. Mark's Square + Basilica","source_url":"https://www.basilicasanmarco.it/",
+      "sub_attractions":[
+        {"name":"St Mark's Basilica mosaics","rating":5,"locator_mode":"inherit_parent","why_cn":"金色mosaics和Byzantine视觉语言直接说明Venice与Eastern Mediterranean联系。"},
+        {"name":"Piazza / Piazzetta axis to lagoon","rating":5,"locator_mode":"inherit_parent","why_cn":"城市政治核心不是封闭广场，而是打开到lagoon的ceremonial gateway。"},
+        {"name":"Campanile view","rating":4,"locator_mode":"inherit_parent","why_cn":"天气清楚且排队合理才上，用高处看lagoon city form。"}
+      ]
+    },
+    {
+      "parent_id":"diocletian-palace","city_id":"split","parent_name":"Diocletian's Palace","source_url":"https://visitsplit.com/en/448/diocletian-palace",
+      "sub_attractions":[
+        {"name":"Peristyle","rating":5,"locator_mode":"inherit_parent","why_cn":"Roman imperial ceremonial core今天仍是城市公共空间。"},
+        {"name":"Substructures / cellars","rating":5,"locator_mode":"inherit_parent","why_cn":"地下结构保留原palace上层平面逻辑，是读建筑最有效的位置。"},
+        {"name":"Cathedral of St. Domnius","rating":5,"locator_mode":"inherit_parent","why_cn":"Diocletian mausoleum后来转成Christian cathedral，本身就是历史翻转。"},
+        {"name":"Golden Gate / north approach","rating":4,"locator_mode":"inherit_parent","why_cn":"从入口和城墙尺度补齐palace-as-fortified-city。"}
+      ]
+    },
+    {
+      "parent_id":"dubrovnik-walls","city_id":"dubrovnik","parent_name":"Dubrovnik City Walls","source_url":"https://tzdubrovnik.hr/lang/en/get/gradske_zidine/5639/city_walls.html",
+      "sub_attractions":[
+        {"name":"Minčeta Tower","rating":5,"latitude":42.6425,"longitude":18.1075,"coordinate_precision":"tower","coordinate_source":"mapped fortification coordinate","locator_mode":"distinct_pin","why_cn":"陆侧最高防御点，最适合读city plan和山地边界。"},
+        {"name":"Fort Bokar / sea-facing defense","rating":5,"latitude":42.6402,"longitude":18.1064,"coordinate_precision":"fort","coordinate_source":"mapped fort coordinate","locator_mode":"distinct_pin","why_cn":"与Minčeta对比海防/陆防逻辑。"},
+        {"name":"Old Port wall sector","rating":5,"locator_mode":"inherit_parent","why_cn":"看Ragusa贸易港、城墙与海上经济怎么连接。"}
+      ]
+    },
+    {
+      "parent_id":"athens-acropolis","city_id":"athens","parent_name":"Acropolis of Athens","source_url":"https://hhticket.gr/",
+      "sub_attractions":[
+        {"name":"Propylaea","rating":5,"locator_mode":"inherit_parent","why_cn":"进入sacred hill的仪式门槛，不要直接穿过奔Parthenon。"},
+        {"name":"Parthenon","rating":5,"locator_mode":"inherit_parent","why_cn":"看比例、column refinements与城市位置，不只是完整度。"},
+        {"name":"Erechtheion / Caryatid porch","rating":5,"locator_mode":"inherit_parent","why_cn":"不对称建筑回应复杂神话/祭祀地点，与Parthenon的秩序形成对比。"},
+        {"name":"Temple of Athena Nike","rating":4,"locator_mode":"inherit_parent","why_cn":"入口边缘的小型temple把胜利、战争与城市视野连起来。"}
+      ]
+    },
+    {
+      "parent_id":"delphi-site","city_id":"delphi","parent_name":"Delphi Archaeological Site","source_url":"https://whc.unesco.org/en/list/393/",
+      "sub_attractions":[
+        {"name":"Sacred Way","rating":5,"locator_mode":"inherit_parent","why_cn":"按古代访客上升路线体验，而不是瞬移到Temple。"},
+        {"name":"Treasury of the Athenians","rating":5,"locator_mode":"inherit_parent","why_cn":"city-state如何用monument在Panhellenic sanctuary竞争prestige。"},
+        {"name":"Temple of Apollo","rating":5,"locator_mode":"inherit_parent","why_cn":"oracle/political consultation的象征中心。"},
+        {"name":"Theatre / valley view","rating":4,"locator_mode":"inherit_parent","why_cn":"越往上越能看出山地地理为何是sanctuary权威的一部分。"}
+      ]
+    },
+    {
+      "parent_id":"meteora","city_id":"meteora","parent_name":"Meteora monastic landscape","source_url":"https://www.visitgreece.gr/mainland/thessaly/meteora/",
+      "sub_attractions":[
+        {"name":"Great Meteoron","rating":5,"latitude":39.7263330556,"longitude":21.6262869444,"coordinate_precision":"exact","coordinate_source":"approved V2 coordinate","locator_mode":"distinct_pin","why_cn":"至少进入一座主要monastery内部理解真实religious life。"},
+        {"name":"Varlaam","rating":5,"latitude":39.7251938889,"longitude":21.6301919444,"coordinate_precision":"exact","coordinate_source":"approved V2 coordinate","locator_mode":"distinct_pin","why_cn":"若体力允许补第二种monastic空间；不追六座全刷。"},
+        {"name":"Psaropetra sunset viewpoint","rating":5,"latitude":39.714167,"longitude":21.631111,"coordinate_precision":"viewpoint","coordinate_source":"approved V2 geotagged viewpoint coordinate","locator_mode":"distinct_pin","why_cn":"安全固定视点看岩柱和修道院剪影，替代危险路边停车。"}
+      ]
+    },
+    {
+      "parent_id":"budapest-castle-hill","city_id":"budapest","parent_name":"Castle Hill / Fisherman's Bastion","source_url":"https://www.budapestinfo.hu/",
+      "sub_attractions":[
+        {"name":"Fisherman's Bastion terraces","rating":5,"locator_mode":"inherit_parent","why_cn":"清晨用Parliament/Danube对景先理解Buda/Pest关系。"},
+        {"name":"Matthias Church","rating":5,"latitude":47.5019444444,"longitude":19.0341666667,"coordinate_precision":"site_center","coordinate_source":"approved V2 coordinate","locator_mode":"distinct_pin","why_cn":"彩瓦与内部历史让Buda的royal/religious层次更完整。"},
+        {"name":"Danube / Parliament viewpoint","rating":5,"locator_mode":"inherit_parent","why_cn":"不是单拍议会，而是看城市两岸如何被river组织。"}
+      ]
+    },
+    {
+      "parent_id":"schonbrunn","city_id":"vienna","parent_name":"Schönbrunn Palace","source_url":"https://www.schoenbrunn.at/en/",
+      "sub_attractions":[
+        {"name":"State rooms / court-life core","rating":5,"locator_mode":"inherit_parent","why_cn":"选核心室内理解Habsburg court，不需要每个room平均停。"},
+        {"name":"Great Gallery","rating":5,"locator_mode":"inherit_parent","why_cn":"外交、宴会和representation空间最能体现court scale。"},
+        {"name":"Garden axis to Gloriette","rating":5,"latitude":48.178889,"longitude":16.308056,"coordinate_precision":"monument_viewpoint","coordinate_source":"mapped Gloriette coordinate","locator_mode":"distinct_pin","why_cn":"从palace走到Gloriette才看懂Baroque landscape axis和Vienna盆地关系。"}
+      ]
+    }
+  ]
+}
