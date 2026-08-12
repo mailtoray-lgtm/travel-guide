@@ -1,49 +1,53 @@
 {
-  "status": "ACTIVE",
-  "policy": "Approved ChatGPT research packs are canonical editorial inputs. Codex validates and renders them without inventing missing editorial content.",
+  "status": "EUROPE_V2_EDITORIAL_COMPLETE",
+  "policy": "Approved ChatGPT research packs are canonical editorial inputs. Codex validates and renders them without inventing missing editorial content. Exact GPS resolution follows inline locator first, then Europe locator registry, then approved parent inheritance/dynamic_nonpin rules.",
+  "editorial_owner": "ChatGPT",
+  "implementation_owner": "Codex",
   "city_guides": [
-    {
-      "city_id": "amsterdam",
-      "country": "Netherlands",
-      "region": "Europe",
-      "path": "content-research/europe/amsterdam-first-visit-v1.json",
-      "status": "APPROVED_CONTENT_V1",
-      "research_date": "2026-08-11",
-      "editorial_owner": "ChatGPT",
-      "implementation_owner": "Codex"
-    },
-    {
-      "city_id": "copenhagen",
-      "country": "Denmark",
-      "region": "Europe",
-      "path": "content-research/europe/copenhagen-first-visit-v1.json",
-      "status": "APPROVED_CONTENT_V1",
-      "research_date": "2026-08-11",
-      "editorial_owner": "ChatGPT",
-      "implementation_owner": "Codex"
-    },
-    {
-      "city_id": "gothenburg",
-      "country": "Sweden",
-      "region": "Europe",
-      "path": "content-research/europe/gothenburg-first-visit-v1.json",
-      "status": "APPROVED_CONTENT_V1",
-      "research_date": "2026-08-11",
-      "editorial_owner": "ChatGPT",
-      "implementation_owner": "Codex"
-    },
-    {
-      "city_id": "oslo",
-      "country": "Norway",
-      "region": "Europe",
-      "path": "content-research/europe/oslo-first-visit-v1.json",
-      "status": "APPROVED_CONTENT_V1",
-      "research_date": "2026-08-11",
-      "editorial_owner": "ChatGPT",
-      "implementation_owner": "Codex"
-    }
+    {"city_id":"amsterdam","country":"Netherlands","region":"Europe","path":"content-research/europe/amsterdam-first-visit-v1.json","status":"APPROVED_CONTENT_V1","research_date":"2026-08-11"},
+    {"city_id":"copenhagen","country":"Denmark","region":"Europe","path":"content-research/europe/copenhagen-first-visit-v1.json","status":"APPROVED_CONTENT_V1","research_date":"2026-08-11"},
+    {"city_id":"gothenburg","country":"Sweden","region":"Europe","path":"content-research/europe/gothenburg-first-visit-v1.json","status":"APPROVED_CONTENT_V1","research_date":"2026-08-11"},
+    {"city_id":"oslo","country":"Norway","region":"Europe","path":"content-research/europe/oslo-first-visit-v1.json","status":"APPROVED_CONTENT_V1","research_date":"2026-08-11"}
   ],
-  "regional_guides": [],
-  "theme_guides": [],
-  "trip_products": []
+  "regional_guides": [
+    {"region_id":"europe-north","range":"01-16","path":"content-research/europe/europe-region-01-north-v2.json","status":"APPROVED_CONTENT_V2"},
+    {"region_id":"europe-central","range":"17-25","path":"content-research/europe/europe-region-02-central-v2.json","status":"APPROVED_CONTENT_V2"},
+    {"region_id":"europe-alps-france","range":"26-32","path":"content-research/europe/europe-region-03-alps-france-v2.json","status":"APPROVED_CONTENT_V2"},
+    {"region_id":"europe-iberia","range":"33-44","path":"content-research/europe/europe-region-04-iberia-v2.json","status":"APPROVED_CONTENT_V2"},
+    {"region_id":"europe-italy-adriatic","range":"45-55","path":"content-research/europe/europe-region-05-italy-adriatic-v2.json","status":"APPROVED_CONTENT_V2"},
+    {"region_id":"europe-greece-balkans-return","range":"56-71","path":"content-research/europe/europe-region-06-greece-balkans-return-v2.json","status":"APPROVED_CONTENT_V2"}
+  ],
+  "locator_registries": [
+    {"id":"europe-poi-locator-v2","path":"content-research/europe/europe-poi-locator-registry-v2.json","status":"APPROVED_LOCATOR_REGISTRY_V2","purpose":"fills precise-GPS gaps for 4/5-star physical entities and defines parent/dynamic locator rules"}
+  ],
+  "source_policies": [
+    {"id":"europe-source-policy-v2","path":"content-research/europe/europe-source-policy-and-catalog-v2.json","status":"APPROVED_SOURCE_POLICY_V2"}
+  ],
+  "theme_guides": [
+    {"theme":"autumn","source":"regional V2 packs + trip compiler weights","status":"APPROVED_V1"},
+    {"theme":"first_time_classic","source":"editorial 5/4 star system","status":"APPROVED_V1"},
+    {"theme":"mountains_alps","source":"regions 01/03/06 weather-aware mountain logic","status":"APPROVED_V1"},
+    {"theme":"scenic_drive","source":"route + regional scenic-drive rules","status":"APPROVED_V1"},
+    {"theme":"ancient_history","source":"regional packs Rome/Athens/Delphi/Split/Evora","status":"APPROVED_V1"},
+    {"theme":"castles_royal","source":"regional packs","status":"APPROVED_V1"},
+    {"theme":"art_museums","source":"regional packs","status":"APPROVED_V1"},
+    {"theme":"coast_fjords","source":"regional packs","status":"APPROVED_V1"},
+    {"theme":"photography","source":"best-time/viewpoint/autumn fields","status":"APPROVED_V1"},
+    {"theme":"wine_countryside","source":"Douro/Chianti/Rhine/Franconia","status":"APPROVED_V1"},
+    {"theme":"architecture","source":"regional packs","status":"APPROVED_V1"}
+  ],
+  "trip_products": [
+    {"id":"europe-trip-compiler-v1","path":"content-research/europe/europe-trip-compiler-products-v1.json","status":"APPROVED_TRIP_COMPILER_INPUT_V1","durations":[3,5,7,10,15,21,30,45,60,90,120]}
+  ],
+  "codex_contract": {
+    "must_not_invent_editorial_content": true,
+    "must_not_equate_editorial_star_with_public_review_rating": true,
+    "must_validate_71_route_stops": true,
+    "must_preserve_8_drive_legs": true,
+    "must_preserve_barcelona_civitavecchia_ferry_gap": true,
+    "must_resolve_every_visible_4_5_star_physical_entity_to_precise_locator_or_approved_nonpin": true,
+    "must_not_render_dynamic_nonpin_as_pin": true,
+    "must_show_why_functional_transit_stop_exists": true,
+    "must_support_relaxed_arrival_and_recovery_days": true
+  }
 }
