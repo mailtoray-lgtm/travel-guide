@@ -20,6 +20,12 @@
   "locator_registries": [
     {"id":"europe-poi-locator-v2","path":"content-research/europe/europe-poi-locator-registry-v2.json","status":"APPROVED_LOCATOR_REGISTRY_V2","purpose":"fills precise-GPS gaps for 4/5-star physical entities and defines parent/dynamic locator rules"}
   ],
+  "sub_attraction_guides": [
+    {"id":"europe-five-star-sub-attractions-v1","path":"content-research/europe/europe-five-star-sub-attractions-v1.json","status":"APPROVED_SUB_ATTRACTION_CONTENT_V1","purpose":"internal must-see highlights for major five-star sites, with distinct-pin vs parent-inheritance GPS behavior"}
+  ],
+  "duration_matrices": [
+    {"id":"europe-major-city-duration-v2","path":"content-research/europe/europe-major-city-duration-matrix-v2.json","status":"APPROVED_DURATION_MATRIX_V2","durations":["1_day","2_days","3_days","4_plus_days"]}
+  ],
   "source_policies": [
     {"id":"europe-source-policy-v2","path":"content-research/europe/europe-source-policy-and-catalog-v2.json","status":"APPROVED_SOURCE_POLICY_V2"}
   ],
@@ -48,6 +54,8 @@
     "must_resolve_every_visible_4_5_star_physical_entity_to_precise_locator_or_approved_nonpin": true,
     "must_not_render_dynamic_nonpin_as_pin": true,
     "must_show_why_functional_transit_stop_exists": true,
-    "must_support_relaxed_arrival_and_recovery_days": true
+    "must_support_relaxed_arrival_and_recovery_days": true,
+    "must_merge_five_star_sub_attraction_guide": true,
+    "must_expose_major_city_duration_selector": true
   }
 }
