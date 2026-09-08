@@ -1,14 +1,15 @@
 ## P0-P2 Audit Status — Updated 2026-09-08
 
-Current product gate: `QUALIFIED` for source `3b419d39266ffb80d9dab0e889f9c2df559cb0f8` and Pages `fc553934511cea108ca09c26539e269cc44ba734`.
+Current product gate: `QUALIFIED` for source `795f97e468d3272238aff61682b05c699c8b2aa5` and Pages `889c0f7c9ccd62eca4a0ffdaa081bc3171d1d35f`.
 
 | Severity | Finding | Current status | Qualification evidence |
 |---|---|---|---|
-| P0 | No P0 defect was identified in either independent live audit. | `NONE_FOUND` | Independent runs `34217471469` and `34227883647` completed successfully. |
+| P0 | No P0 defect was identified in the independent live audits. | `NONE_FOUND` | Independent runs `34217471469` and `34227883647` completed successfully; the latest exact-SHA PM gate also reported P0/P1/P2 none. |
 | P1 | 21/30/45/60/90/120-day selections collapsed to a 15-day itinerary. | `CLOSED_QUALIFIED` | Exact duration matrix independently passed on source `0a27d973ffa342100aae69f36bf406edf7cf142d`; the current live requalification also passed the shorter-duration matrix and 120-day default. |
 | P1 | Save Draft wrote state but reload returned to 3 days / English. | `CLOSED_QUALIFIED` | Independent reload restored 7 days / 中文 / day 5 on source `0a27d973ffa342100aae69f36bf406edf7cf142d`; current-revision Codex regression also passed. |
 | P2 | Escape closed the attraction dialog but returned focus to `BODY`. | `CLOSED_QUALIFIED` | Independent retest returned focus to the exact `geiranger-0` trigger on source `0a27d973ffa342100aae69f36bf406edf7cf142d`; current-revision Codex regression also passed with `rijksmuseum`. |
 | P1 | The app opened as a one-city/3-day Amsterdam experience, and fuzzy matching collapsed two distinct full-route identities. | `CLOSED_QUALIFIED` | Fresh independent Chrome opened `120 days · 71 cities · 21 countries`; `Barcelona Ferry Port` and `Amsterdam / Schiphol Return` remained distinct on source `3b419d39266ffb80d9dab0e889f9c2df559cb0f8`. |
+| P1 | The 120-day Overview rendered one card per day, so multi-day stays looked like duplicated city entries. | `CLOSED_QUALIFIED` | Exact-SHA PM audit confirmed 71 grouped cards / 71 unique stops / 120-day coverage, with Lübeck shown once as Days 7–8, on source `795f97e468d3272238aff61682b05c699c8b2aa5`. |
 
 Actionable P0-P2 remaining on this exact qualified deployment: **0**.
 
@@ -16,9 +17,10 @@ Evidence:
 
 - Initial functional qualification: https://github.com/mailtoray-lgtm/multi-agent-troubleshooting-hub/issues/19#issuecomment-5583997731
 - Full-Europe requalification: https://github.com/mailtoray-lgtm/multi-agent-troubleshooting-hub/issues/19#issuecomment-5585362495
-- Product Pages run: https://github.com/mailtoray-lgtm/travel-guide/actions/runs/34227151612
+- Grouped-stop requalification: https://github.com/mailtoray-lgtm/multi-agent-troubleshooting-hub/issues/19#issuecomment-5591331930
+- Product Pages run: https://github.com/mailtoray-lgtm/travel-guide/actions/runs/34272914031
 - Independent full-Europe run: https://github.com/mailtoray-lgtm/ray-agent-control-center/actions/runs/34227883647
-- Live qualified deployment: https://mailtoray-lgtm.github.io/travel-guide/?deploy=fc55393
+- Live qualified deployment: https://mailtoray-lgtm.github.io/travel-guide/?deploy=889c0f7
 
 This status is exact-revision scoped. A later runtime-affecting source or Pages change requires a new independent gate. The optional P3 illustrated-map treatment remains non-blocking.
 
@@ -80,7 +82,7 @@ This status is exact-revision scoped. A later runtime-affecting source or Pages 
 - Saved and unsaved Rijksmuseum; verified the card state and day summary update, then restored a clean final state.
 - Marked and unmarked the Morning itinerary moment; verified completion styling, progress value, and persistence, then restored a clean final state.
 - Changed duration from 3 to 7 days, compiled, and verified seven day tabs with Oslo, Flam/Aurland, and Geiranger.
-- Opened Overview and verified `7 days · 3 bases`.
+- Opened Overview and verified `7 days · 3 stops`.
 - Expanded and collapsed the interactive route map.
 - Switched English to Chinese and verified localized settings text, then restored English.
 - Browser console checked with no errors or warnings.
