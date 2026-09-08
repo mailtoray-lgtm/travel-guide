@@ -234,6 +234,7 @@ let planDirty = false;
 let statusMessage = "";
 let mapInstance: L.Map | undefined;
 let selectedAttractionId: string | undefined;
+let attractionTriggerId: string | undefined;
 const savedAttractions = new Set<string>();
 const completedMoments = new Set<string>();
 
@@ -314,11 +315,38 @@ function findRouteStop(value: string) {
   });
 }
 
+function buildLongDurationProduct(nextPlanner: Planner) {
+  const routeNames = routeStops
+    .filter((stop) => typeof stop.lat === "number" && typeof stop.lng === "number")
+    .map((stop) => stop.Map_Name)
+    .filter((name, index, names) => names.findIndex((candidate) => normalizePlace(candidate) === normalizePlace(name)) === index);
+  if (!routeNames.length) return undefined;
+
+  const baseCount = Math.min(routeNames.length, Math.max(1, Math.ceil(nextPlanner.duration / 3)));
+  const bases = Array.from({ length: baseCount }, (_, index) => {
+    if (baseCount === 1) return routeNames[0];
+    return routeNames[Math.round(index * (routeNames.length - 1) / (baseCount - 1))];
+  });
+  const even = Math.floor(nextPlanner.duration / baseCount);
+  const extra = nextPlanner.duration % baseCount;
+
+  return {
+    id: `europe-grand-tour-${nextPlanner.duration}`,
+    days: nextPlanner.duration,
+    themes: [nextPlanner.theme],
+    bases,
+    allocation_days: bases.map((_, index) => even + (index < extra ? 1 : 0)),
+    summary_cn: compilerData.duration_scope_rules[String(nextPlanner.duration)] ?? "A relaxed multi-region Europe journey.",
+  } satisfies CompilerProduct;
+}
+
 function chooseProduct(nextPlanner: Planner) {
   const exact = compilerData.approved_short_products.filter((entry) => entry.days === nextPlanner.duration);
+  const longestApprovedDuration = Math.max(...compilerData.approved_short_products.map((entry) => entry.days));
   return (
     exact.find((entry) => entry.themes.includes(nextPlanner.theme)) ??
     exact[0] ??
+    (nextPlanner.duration > longestApprovedDuration ? buildLongDurationProduct(nextPlanner) : undefined) ??
     compilerData.approved_short_products
       .slice()
       .sort((a, b) => Math.abs(a.days - nextPlanner.duration) - Math.abs(b.days - nextPlanner.duration))[0]
@@ -565,6 +593,38 @@ function restoreReadingSet(storageKey: string, target: Set<string>) {
     });
   } catch {
     // Ignore malformed local-only UI state and keep the guide usable.
+  }
+}
+
+function restorePlannerDraft() {
+  try {
+    const stored = JSON.parse(localStorage.getItem("journey-journal-draft") ?? "null") as {
+      planner?: Partial<Planner>;
+      selectedDayIndex?: unknown;
+    } | null;
+    const draft = stored?.planner;
+    const duration = Number(draft?.duration);
+    if (!draft || !compilerData.duration_options_days.includes(duration)) return undefined;
+
+    const pace = ["relaxed", "balanced", "see_more"].includes(String(draft.pace))
+      ? draft.pace as Planner["pace"]
+      : planner.pace;
+    const style = ["classic_cultural", "scenic_slow", "grand_tour"].includes(String(draft.style))
+      ? draft.style as Planner["style"]
+      : planner.style;
+    const language = ["en", "cn"].includes(String(draft.language))
+      ? draft.language as Planner["language"]
+      : planner.language;
+    const theme = compilerData.themes.some((entry) => entry.id === draft.theme)
+      ? String(draft.theme)
+      : planner.theme;
+
+    planner = { duration, theme, pace, style, language };
+    const dayIndex = Number(stored.selectedDayIndex);
+    return Number.isFinite(dayIndex) ? Math.max(0, Math.floor(dayIndex)) : undefined;
+  } catch {
+    // Ignore malformed local-only draft data and keep the guide usable.
+    return undefined;
   }
 }
 
@@ -967,13 +1027,21 @@ function bindInteractions() {
   document.querySelectorAll<HTMLButtonElement>(".nearby-item[data-attraction-id]").forEach((button) => {
     button.addEventListener("click", () => {
       selectedAttractionId = button.dataset.attractionId;
+      attractionTriggerId = button.dataset.attractionId;
       render();
       window.setTimeout(() => document.querySelector<HTMLButtonElement>("#close-attraction")?.focus(), 0);
     });
   });
   const closeAttraction = () => {
+    const triggerId = attractionTriggerId ?? selectedAttractionId;
     selectedAttractionId = undefined;
     render();
+    window.setTimeout(() => {
+      const trigger = [...document.querySelectorAll<HTMLButtonElement>(".nearby-item[data-attraction-id]")]
+        .find((button) => button.dataset.attractionId === triggerId);
+      trigger?.focus();
+      attractionTriggerId = undefined;
+    }, 0);
   };
   document.querySelector("#close-attraction")?.addEventListener("click", closeAttraction);
   document.querySelector("#close-attraction-backdrop")?.addEventListener("click", closeAttraction);
@@ -1053,6 +1121,7 @@ async function load() {
   try {
     restoreReadingSet("journey-journal-saved-places", savedAttractions);
     restoreReadingSet("journey-journal-completed-moments", completedMoments);
+    const restoredDayIndex = restorePlannerDraft();
     const [routeText, geoResponse] = await Promise.all([
       fetch(`${assetBase}data/route-stops.csv`).then((response) => {
         if (!response.ok) throw new Error(`Route data ${response.status}`);
@@ -1066,6 +1135,9 @@ async function load() {
     const features = ((geoResponse as { features?: GeoPoint[] }).features ?? []);
     routeStops = withCoordinates(parseCsv(routeText) as unknown as RouteStop[], features);
     compileJourney(planner);
+    if (restoredDayIndex !== undefined) {
+      selectedDayIndex = Math.min(restoredDayIndex, journalDays.length - 1);
+    }
     render();
   } catch (error) {
     app.innerHTML = `<main class="load-error"><i class="ph ph-warning-circle" aria-hidden="true"></i><h1>Journey data could not be loaded</h1><p>${html(error instanceof Error ? error.message : "Unknown error")}</p></main>`;
