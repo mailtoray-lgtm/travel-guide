@@ -1,3 +1,27 @@
+## P0-P2 Audit Status — Updated 2026-09-08
+
+Current product gate: `QUALIFIED` for source `3b419d39266ffb80d9dab0e889f9c2df559cb0f8` and Pages `fc553934511cea108ca09c26539e269cc44ba734`.
+
+| Severity | Finding | Current status | Qualification evidence |
+|---|---|---|---|
+| P0 | No P0 defect was identified in either independent live audit. | `NONE_FOUND` | Independent runs `34217471469` and `34227883647` completed successfully. |
+| P1 | 21/30/45/60/90/120-day selections collapsed to a 15-day itinerary. | `CLOSED_QUALIFIED` | Exact duration matrix independently passed on source `0a27d973ffa342100aae69f36bf406edf7cf142d`; the current live requalification also passed the shorter-duration matrix and 120-day default. |
+| P1 | Save Draft wrote state but reload returned to 3 days / English. | `CLOSED_QUALIFIED` | Independent reload restored 7 days / 中文 / day 5 on source `0a27d973ffa342100aae69f36bf406edf7cf142d`; current-revision Codex regression also passed. |
+| P2 | Escape closed the attraction dialog but returned focus to `BODY`. | `CLOSED_QUALIFIED` | Independent retest returned focus to the exact `geiranger-0` trigger on source `0a27d973ffa342100aae69f36bf406edf7cf142d`; current-revision Codex regression also passed with `rijksmuseum`. |
+| P1 | The app opened as a one-city/3-day Amsterdam experience, and fuzzy matching collapsed two distinct full-route identities. | `CLOSED_QUALIFIED` | Fresh independent Chrome opened `120 days · 71 cities · 21 countries`; `Barcelona Ferry Port` and `Amsterdam / Schiphol Return` remained distinct on source `3b419d39266ffb80d9dab0e889f9c2df559cb0f8`. |
+
+Actionable P0-P2 remaining on this exact qualified deployment: **0**.
+
+Evidence:
+
+- Initial functional qualification: https://github.com/mailtoray-lgtm/multi-agent-troubleshooting-hub/issues/19#issuecomment-5583997731
+- Full-Europe requalification: https://github.com/mailtoray-lgtm/multi-agent-troubleshooting-hub/issues/19#issuecomment-5585362495
+- Product Pages run: https://github.com/mailtoray-lgtm/travel-guide/actions/runs/34227151612
+- Independent full-Europe run: https://github.com/mailtoray-lgtm/ray-agent-control-center/actions/runs/34227883647
+- Live qualified deployment: https://mailtoray-lgtm.github.io/travel-guide/?deploy=fc55393
+
+This status is exact-revision scoped. A later runtime-affecting source or Pages change requires a new independent gate. The optional P3 illustrated-map treatment remains non-blocking.
+
 **Comparison Target**
 
 - Source visual truth: `D:\ASTER_HOME\Runtime\Codex\generated_images\01a07bd7-1240-7773-8ca5-d3214851e6a1\exec-9500042b-583a-4c15-aea2-f7c364ce65ca.png`
