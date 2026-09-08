@@ -1236,7 +1236,7 @@ button {
 
 .overview-day {
   display: grid;
-  grid-template-columns: 44px 1fr auto;
+  grid-template-columns: 64px 1fr auto;
   gap: 12px;
   align-items: center;
   border: 1px solid var(--line);
@@ -1250,13 +1250,17 @@ button {
 .overview-day > span {
   display: grid;
   place-items: center;
-  width: 38px;
+  min-width: 48px;
+  width: fit-content;
   height: 38px;
-  border-radius: 50%;
+  border-radius: 999px;
+  padding: 0 9px;
   color: var(--white);
   background: var(--olive);
   font-family: var(--serif);
-  font-size: 1.15rem;
+  font-size: 0.98rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 .overview-day strong,

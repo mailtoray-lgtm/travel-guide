@@ -121,7 +121,7 @@ const copy = {
     next: "Next day",
     day: "Day",
     days: "days",
-    bases: "cities",
+    bases: "stops",
     countries: "countries",
     compiled: "Trip compiled from approved regional content.",
     saved: "Draft saved on this device.",
@@ -171,7 +171,7 @@ const copy = {
     next: "后一天",
     day: "第",
     days: "天",
-    bases: "个城市",
+    bases: "个停靠点",
     countries: "个国家",
     compiled: "已使用审核通过的区域内容生成行程。",
     saved: "草稿已保存在本设备。",
@@ -438,6 +438,18 @@ function uniqueJourneyBases() {
 
 function uniqueJourneyCountries() {
   return journeyBases.filter((base, index, list) => index === list.findIndex((item) => item.country === base.country));
+}
+
+function overviewStops() {
+  return journalDays.reduce<Array<{ base: JourneyBase; startIndex: number; endIndex: number }>>((stops, day) => {
+    const previous = stops.at(-1);
+    if (previous?.base === day.base) {
+      previous.endIndex = day.index;
+    } else {
+      stops.push({ base: day.base, startIndex: day.index, endIndex: day.index });
+    }
+    return stops;
+  }, []);
 }
 
 function haversineMiles(a: JourneyBase, b: JourneyBase) {
@@ -797,18 +809,31 @@ function journalContent(day: JournalDay) {
 
 function overviewContent() {
   const text = copy[planner.language];
+  const stops = overviewStops();
   return `
     <section class="overview-panel" aria-labelledby="overview-title">
       <p class="kicker">${html(product?.id.replaceAll("-", " ") ?? "compiled journey")}</p>
-      <h1 id="overview-title">${journalDays.length} ${html(text.days)} · ${uniqueJourneyBases().length} ${html(text.bases)} · ${uniqueJourneyCountries().length} ${html(text.countries)}</h1>
+      <h1 id="overview-title">${journalDays.length} ${html(text.days)} · ${stops.length} ${html(text.bases)} · ${uniqueJourneyCountries().length} ${html(text.countries)}</h1>
       <p class="story-lead">${html(product?.summary_cn ?? compilerData.duration_scope_rules[String(compiledPlanner.duration)] ?? "")}</p>
       <div class="overview-days">
-        ${journalDays.map((day) => {
-          const date = dateParts(day.index);
-          const first = day.base.v2?.five_star?.[0];
-          return `<button data-day-index="${day.index}" class="overview-day">
-            <span>${day.dayNumber}</span>
-            <div><strong>${html(day.base.name)}</strong><small>${html(day.base.country)} · ${html(date.monthDay)} · ${html(first ? attractionName(first) : copy[planner.language].arrival)}</small></div>
+        ${stops.map((stop) => {
+          const startDay = stop.startIndex + 1;
+          const endDay = stop.endIndex + 1;
+          const dayCount = endDay - startDay + 1;
+          const range = startDay === endDay ? String(startDay) : `${startDay}–${endDay}`;
+          const rangeLabel = planner.language === "cn"
+            ? (startDay === endDay ? `第 ${startDay} 天` : `第 ${startDay}–${endDay} 天`)
+            : (startDay === endDay ? `Day ${startDay}` : `Days ${startDay}–${endDay}`);
+          const startDate = dateParts(stop.startIndex).monthDay;
+          const endDate = dateParts(stop.endIndex).monthDay;
+          const dateRange = stop.startIndex === stop.endIndex ? startDate : `${startDate}–${endDate}`;
+          const first = stop.base.v2?.five_star?.[0];
+          const durationLabel = planner.language === "cn"
+            ? `${dayCount} 天`
+            : `${dayCount} ${dayCount === 1 ? "day" : "days"}`;
+          return `<button data-day-index="${stop.startIndex}" class="overview-day" aria-label="${html(`${rangeLabel}, ${stop.base.name}, ${stop.base.country}, ${durationLabel}`)}">
+            <span aria-hidden="true">${html(range)}</span>
+            <div><strong>${html(stop.base.name)}</strong><small>${html(stop.base.country)} · ${html(dateRange)} · ${html(durationLabel)} · ${html(first ? attractionName(first) : copy[planner.language].arrival)}</small></div>
             <i class="ph ph-arrow-right" aria-hidden="true"></i>
           </button>`;
         }).join("")}
