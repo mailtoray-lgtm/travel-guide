@@ -1,13 +1,24 @@
+import "@fontsource/cormorant-garamond/500.css";
+import "@fontsource/cormorant-garamond/600.css";
+import "@fontsource/dm-sans/400.css";
+import "@fontsource/dm-sans/500.css";
+import "@fontsource/dm-sans/600.css";
+import "@phosphor-icons/web/regular";
+import "@phosphor-icons/web/fill";
+import "leaflet/dist/leaflet.css";
+import * as L from "leaflet";
 import "./styles.css";
 import {
-  contentPendingCityGuide,
-  durationOptions,
-  estimateDailyBurden,
-  futureRegionBuilds,
-  relaxedSelfDriveRules,
-  themeOptions,
-  type CompilerInput,
-} from "./platform";
+  amsterdamGuide,
+  attractionName,
+  compilerData,
+  findDurationCity,
+  findV2Stop,
+  normalizePlace,
+  type AmsterdamAttraction,
+  type CompilerProduct,
+  type V2Stop,
+} from "./data";
 
 type RouteStop = {
   Order: string;
@@ -27,90 +38,238 @@ type RouteStop = {
   lng?: number;
 };
 
-type Attraction = {
-  Stop_Order: string;
-  Base: string;
-  Map_Name: string;
-  Location: string;
-  Priority: string;
-  Recommended_Time: string;
-  Best_Time: string;
-  How_To_Experience_CN: string;
-  What_To_Look_For_CN: string;
-  Story_Theme_CN: string;
-  Autumn_Focus_CN: string;
-  Practical_Tip_CN: string;
-  Source_URL: string;
-  Google_Maps_Search_URL: string;
-};
-
 type GeoPoint = {
   type: "Feature";
-  properties: { name: string; leg?: string; day?: string; description?: string };
+  properties: { name: string };
   geometry: { type: "Point"; coordinates: [number, number] };
 };
 
-const trip = {
-  title: "Europe Autumn Grand Tour",
-  subtitle: "3D Virtual Road Trip Across Europe",
-  myMapsStatus: "MY_MAPS_PUBLIC_LINK_UNAVAILABLE",
+type Planner = {
+  duration: number;
+  theme: string;
+  pace: "relaxed" | "balanced" | "see_more";
+  style: "classic_cultural" | "scenic_slow" | "grand_tour";
+  language: "en" | "cn";
 };
 
-const assetBase = import.meta.env.BASE_URL;
+type JourneyBase = {
+  name: string;
+  country: string;
+  allocation: number;
+  route?: RouteStop;
+  v2?: V2Stop;
+  lat: number;
+  lng: number;
+};
 
-const driveSections = [
-  { name: "03 DRIVE 1", from: "Amsterdam", to: "Lillehammer", opensAt: "Amsterdam" },
-  { name: "04 DRIVE 2", from: "Lillehammer", to: "Warsaw", opensAt: "Lillehammer" },
-  { name: "05 DRIVE 3", from: "Warsaw", to: "Grindelwald", opensAt: "Warsaw" },
-  { name: "06 DRIVE 4", from: "Grindelwald", to: "Porto", opensAt: "Grindelwald" },
-  { name: "07 DRIVE 5", from: "Porto", to: "Port of Barcelona", opensAt: "Porto" },
-  { name: "08 DRIVE 6", from: "Civitavecchia", to: "Shkodër", opensAt: "Rome" },
-  { name: "09 DRIVE 7", from: "Shkodër", to: "Belgrade", opensAt: "Shkodër" },
-  { name: "10 DRIVE 8", from: "Belgrade", to: "Amsterdam Schiphol", opensAt: "Belgrade" },
-];
+type JournalDay = {
+  index: number;
+  dayNumber: number;
+  baseDay: number;
+  base: JourneyBase;
+};
+
+type TimelineItem = {
+  period: string;
+  time: string;
+  title: string;
+  detail: string;
+  icon: string;
+};
+
+type NearbyItem = {
+  id: string;
+  name: string;
+  minutes: number;
+  note: string;
+  image?: string;
+  rating: number;
+};
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
-let routeStops: RouteStop[] = [];
-let attractions: Attraction[] = [];
-let selectedStop = 0;
-let selectedPriority = "All";
-let language: "cn" | "en" = "cn";
-let visualMode: "daylight" | "night" = "daylight";
-let planner: CompilerInput = {
-  duration: "full",
-  visitorProfile: "first_time",
-  pace: "relaxed",
-  drivingPreference: "relaxed_self_drive",
-  theme: "Autumn Colors",
+const assetBase = import.meta.env.BASE_URL;
+const tripStart = new Date(2026, 9, 5);
+
+const copy = {
+  en: {
+    eyebrow: "Europe Autumn Grand Tour",
+    compile: "Compile trip",
+    compileHint: "Build your finalized itinerary",
+    route: "Your route across Europe",
+    expand: "Expand map",
+    collapse: "Close map",
+    settings: "Trip settings",
+    reset: "Reset",
+    duration: "Duration",
+    pace: "Pace",
+    style: "Travel style",
+    theme: "Theme",
+    language: "Language",
+    note: "Changes are staged until you compile the trip.",
+    nearby: "Nearby worth exploring",
+    driveNext: "Drive to next destination",
+    stay: "Where you'll stay",
+    lodgingStyle: "Canal-house boutique stay",
+    lodgingNote: "Quiet central base; final property is selected during booking.",
+    journal: "Journal view",
+    overview: "Overview",
+    totalDrive: "Est. total drive",
+    save: "Save draft",
+    download: "Download",
+    viewAll: "View all",
+    previous: "Previous day",
+    next: "Next day",
+    day: "Day",
+    days: "days",
+    bases: "bases",
+    compiled: "Trip compiled from approved regional content.",
+    saved: "Draft saved on this device.",
+    downloaded: "Itinerary downloaded.",
+    noDrive: "Stay local today",
+    arrival: "Arrival and orientation",
+    bookingNote: "Booking not included",
+    curatedMoments: "curated moments",
+    placesNearby: "places nearby",
+    savedPlaces: "saved places",
+    savedPlaceCount: "saved place",
+    markDone: "Mark complete",
+    completed: "Completed",
+    whyVisit: "Why it belongs in your journey",
+    savePlace: "Save place",
+    savedPlace: "Saved",
+    openMaps: "Open in Maps",
+    closeDetails: "Close attraction details",
+  },
+  cn: {
+    eyebrow: "欧洲秋季自驾大环线",
+    compile: "生成行程",
+    compileHint: "按天数、主题和节奏重新编排行程",
+    route: "欧洲路线",
+    expand: "展开地图",
+    collapse: "关闭地图",
+    settings: "行程设置",
+    reset: "重置",
+    duration: "天数",
+    pace: "节奏",
+    style: "旅行方式",
+    theme: "主题",
+    language: "语言",
+    note: "更改设置后，点击生成行程才会更新路线。",
+    nearby: "附近值得探索",
+    driveNext: "前往下一站",
+    stay: "住宿方向",
+    lodgingStyle: "运河屋精品住宿",
+    lodgingNote: "安静、方便步行；具体酒店在预订阶段决定。",
+    journal: "旅行日志",
+    overview: "总览",
+    totalDrive: "预计驾驶总量",
+    save: "保存草稿",
+    download: "下载",
+    viewAll: "查看全部",
+    previous: "前一天",
+    next: "后一天",
+    day: "第",
+    days: "天",
+    bases: "个基地",
+    compiled: "已使用审核通过的区域内容生成行程。",
+    saved: "草稿已保存在本设备。",
+    downloaded: "行程已下载。",
+    noDrive: "今天不换城市",
+    arrival: "抵达与方向感",
+    bookingNote: "不含预订",
+    curatedMoments: "个精选时刻",
+    placesNearby: "个附近地点",
+    savedPlaces: "个已保存地点",
+    savedPlaceCount: "个已保存地点",
+    markDone: "标记完成",
+    completed: "已完成",
+    whyVisit: "为什么值得放进行程",
+    savePlace: "保存地点",
+    savedPlace: "已保存",
+    openMaps: "在地图中打开",
+    closeDetails: "关闭景点详情",
+  },
+} as const;
+
+const englishAmsterdam = {
+  summary:
+    "Amsterdam is best understood through three threads: water shaping the city, 17th-century trade becoming art and architecture, and 20th-century history becoming personal memory.",
+  subtitle: "A city shaped by water, art and personal history",
+  days: [
+    [
+      ["Morning", "09:30 – 12:00", "Arrive gently", "Leave the car at the hotel or a P+R, then orient around Dam Square."],
+      ["Afternoon", "13:30 – 16:30", "Canal Belt and Jordaan", "Walk slowly through the canal ring; keep the first day intentionally light."],
+      ["Evening", "17:00 – 18:15", "Canal cruise", "See the UNESCO canal ring from the water before an unhurried dinner."],
+    ],
+    [
+      ["Morning", "09:00 – 11:30", "Rijksmuseum", "Use the Gallery of Honour to connect Dutch art, trade and civic identity."],
+      ["Afternoon", "13:00 – 15:00", "Van Gogh Museum", "Follow the collection chronologically and notice how color and brushwork change."],
+      ["Evening", "16:00 onward", "Museumplein reset", "Protect a long café break; do not add a third major museum."],
+    ],
+    [
+      ["Morning", "09:00 – 10:30", "Anne Frank House", "Use a timed entry and leave breathing room after the visit."],
+      ["Afternoon", "12:00 – 16:00", "Jordaan and Noordermarkt", "Walk Prinsengracht and Brouwersgracht without turning the neighborhood into a checklist."],
+      ["Evening", "17:30 onward", "Magere Brug", "Close with the Amstel at blue hour, or stop early if the day already feels complete."],
+    ],
+  ],
 };
-let routeProgress = 0;
-let playing = true;
-let reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const nearbyImageById: Record<string, string> = {
+  rijksmuseum: "rijksmuseum.png",
+  "van-gogh-museum": "van-gogh-museum.png",
+  "anne-frank-house": "anne-frank-house.png",
+  "amsterdam-canal-cruise-damrak": "canal-belt.png",
+};
+
+let routeStops: RouteStop[] = [];
+let planner: Planner = { duration: 3, theme: "first_time_classic", pace: "relaxed", style: "classic_cultural", language: "en" };
+let compiledPlanner: Planner = { ...planner };
+let product: CompilerProduct | undefined;
+let journeyBases: JourneyBase[] = [];
+let journalDays: JournalDay[] = [];
+let selectedDayIndex = 2;
+let viewMode: "journal" | "overview" = "journal";
+let mapExpanded = false;
+let planDirty = false;
+let statusMessage = "";
+let mapInstance: L.Map | undefined;
+let selectedAttractionId: string | undefined;
+const savedAttractions = new Set<string>();
+const completedMoments = new Set<string>();
+
+function html(value: unknown) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
 
 function parseCsv(text: string): Record<string, string>[] {
   const rows: string[][] = [];
   let row: string[] = [];
   let cell = "";
-  let quote = false;
-  for (let i = 0; i < text.length; i += 1) {
-    const char = text[i];
-    const next = text[i + 1];
-    if (char === '"' && quote && next === '"') {
+  let quoted = false;
+  for (let index = 0; index < text.length; index += 1) {
+    const character = text[index];
+    const next = text[index + 1];
+    if (character === '"' && quoted && next === '"') {
       cell += '"';
-      i += 1;
-    } else if (char === '"') {
-      quote = !quote;
-    } else if (char === "," && !quote) {
+      index += 1;
+    } else if (character === '"') {
+      quoted = !quoted;
+    } else if (character === "," && !quoted) {
       row.push(cell);
       cell = "";
-    } else if ((char === "\n" || char === "\r") && !quote) {
-      if (char === "\r" && next === "\n") i += 1;
+    } else if ((character === "\n" || character === "\r") && !quoted) {
+      if (character === "\r" && next === "\n") index += 1;
       row.push(cell);
       if (row.some((value) => value.trim())) rows.push(row);
       row = [];
       cell = "";
     } else {
-      cell += char;
+      cell += character;
     }
   }
   if (cell || row.length) {
@@ -123,670 +282,794 @@ function parseCsv(text: string): Record<string, string>[] {
   );
 }
 
-function googleMapsSearch(query: string) {
-  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+function safeMiles(value: string | number | undefined) {
+  const match = String(value ?? "").replaceAll(",", "").match(/\d+(?:\.\d+)?/);
+  const parsed = match ? Number(match[0]) : 0;
+  return Number.isFinite(parsed) ? parsed : 0;
 }
 
-function googleDirections(url: string, fallbackQuery: string) {
-  return safeUrl(url, googleMapsSearch(fallbackQuery));
-}
-
-function googleEarthSearch(query: string) {
-  return `https://earth.google.com/web/search/${encodeURIComponent(query)}`;
-}
-
-function googleStreetView(query: string) {
-  return `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${encodeURIComponent(query)}`;
-}
-
-function googleStreetViewCoords(lat: number, lng: number) {
-  return `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${lat},${lng}`;
-}
-
-function safeUrl(value: string, fallback: string) {
-  try {
-    const url = new URL(value);
-    return url.protocol === "https:" || url.protocol === "http:" ? url.toString() : fallback;
-  } catch {
-    return fallback;
-  }
-}
-
-function html(value: string | number | undefined) {
-  return String(value ?? "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-
-function withCoordinates(stops: RouteStop[], points: GeoPoint[]) {
-  const byName = new Map<string, [number, number]>();
-  points.forEach((point) => {
-    const clean = point.properties.name.replace(/^Leg \d+:\s*/, "").split(",")[0].trim();
-    byName.set(clean.toLowerCase(), point.geometry.coordinates);
+function withCoordinates(stops: RouteStop[], features: GeoPoint[]) {
+  const geo = new Map<string, [number, number]>();
+  features.forEach((feature) => {
+    const key = normalizePlace(feature.properties.name.replace(/^Leg \d+:\s*/, "").split(",")[0]);
+    geo.set(key, feature.geometry.coordinates);
   });
   return stops.map((stop, index) => {
-    const coord = byName.get(stop.Map_Name.toLowerCase()) ?? fallbackCoordinate(stop.Map_Name, index);
-    return { ...stop, lng: coord[0], lat: coord[1] };
-  });
-}
-
-function fallbackCoordinate(name: string, index: number): [number, number] {
-  const known: Record<string, [number, number]> = {
-    Giethoorn: [6.083, 52.74],
-    Lübeck: [10.687, 53.866],
-    Flåm: [7.114, 60.861],
-    Geiranger: [7.207, 62.101],
-    Lillehammer: [10.466, 61.115],
-    Karlstad: [13.511, 59.402],
-    Jönköping: [14.161, 57.782],
-    Helsingborg: [12.694, 56.046],
-    Odense: [10.388, 55.403],
-    Schwerin: [11.413, 53.635],
-    Poznań: [16.925, 52.406],
-    Olomouc: [17.251, 49.594],
-    "Český Krumlov": [14.315, 48.812],
-    Hallstatt: [13.649, 47.562],
-    Salzburg: [13.055, 47.81],
-    Ortisei: [11.674, 46.576],
-    "St. Moritz": [9.839, 46.498],
-    Grindelwald: [8.041, 46.624],
-    "Chamonix-Mont-Blanc": [6.869, 45.923],
-    Annecy: [6.129, 45.899],
-    Avignon: [4.805, 43.949],
-    Collioure: [3.083, 42.526],
-    Zaragoza: [-0.889, 41.648],
-    Salamanca: [-5.664, 40.97],
-    Évora: [-7.913, 38.571],
-    Granada: [-3.599, 37.178],
-    Alicante: [-0.481, 38.345],
-    Valencia: [-0.376, 39.469],
-    "Port of Barcelona": [2.173, 41.353],
-    "Port of Civitavecchia": [11.795, 42.094],
-    Venice: [12.315, 45.44],
-    Ljubljana: [14.505, 46.056],
-    "Plitvice Lakes National Park": [15.582, 44.865],
-    Split: [16.44, 43.508],
-    Dubrovnik: [18.094, 42.651],
-    Kotor: [18.771, 42.424],
-    Shkodër: [19.512, 42.069],
-    Gjirokastër: [20.138, 40.075],
-    Ioannina: [20.851, 39.665],
-    Patras: [21.735, 38.246],
-    Athens: [23.728, 37.984],
-    Delphi: [22.501, 38.482],
-    Meteora: [21.63, 39.721],
-    Skopje: [21.431, 41.998],
-    Niš: [21.896, 43.321],
-    Belgrade: [20.457, 44.817],
-    "Novi Sad": [19.833, 45.267],
-    Linz: [14.286, 48.306],
-    Regensburg: [12.102, 49.013],
-    Würzburg: [9.953, 49.792],
-    Bacharach: [7.769, 50.057],
-    Cologne: [6.96, 50.938],
-    "Amsterdam Airport Schiphol": [4.763, 52.31],
-  };
-  if (known[name]) return known[name];
-  return [4 + index * 0.22, 52 - index * 0.04];
-}
-
-function project(lng: number, lat: number, w: number, h: number) {
-  const minLng = -10;
-  const maxLng = 26;
-  const minLat = 36;
-  const maxLat = 64;
-  const x = ((lng - minLng) / (maxLng - minLng)) * w;
-  const y = h - ((lat - minLat) / (maxLat - minLat)) * h;
-  return { x, y };
-}
-
-function renderCanvas() {
-  const canvas = document.querySelector<HTMLCanvasElement>("#route-canvas");
-  if (!canvas || !routeStops.length) return;
-  const rect = canvas.getBoundingClientRect();
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
-  canvas.width = Math.floor(rect.width * dpr);
-  canvas.height = Math.floor(rect.height * dpr);
-  const ctx = canvas.getContext("2d")!;
-  ctx.scale(dpr, dpr);
-  ctx.clearRect(0, 0, rect.width, rect.height);
-
-  const grd = ctx.createLinearGradient(0, 0, rect.width, rect.height);
-  grd.addColorStop(0, "#17324d");
-  grd.addColorStop(0.55, "#23556a");
-  grd.addColorStop(1, "#6a8d6d");
-  ctx.fillStyle = grd;
-  ctx.fillRect(0, 0, rect.width, rect.height);
-
-  ctx.save();
-  ctx.globalAlpha = 0.2;
-  ctx.strokeStyle = "#d7e7db";
-  for (let i = 0; i < 18; i += 1) {
-    ctx.beginPath();
-    ctx.moveTo(0, i * 38 + 10);
-    ctx.lineTo(rect.width, i * 28 - 40);
-    ctx.stroke();
-  }
-  for (let i = 0; i < 20; i += 1) {
-    ctx.beginPath();
-    ctx.moveTo(i * 58 - 100, 0);
-    ctx.lineTo(i * 42 + 40, rect.height);
-    ctx.stroke();
-  }
-  ctx.restore();
-
-  const pts = routeStops.map((s) => project(s.lng!, s.lat!, rect.width, rect.height));
-  ctx.lineCap = "round";
-  ctx.lineJoin = "round";
-  ctx.strokeStyle = "rgba(8, 22, 38, .55)";
-  ctx.lineWidth = 10;
-  drawPath(ctx, pts);
-  ctx.strokeStyle = "#ffffff";
-  ctx.lineWidth = 5;
-  drawPath(ctx, pts);
-  ctx.strokeStyle = "#2d8cff";
-  ctx.lineWidth = 3;
-  drawPath(ctx, pts);
-
-  const max = Math.max(1, Math.floor(routeProgress * (pts.length - 1)));
-  ctx.strokeStyle = "#ffcf5a";
-  ctx.lineWidth = 6;
-  drawPath(ctx, pts.slice(0, max + 1));
-
-  pts.forEach((pt, index) => {
-    const selected = index === selectedStop;
-    ctx.beginPath();
-    ctx.fillStyle = selected ? "#ff7a1a" : "#1fb67a";
-    ctx.strokeStyle = "#fff";
-    ctx.lineWidth = selected ? 4 : 2;
-    ctx.arc(pt.x, pt.y, selected ? 8 : 5, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.stroke();
-  });
-
-  const target = pts[selectedStop];
-  if (target) {
-    ctx.beginPath();
-    ctx.strokeStyle = "#ffcf5a";
-    ctx.lineWidth = 2;
-    ctx.arc(target.x, target.y, 18 + Math.sin(Date.now() / 260) * 4, 0, Math.PI * 2);
-    ctx.stroke();
-  }
-}
-
-function drawPath(ctx: CanvasRenderingContext2D, pts: { x: number; y: number }[]) {
-  if (!pts.length) return;
-  ctx.beginPath();
-  ctx.moveTo(pts[0].x, pts[0].y);
-  pts.slice(1).forEach((pt) => ctx.lineTo(pt.x, pt.y));
-  ctx.stroke();
-}
-
-function stopAttractions() {
-  const stop = routeStops[selectedStop];
-  const list = attractions.filter((a) => Number(a.Stop_Order) === Number(stop.Order));
-  return selectedPriority === "All" ? list : list.filter((a) => a.Priority === selectedPriority);
-}
-
-function bridgeStopReason(stop: RouteStop) {
-  const nights = Number(stop.Recommended_Nights || 0);
-  const miles = Number(stop.Approx_Miles_From_Previous || 0);
-  const hasLocalAttractions = attractions.some((a) => Number(a.Stop_Order) === Number(stop.Order));
-  if (nights <= 1 && miles >= 120) {
+    const v2 = findV2Stop(stop.Map_Name) ?? findV2Stop(stop.Location);
+    const point = geo.get(normalizePlace(stop.Map_Name));
     return {
-      route_function: "Route protection / relaxed self-drive pacing",
-      why_stop_exists:
-        "This stop keeps the road trip comfortable instead of turning the day into a bus-tour transfer.",
-      worth_sightseeing: hasLocalAttractions ? "Local guide items exist." : "CONTENT_PENDING",
-      best_60_minute_experience: hasLocalAttractions ? "Use the highest-priority nearby guide item." : "CONTENT_PENDING",
-      skip_if_tired: "Dinner, sleep, and continue without guilt.",
+      ...stop,
+      lng: v2?.anchor.longitude ?? point?.[0] ?? 4 + index * 0.2,
+      lat: v2?.anchor.latitude ?? point?.[1] ?? 52 - index * 0.04,
     };
-  }
+  });
+}
+
+function findRouteStop(value: string) {
+  const needle = normalizePlace(value);
+  return routeStops.find((stop) => {
+    const name = normalizePlace(stop.Map_Name);
+    const location = normalizePlace(stop.Location);
+    return name === needle || name.includes(needle) || needle.includes(name) || location.includes(needle);
+  });
+}
+
+function chooseProduct(nextPlanner: Planner) {
+  const exact = compilerData.approved_short_products.filter((entry) => entry.days === nextPlanner.duration);
+  return (
+    exact.find((entry) => entry.themes.includes(nextPlanner.theme)) ??
+    exact[0] ??
+    compilerData.approved_short_products
+      .slice()
+      .sort((a, b) => Math.abs(a.days - nextPlanner.duration) - Math.abs(b.days - nextPlanner.duration))[0]
+  );
+}
+
+function makeJourneyBase(name: string, allocation: number): JourneyBase | undefined {
+  const route = findRouteStop(name);
+  const v2 = findV2Stop(name) ?? (route ? findV2Stop(route.Map_Name) : undefined);
+  const lat = v2?.anchor.latitude ?? route?.lat;
+  const lng = v2?.anchor.longitude ?? route?.lng;
+  if (typeof lat !== "number" || typeof lng !== "number") return undefined;
   return {
-    route_function: stop.Route_Theme || "Destination base",
-    why_stop_exists: stop.Why_This_Stop || "CONTENT_PENDING",
-    worth_sightseeing: hasLocalAttractions ? "Yes, use the attraction guide below." : "CONTENT_PENDING",
-    best_60_minute_experience: hasLocalAttractions ? "Pick one nearby priority attraction." : "CONTENT_PENDING",
-    skip_if_tired: "Protect rest when arrival is late or weather is poor.",
+    name: v2?.name ?? route?.Map_Name ?? name,
+    country: v2?.country ?? route?.Country ?? "Europe",
+    allocation,
+    route,
+    v2,
+    lat,
+    lng,
   };
 }
 
-function driveStartIndex(from: string) {
-  const normalizedFrom = from.toLowerCase();
-  const index = routeStops.findIndex(
-    (stop) =>
-      stop.Map_Name.toLowerCase() === normalizedFrom ||
-      stop.Map_Name.toLowerCase().includes(normalizedFrom) ||
-      stop.Location.toLowerCase().includes(normalizedFrom),
-  );
-  return Math.max(0, index);
+function compileJourney(nextPlanner: Planner) {
+  const selectedProduct = chooseProduct(nextPlanner);
+  product = selectedProduct;
+  const baseCount = Math.max(1, selectedProduct.bases.length);
+  const even = Math.floor(selectedProduct.days / baseCount);
+  let remaining = selectedProduct.days;
+  journeyBases = selectedProduct.bases
+    .map((name, index) => {
+      const proposed = selectedProduct.allocation_days?.[index] ?? Math.max(1, even + (index < selectedProduct.days % baseCount ? 1 : 0));
+      const allocation = index === baseCount - 1 ? Math.max(1, remaining) : Math.min(proposed, remaining);
+      remaining -= allocation;
+      return makeJourneyBase(name, allocation);
+    })
+    .filter((base): base is JourneyBase => Boolean(base));
+
+  if (!journeyBases.length) {
+    const amsterdam = makeJourneyBase("Amsterdam", nextPlanner.duration);
+    if (amsterdam) journeyBases = [amsterdam];
+  }
+
+  journalDays = [];
+  journeyBases.forEach((base) => {
+    for (let baseDay = 1; baseDay <= base.allocation; baseDay += 1) {
+      journalDays.push({
+        index: journalDays.length,
+        dayNumber: journalDays.length + 1,
+        baseDay,
+        base,
+      });
+    }
+  });
+  selectedDayIndex = Math.min(journalDays.length - 1, nextPlanner.duration === 3 ? 2 : 0);
+  compiledPlanner = { ...nextPlanner };
+  planDirty = false;
 }
 
-function driveEndIndex(to: string) {
-  const normalizedTo = to.toLowerCase();
-  const index = routeStops.findIndex(
-    (stop) =>
-      stop.Map_Name.toLowerCase() === normalizedTo ||
-      stop.Map_Name.toLowerCase().includes(normalizedTo) ||
-      stop.Location.toLowerCase().includes(normalizedTo),
-  );
-  return index >= 0 ? index : routeStops.length - 1;
+function dayDate(index: number) {
+  const value = new Date(tripStart);
+  value.setDate(value.getDate() + index);
+  return value;
 }
 
-function setStop(index: number) {
-  selectedStop = Math.max(0, Math.min(routeStops.length - 1, index));
-  routeProgress = selectedStop / Math.max(1, routeStops.length - 1);
+function dateParts(index: number, language = planner.language) {
+  const date = dayDate(index);
+  const locale = language === "cn" ? "zh-CN" : "en-US";
+  return {
+    weekday: new Intl.DateTimeFormat(locale, { weekday: "short" }).format(date),
+    monthDay: new Intl.DateTimeFormat(locale, { month: "short", day: "numeric" }).format(date),
+  };
 }
 
-function speak() {
-  const stop = routeStops[selectedStop];
-  const text =
-    language === "cn"
-      ? `${stop.Map_Name}。${stop.Why_This_Stop} 秋季窗口：${stop.Autumn_Target_Window}。`
-      : `${stop.Map_Name}. ${stop.Country}. Autumn window: ${stop.Autumn_Target_Window}. ${stop.Route_Theme}.`;
-  window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = language === "cn" ? "zh-CN" : "en-US";
-  window.speechSynthesis.speak(utterance);
+function uniqueJourneyBases() {
+  return journeyBases.filter((base, index, list) => index === list.findIndex((item) => item.name === base.name));
+}
+
+function haversineMiles(a: JourneyBase, b: JourneyBase) {
+  const radius = 3958.8;
+  const toRadians = (value: number) => (value * Math.PI) / 180;
+  const dLat = toRadians(b.lat - a.lat);
+  const dLng = toRadians(b.lng - a.lng);
+  const lat1 = toRadians(a.lat);
+  const lat2 = toRadians(b.lat);
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLng / 2) ** 2;
+  return Math.round(radius * 2 * Math.atan2(Math.sqrt(h), Math.sqrt(1 - h)) * 1.22);
+}
+
+function totalDriveMiles() {
+  const bases = uniqueJourneyBases();
+  if (bases.length === routeStops.length && bases.every((base) => base.route)) {
+    return bases.reduce((sum, base) => sum + safeMiles(base.route?.Approx_Miles_From_Previous), 0);
+  }
+  return bases.slice(1).reduce((sum, base, index) => sum + haversineMiles(bases[index], base), 0);
+}
+
+function driveLabel() {
+  const miles = totalDriveMiles();
+  const hours = miles ? miles / 48 : 0;
+  return `${miles.toLocaleString()} mi · ${hours.toFixed(1)} hr`;
+}
+
+function roleLabel(role: string | undefined) {
+  if (!role) return "first-visit base";
+  return role.replaceAll("_", " ").replace(/\bfive star\b/i, "signature");
+}
+
+function citySummary(day: JournalDay) {
+  if (normalizePlace(day.base.name) === "amsterdam") {
+    return planner.language === "cn" ? amsterdamGuide.first_time_summary_cn : englishAmsterdam.summary;
+  }
+  if (planner.language === "cn" && day.base.v2?.first_visit_story_cn) return day.base.v2.first_visit_story_cn;
+  const highlights = (day.base.v2?.five_star ?? []).slice(0, 3).map(attractionName).join(", ");
+  return `${day.base.name} is a ${roleLabel(day.base.v2?.role)} in this journey. Keep the visit focused on ${highlights || "the strongest first-visit anchors"}, with enough unplanned time for weather, rest and the character of the place.`;
+}
+
+function citySubtitle(day: JournalDay) {
+  if (normalizePlace(day.base.name) === "amsterdam") {
+    return planner.language === "cn" ? "从水理解城市，再进入艺术与个人历史" : englishAmsterdam.subtitle;
+  }
+  const first = day.base.v2?.five_star?.[0];
+  return first
+    ? `${attractionName(first)} · ${roleLabel(day.base.v2?.role)}`
+    : roleLabel(day.base.v2?.role);
+}
+
+function genericSchedule(day: JournalDay): TimelineItem[] {
+  const highlights = (day.base.v2?.five_star ?? []).map(attractionName);
+  const duration = findDurationCity(day.base.name);
+  const source = [
+    ...(duration?.day_1 ?? []),
+    ...(day.baseDay > 1 ? duration?.day_2_add ?? [] : []),
+    ...(day.baseDay > 2 ? duration?.day_3_add ?? [] : []),
+  ];
+  const items = source.length ? source : highlights;
+  if (planner.language === "cn") {
+    const plans = day.base.v2?.plans ?? {};
+    const key = day.baseDay >= 4 ? "4_plus" : `${day.baseDay}_day`;
+    const cnItems = plans[key] ?? plans["3_days"] ?? plans["2_days"] ?? plans["1_day"] ?? [];
+    return [
+      { period: "上午", time: "09:00 – 12:00", title: cnItems[0] ?? items[0] ?? copy.cn.arrival, detail: "保留步行与进入状态的时间。", icon: "ph-sun" },
+      { period: "下午", time: "13:30 – 17:00", title: cnItems[1] ?? items[1] ?? "城市主线", detail: "只保留一个主要锚点，并安排坐下休息。", icon: "ph-sun-horizon" },
+      { period: "晚上", time: "17:30以后", title: cnItems[2] ?? items[2] ?? "自由探索", detail: "天气或体力不足时可以直接删除。", icon: "ph-moon" },
+    ];
+  }
+  return [
+    { period: "Morning", time: "09:00 – 12:00", title: items[0] ?? "Arrival and orientation", detail: `Begin with one defining ${day.base.name} experience, without rushing the first hour.`, icon: "ph-sun" },
+    { period: "Afternoon", time: "13:30 – 17:00", title: items[1] ?? "Slow city exploration", detail: "Protect lunch and recovery time before the second anchor.", icon: "ph-sun-horizon" },
+    { period: "Evening", time: "17:30 onward", title: items[2] ?? "Open evening", detail: "Keep this optional; a relaxed itinerary can end early.", icon: "ph-moon" },
+  ];
+}
+
+function scheduleFor(day: JournalDay): TimelineItem[] {
+  if (normalizePlace(day.base.name) !== "amsterdam") return genericSchedule(day);
+  if (planner.language === "cn") return genericSchedule(day);
+  const selected = englishAmsterdam.days[Math.min(englishAmsterdam.days.length - 1, day.baseDay - 1)];
+  return selected.map(([period, time, title, detail], index) => ({
+    period,
+    time,
+    title,
+    detail,
+    icon: ["ph-sun", "ph-sun-horizon", "ph-moon"][index],
+  }));
+}
+
+function nearbyItems(day: JournalDay): NearbyItem[] {
+  if (normalizePlace(day.base.name) === "amsterdam") {
+    return amsterdamGuide.attractions.slice(0, 5).map((attraction: AmsterdamAttraction) => ({
+      id: attraction.id,
+      name: attraction.name,
+      minutes: attraction.time_required_minutes,
+      note: planner.language === "cn" ? attraction.why_it_matters_cn : englishAttractionNote(attraction.id),
+      image: nearbyImageById[attraction.id],
+      rating: attraction.editorial_rating,
+    }));
+  }
+  return (day.base.v2?.five_star ?? []).slice(0, 5).map((attraction, index) => ({
+    id: `${day.base.v2?.id ?? "place"}-${index}`,
+    name: attractionName(attraction),
+    minutes: index === 0 ? 150 : 90,
+    note:
+      planner.language === "cn" && typeof attraction !== "string" && attraction.focus_cn
+        ? attraction.focus_cn
+        : "A signature first-visit anchor from the approved regional guide.",
+    rating: 5,
+  }));
+}
+
+function englishAttractionNote(id: string) {
+  const notes: Record<string, string> = {
+    rijksmuseum: "Dutch art and history in one coherent first-visit story.",
+    "van-gogh-museum": "Follow the artist's visual development chronologically.",
+    "anne-frank-house": "A quiet, essential encounter with personal history.",
+    "amsterdam-canal-cruise-damrak": "Read the city's structure from the water.",
+    "royal-palace-amsterdam": "Civic wealth transformed into monumental architecture.",
+  };
+  return notes[id] ?? "A strong addition when time and energy allow.";
+}
+
+function nextDifferentBase(day: JournalDay) {
+  return journalDays.slice(day.index + 1).find((candidate) => candidate.base.name !== day.base.name)?.base;
+}
+
+function dayRibbon() {
+  const total = journalDays.length;
+  const maxVisible = 7;
+  let start = Math.max(0, selectedDayIndex - 3);
+  if (start + maxVisible > total) start = Math.max(0, total - maxVisible);
+  return journalDays.slice(start, start + maxVisible).map((day) => {
+    const date = dateParts(day.index);
+    return `
+      <button class="day-tab ${day.index === selectedDayIndex ? "active" : ""}" data-day-index="${day.index}" aria-current="${day.index === selectedDayIndex ? "step" : "false"}">
+        <span>${day.dayNumber}</span>
+        <strong>${html(day.base.name)}</strong>
+        <small>${html(date.monthDay)}</small>
+      </button>`;
+  }).join("");
+}
+
+function stars(count: number) {
+  return `<span class="rating" aria-label="${count} star editorial priority">${Array.from({ length: count }, () => '<i class="ph-fill ph-star" aria-hidden="true"></i>').join("")}</span>`;
+}
+
+function mapSearchUrl(place: string) {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place)}`;
+}
+
+function momentKey(day: JournalDay, index: number) {
+  return `${product?.id ?? "journey"}:${day.index}:${index}`;
+}
+
+function persistReadingState() {
+  localStorage.setItem("journey-journal-saved-places", JSON.stringify([...savedAttractions]));
+  localStorage.setItem("journey-journal-completed-moments", JSON.stringify([...completedMoments]));
+}
+
+function restoreReadingSet(storageKey: string, target: Set<string>) {
+  try {
+    const stored = JSON.parse(localStorage.getItem(storageKey) ?? "[]");
+    if (!Array.isArray(stored)) return;
+    stored.forEach((value) => {
+      if (typeof value === "string") target.add(value);
+    });
+  } catch {
+    // Ignore malformed local-only UI state and keep the guide usable.
+  }
+}
+
+function attractionImage(item: NearbyItem, day: JournalDay) {
+  const isAmsterdam = normalizePlace(day.base.name) === "amsterdam";
+  return `${assetBase}assets/journey-journal/${item.image ?? (isAmsterdam ? "amsterdam-canal-autumn.png" : "europe-autumn-road.png")}`;
+}
+
+function attractionSheet(day: JournalDay) {
+  if (!selectedAttractionId) return "";
+  const text = copy[planner.language];
+  const item = nearbyItems(day).find((candidate) => candidate.id === selectedAttractionId);
+  if (!item) return "";
+  const saved = savedAttractions.has(item.id);
+  return `
+    <div class="attraction-overlay">
+      <button class="dialog-backdrop" id="close-attraction-backdrop" aria-label="${html(text.closeDetails)}"></button>
+      <section class="attraction-sheet" role="dialog" aria-modal="true" aria-labelledby="attraction-title">
+        <button class="sheet-close" id="close-attraction" aria-label="${html(text.closeDetails)}"><i class="ph ph-x" aria-hidden="true"></i></button>
+        <figure>
+          <img src="${attractionImage(item, day)}" alt="${html(item.name)}" />
+          <figcaption>${html(day.base.name)} · ${item.minutes} min</figcaption>
+        </figure>
+        <div class="sheet-copy">
+          <p class="sheet-kicker"><i class="ph ph-sparkle" aria-hidden="true"></i>${html(text.whyVisit)}</p>
+          <h2 id="attraction-title">${html(item.name)}</h2>
+          <div class="sheet-meta">
+            <span><i class="ph ph-clock" aria-hidden="true"></i>${item.minutes} min</span>
+            <span>${stars(item.rating)}</span>
+            <span><i class="ph ph-map-pin" aria-hidden="true"></i>${html(day.base.name)}</span>
+          </div>
+          <p class="sheet-description">${html(item.note)}</p>
+          <blockquote>${planner.language === "cn" ? "把景点当作故事的一部分，而不是待办清单。" : "Treat the place as part of the city's story—not another box to check."}</blockquote>
+          <div class="sheet-actions">
+            <button id="save-attraction" class="secondary-button ${saved ? "saved" : ""}" data-attraction-id="${html(item.id)}">
+              <i class="${saved ? "ph-fill" : "ph"} ph-bookmark-simple" aria-hidden="true"></i>${html(saved ? text.savedPlace : text.savePlace)}
+            </button>
+            <a class="primary-link" href="${mapSearchUrl(`${item.name}, ${day.base.name}`)}" target="_blank" rel="noreferrer">
+              ${html(text.openMaps)}<i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>`;
+}
+
+function journalContent(day: JournalDay) {
+  const text = copy[planner.language];
+  const date = dateParts(day.index);
+  const schedule = scheduleFor(day);
+  const nearby = nearbyItems(day);
+  const nextBase = nextDifferentBase(day);
+  const miles = nextBase ? haversineMiles(day.base, nextBase) : 0;
+  const hours = miles ? Math.max(0.5, miles / 48) : 0;
+  const isAmsterdam = normalizePlace(day.base.name) === "amsterdam";
+  const completedCount = schedule.filter((_, index) => completedMoments.has(momentKey(day, index))).length;
+  const hero = `${assetBase}assets/journey-journal/${isAmsterdam ? "amsterdam-canal-autumn.png" : "europe-autumn-road.png"}`;
+  const hotel = `${assetBase}assets/journey-journal/${isAmsterdam ? "amsterdam-canal-hotel.png" : "paris-boutique-hotel.png"}`;
+  return `
+    <section class="journal-entry" aria-labelledby="city-title">
+      <aside class="date-rail" aria-label="${html(`${text.day} ${day.dayNumber}, ${date.weekday} ${date.monthDay}`)}">
+        <span>${html(text.day)}</span>
+        <strong>${day.dayNumber}</strong>
+        <small>${html(date.weekday)}</small>
+        <small>${html(date.monthDay)}</small>
+      </aside>
+
+      <figure class="city-portrait">
+        <img src="${hero}" alt="${html(isAmsterdam ? "Amsterdam canal houses in autumn light" : "An autumn road through a European valley")}" />
+        <figcaption>${html(day.base.name)} · ${html(day.base.country)}</figcaption>
+      </figure>
+
+      <article class="city-story">
+        <p class="kicker">${html(citySubtitle(day))}</p>
+        <h1 id="city-title">${html(day.base.name)}, <span>${html(day.base.country)}</span></h1>
+        <p class="story-lead">${html(citySummary(day))}</p>
+
+        <div class="day-summary" aria-label="Day reading progress">
+          <div class="reading-progress">
+            <span><i class="ph ph-check-circle" aria-hidden="true"></i>${completedCount}/${schedule.length} ${html(text.curatedMoments)}</span>
+            <progress max="${schedule.length}" value="${completedCount}">${completedCount} of ${schedule.length}</progress>
+          </div>
+          <span><i class="ph ph-map-pin" aria-hidden="true"></i>${nearby.length} ${html(text.placesNearby)}</span>
+          <span><i class="ph ph-bookmark-simple" aria-hidden="true"></i>${savedAttractions.size} ${html(savedAttractions.size === 1 ? text.savedPlaceCount : text.savedPlaces)}</span>
+        </div>
+
+        <div class="story-columns">
+          <div class="timeline" aria-label="Day plan">
+            ${schedule.map((item, index) => {
+              const key = momentKey(day, index);
+              const complete = completedMoments.has(key);
+              return `
+              <section class="timeline-item moment-${index + 1} ${complete ? "completed" : ""}">
+                <span class="timeline-icon"><i class="ph ${item.icon}" aria-hidden="true"></i></span>
+                <div class="timeline-card">
+                  <header><span><strong>${html(item.period)}</strong><time>${html(item.time)}</time></span><button class="complete-stop" data-complete-key="${html(key)}" aria-pressed="${complete}" title="${html(complete ? text.completed : text.markDone)}"><i class="${complete ? "ph-fill ph-check-circle" : "ph ph-circle"}" aria-hidden="true"></i><span class="sr-only">${html(complete ? text.completed : text.markDone)}</span></button></header>
+                  <h2>${html(item.title)}</h2>
+                  <p>${html(item.detail)}</p>
+                </div>
+              </section>`;
+            }).join("")}
+          </div>
+
+          <aside class="nearby" id="nearby-list">
+            <h2>${html(text.nearby)}</h2>
+            <div class="nearby-list">
+              ${nearby.map((item) => `
+                <button class="nearby-item ${savedAttractions.has(item.id) ? "saved" : ""}" data-attraction-id="${html(item.id)}">
+                  ${item.image ? `<img src="${assetBase}assets/journey-journal/${item.image}" alt="${html(item.name)}" />` : `<span class="nearby-icon"><i class="ph ph-map-pin" aria-hidden="true"></i></span>`}
+                  <span class="nearby-copy">
+                    <strong>${html(item.name)}</strong>
+                    <small>${item.minutes} min · ${stars(item.rating)}</small>
+                    <em>${html(item.note)}</em>
+                  </span>
+                  <i class="${savedAttractions.has(item.id) ? "ph-fill ph-bookmark-simple" : "ph ph-caret-right"}" aria-hidden="true"></i>
+                </button>`).join("")}
+            </div>
+            <a class="text-link" href="${mapSearchUrl(`${day.base.name} attractions`)}" target="_blank" rel="noreferrer">
+              ${html(text.viewAll)} ${html(day.base.name)} <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+            </a>
+          </aside>
+        </div>
+      </article>
+
+      <section class="drive-card">
+        <span class="feature-icon rust"><i class="ph ph-car-profile" aria-hidden="true"></i></span>
+        <div>
+          <p>${html(text.driveNext)}</p>
+          <strong>${nextBase ? `${html(day.base.name)} <i class="ph ph-arrow-right" aria-hidden="true"></i> ${html(nextBase.name)}` : html(text.noDrive)}</strong>
+          <small>${nextBase ? (planner.language === "cn" ? "下午三点后不为增加景点赶路。" : "Keep the transfer light; no major timed attraction after a late arrival.") : (planner.language === "cn" ? "慢走、坐下吃饭，并保留恢复时间。" : "Walk, eat slowly and protect recovery time.")}</small>
+        </div>
+        <dl>
+          <div><dt>${planner.language === "cn" ? "距离" : "Distance"}</dt><dd>${miles ? `~${miles} mi` : "—"}</dd></div>
+          <div><dt>${planner.language === "cn" ? "时间" : "Duration"}</dt><dd>${hours ? `~${hours.toFixed(1)} hr` : "—"}</dd></div>
+        </dl>
+      </section>
+
+      <section class="stay-card">
+        <span class="feature-icon olive"><i class="ph ph-bed" aria-hidden="true"></i></span>
+        <div>
+          <p>${html(text.stay)}</p>
+          <strong>${html(text.lodgingStyle)}</strong>
+          <small>${html(text.lodgingNote)} · ${html(text.bookingNote)}</small>
+        </div>
+        <img src="${hotel}" alt="${html(isAmsterdam ? "Warm canal-house boutique hotel room" : "Warm European boutique hotel room")}" />
+      </section>
+
+      <nav class="day-controls" aria-label="Day navigation">
+        <button id="previous-day" ${selectedDayIndex === 0 ? "disabled" : ""}><i class="ph ph-arrow-left" aria-hidden="true"></i>${html(text.previous)}</button>
+        <label for="day-progress"><span class="sr-only">Journey day</span><input id="day-progress" type="range" min="1" max="${journalDays.length}" value="${selectedDayIndex + 1}" /></label>
+        <button id="next-day" ${selectedDayIndex === journalDays.length - 1 ? "disabled" : ""}>${html(text.next)}<i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+      </nav>
+    </section>`;
+}
+
+function overviewContent() {
+  const text = copy[planner.language];
+  return `
+    <section class="overview-panel" aria-labelledby="overview-title">
+      <p class="kicker">${html(product?.id.replaceAll("-", " ") ?? "compiled journey")}</p>
+      <h1 id="overview-title">${journalDays.length} ${html(text.days)} · ${uniqueJourneyBases().length} ${html(text.bases)}</h1>
+      <p class="story-lead">${html(product?.summary_cn ?? compilerData.duration_scope_rules[String(compiledPlanner.duration)] ?? "")}</p>
+      <div class="overview-days">
+        ${journalDays.map((day) => {
+          const date = dateParts(day.index);
+          const first = day.base.v2?.five_star?.[0];
+          return `<button data-day-index="${day.index}" class="overview-day">
+            <span>${day.dayNumber}</span>
+            <div><strong>${html(day.base.name)}</strong><small>${html(date.monthDay)} · ${html(first ? attractionName(first) : copy[planner.language].arrival)}</small></div>
+            <i class="ph ph-arrow-right" aria-hidden="true"></i>
+          </button>`;
+        }).join("")}
+      </div>
+    </section>`;
+}
+
+function themeOptions() {
+  return compilerData.themes.map((theme) =>
+    `<option value="${html(theme.id)}" ${planner.theme === theme.id ? "selected" : ""}>${html(theme.label)}</option>`,
+  ).join("");
+}
+
+function durationOptions() {
+  return compilerData.duration_options_days.map((days) =>
+    `<option value="${days}" ${planner.duration === days ? "selected" : ""}>${days} ${copy[planner.language].days}</option>`,
+  ).join("");
 }
 
 function render() {
-  const stop = routeStops[selectedStop];
-  const localAttractions = stopAttractions();
-  const cityGuide = contentPendingCityGuide(stop.Map_Name);
-  const whyStop = bridgeStopReason(stop);
-  const dailyBurden = estimateDailyBurden({
-    driveMiles: Number(stop.Approx_Miles_From_Previous || 0),
-    hotelChange: selectedStop > 0,
-    ferry: stop.Map_Name.toLowerCase().includes("ferry") || stop.Location.toLowerCase().includes("port"),
-    majorAttractions: Math.min(2, localAttractions.length),
-    walkingHours: localAttractions.length ? 2.5 : 1,
-  });
-  const priorities = ["All", ...Array.from(new Set(attractions.map((a) => a.Priority))).filter(Boolean)];
-  const stopMapsUrl = googleMapsSearch(stop.Location);
-  const stopDirectionsUrl = googleDirections(stop.Google_Directions_URL, stop.Location);
-  const stopEarthUrl = googleEarthSearch(stop.Location);
-  const stopStreetViewUrl =
-    typeof stop.lat === "number" && typeof stop.lng === "number"
-      ? googleStreetViewCoords(stop.lat, stop.lng)
-      : googleStreetView(stop.Location);
+  mapInstance?.remove();
+  mapInstance = undefined;
+  const text = copy[planner.language];
+  const day = journalDays[selectedDayIndex] ?? journalDays[0];
+  if (!day) return;
   app.innerHTML = `
-    <main class="${visualMode === "night" ? "night-mode" : "daylight-mode"}">
-      <section class="hero">
-        <div class="hero__copy">
-          <p class="eyebrow">PUBLIC TRAVEL GUIDE PLATFORM</p>
-          <h1>${html(trip.title)}</h1>
-          <p>${html(trip.subtitle)}</p>
-          <div class="hero__actions">
-            <a class="button primary" href="${stopDirectionsUrl}" target="_blank" rel="noreferrer">Open Route in Maps</a>
-            <a class="button" href="${stopEarthUrl}" target="_blank" rel="noreferrer">Google Earth 3D</a>
-          </div>
-        </div>
-        <canvas id="route-canvas" aria-label="3D route fly-through canvas"></canvas>
-      </section>
+    <div class="journal-shell ${mapExpanded ? "map-expanded" : ""}">
+      <header class="journal-header">
+        <a class="brand" href="#" aria-label="Journey Journal home">
+          <i class="ph ph-compass-rose" aria-hidden="true"></i>
+          <span><strong>Journey Journal</strong><small>${html(text.eyebrow)}</small></span>
+        </a>
+        <nav class="day-ribbon" aria-label="Journey days">${dayRibbon()}</nav>
+        <button class="compile-button" id="compile-top">
+          <i class="ph ph-map-trifold" aria-hidden="true"></i>
+          <span><strong>${html(text.compile)}</strong><small>${html(text.compileHint)}</small></span>
+        </button>
+      </header>
 
-      <section class="toolbar" aria-label="Trip controls">
-        <button id="prev-stop" class="icon-btn" title="Previous stop">‹</button>
-        <input id="route-progress" type="range" min="0" max="${routeStops.length - 1}" value="${selectedStop}" />
-        <button id="next-stop" class="icon-btn" title="Next stop">›</button>
-        <button id="play" class="button">${playing ? "Pause flight" : "Play flight"}</button>
-        <button id="mode" class="button">${visualMode === "daylight" ? "Night mode" : "Daylight"}</button>
-        <button id="lang" class="button">${language === "cn" ? "中文" : "English"}</button>
-        <button id="narrate" class="button">Narration</button>
-      </section>
+      <div class="workspace">
+        <main class="journal-main">${viewMode === "journal" ? journalContent(day) : overviewContent()}</main>
+        <aside class="planner-side">
+          <section class="map-card ${mapExpanded ? "expanded" : ""}">
+            <header>
+              <h2>${html(text.route)}</h2>
+              <button id="expand-map" class="quiet-button" aria-expanded="${mapExpanded}">
+                ${html(mapExpanded ? text.collapse : text.expand)}
+                <i class="ph ${mapExpanded ? "ph-arrows-in" : "ph-arrows-out"}" aria-hidden="true"></i>
+              </button>
+            </header>
+            <div id="route-map" role="img" aria-label="Interactive map of the compiled Europe route"></div>
+          </section>
 
-      <section class="planner" aria-label="Trip compiler controls">
-        <label>Duration
-          <select id="duration">
-            ${durationOptions
-              .map(([value, label]) => `<option value="${value}" ${planner.duration === value ? "selected" : ""}>${label}</option>`)
-              .join("")}
-          </select>
-        </label>
-        <label>Visitor
-          <select id="visitor-profile">
-            <option value="first_time" ${planner.visitorProfile === "first_time" ? "selected" : ""}>First Time</option>
-            <option value="return_visitor" ${planner.visitorProfile === "return_visitor" ? "selected" : ""}>Return Visitor</option>
-          </select>
-        </label>
-        <label>Pace
-          <select id="pace">
-            <option value="relaxed" ${planner.pace === "relaxed" ? "selected" : ""}>Relaxed</option>
-            <option value="balanced" ${planner.pace === "balanced" ? "selected" : ""}>Balanced</option>
-            <option value="see_more" ${planner.pace === "see_more" ? "selected" : ""}>See More</option>
-          </select>
-        </label>
-        <label>Drive
-          <select id="drive-profile">
-            <option value="relaxed_self_drive" ${planner.drivingPreference === "relaxed_self_drive" ? "selected" : ""}>Relaxed Self-Drive</option>
-            <option value="comfortable_road_trip" ${planner.drivingPreference === "comfortable_road_trip" ? "selected" : ""}>Comfortable Road Trip</option>
-            <option value="fast_mover" ${planner.drivingPreference === "fast_mover" ? "selected" : ""}>Fast Mover</option>
-          </select>
-        </label>
-        <label>Theme
-          <select id="theme">
-            ${themeOptions.map((theme) => `<option value="${html(theme)}" ${planner.theme === theme ? "selected" : ""}>${html(theme)}</option>`).join("")}
-          </select>
-        </label>
-      </section>
-
-      <section class="layout">
-        <aside class="stops" aria-label="Route stops">
-          ${driveSections
-            .map(
-              ({ name, from, to, opensAt }) => {
-                const start = driveStartIndex(opensAt);
-                const end = driveEndIndex(to);
-                const active = selectedStop >= start && selectedStop <= end;
-                return `
-                  <button class="drive-chip ${active ? "active" : ""}" data-drive="${start}">
-                    <strong>${html(name)}</strong>
-                    <span>${html(from)} → ${html(to)}</span>
-                  </button>
-                `;
-              },
-            )
-            .join("")}
-          <div class="stop-list">
-            ${routeStops
-              .map(
-                (s, index) => `
-                  <button class="stop-row ${index === selectedStop ? "active" : ""}" data-stop="${index}">
-                    <span>${html(s.Order.padStart(2, "0"))}</span>
-                    <strong>${html(s.Map_Name)}</strong>
-                    <small>${html(s.Country)} · ${html(s.Autumn_Priority)}</small>
-                  </button>
-                `,
-              )
-              .join("")}
-          </div>
+          <section class="settings-card">
+            <header><h2>${html(text.settings)}</h2><button id="reset-plan" class="reset-button"><i class="ph ph-arrow-counter-clockwise" aria-hidden="true"></i>${html(text.reset)}</button></header>
+            <div class="setting-row">
+              <label for="duration"><i class="ph ph-calendar-dots" aria-hidden="true"></i>${html(text.duration)}</label>
+              <select id="duration">${durationOptions()}</select>
+            </div>
+            <div class="setting-row">
+              <label for="pace"><i class="ph ph-gauge" aria-hidden="true"></i>${html(text.pace)}</label>
+              <select id="pace">
+                <option value="relaxed" ${planner.pace === "relaxed" ? "selected" : ""}>${planner.language === "cn" ? "轻松" : "Relaxed"}</option>
+                <option value="balanced" ${planner.pace === "balanced" ? "selected" : ""}>${planner.language === "cn" ? "平衡" : "Balanced"}</option>
+                <option value="see_more" ${planner.pace === "see_more" ? "selected" : ""}>${planner.language === "cn" ? "多看一些" : "See more"}</option>
+              </select>
+            </div>
+            <div class="setting-row">
+              <label for="style"><i class="ph ph-binoculars" aria-hidden="true"></i>${html(text.style)}</label>
+              <select id="style">
+                <option value="classic_cultural" ${planner.style === "classic_cultural" ? "selected" : ""}>${planner.language === "cn" ? "经典文化" : "Classic & Cultural"}</option>
+                <option value="scenic_slow" ${planner.style === "scenic_slow" ? "selected" : ""}>${planner.language === "cn" ? "风景慢游" : "Scenic & Slow"}</option>
+                <option value="grand_tour" ${planner.style === "grand_tour" ? "selected" : ""}>${planner.language === "cn" ? "欧洲大环线" : "Grand Tour"}</option>
+              </select>
+            </div>
+            <div class="setting-row">
+              <label for="theme"><i class="ph ph-palette" aria-hidden="true"></i>${html(text.theme)}</label>
+              <select id="theme">${themeOptions()}</select>
+            </div>
+            <div class="setting-row">
+              <label for="language"><i class="ph ph-translate" aria-hidden="true"></i>${html(text.language)}</label>
+              <select id="language">
+                <option value="en" ${planner.language === "en" ? "selected" : ""}>English</option>
+                <option value="cn" ${planner.language === "cn" ? "selected" : ""}>中文</option>
+              </select>
+            </div>
+            <p class="settings-note ${planDirty ? "dirty" : ""}"><i class="ph ${planDirty ? "ph-warning-circle" : "ph-info"}" aria-hidden="true"></i>${html(text.note)}</p>
+          </section>
         </aside>
+      </div>
 
-        <section class="guide">
-          <div class="guide__header">
-            <div>
-              <p class="eyebrow">STOP ${html(stop.Order)} · ${html(stop.Country)}</p>
-              <h2>${html(stop.Map_Name)}</h2>
-            </div>
-            <div class="guide__links">
-              <a href="${stopMapsUrl}" target="_blank" rel="noreferrer">Maps</a>
-              <a href="${stopEarthUrl}" target="_blank" rel="noreferrer">Earth</a>
-              <a href="${stopStreetViewUrl}" target="_blank" rel="noreferrer">Street View</a>
-            </div>
-          </div>
-          <div class="facts">
-            <span>${html(stop.Recommended_Nights || "0")} nights</span>
-            <span>${html(stop.Drive_Class)}</span>
-            <span>${html(stop.Approx_Miles_From_Previous)} mi from previous</span>
-            <span>${html(stop.Autumn_Target_Window)}</span>
-          </div>
-          <p class="lead">${html(
-            language === "cn"
-              ? stop.Why_This_Stop
-              : `${stop.Route_Theme}. This stop anchors the route in ${stop.Country} and sets up the next drive segment.`,
-          )}</p>
-
-          <section class="info-grid">
-            <article class="info-panel">
-              <p class="eyebrow">WHY THIS STOP EXISTS</p>
-              <h3>${html(whyStop.route_function)}</h3>
-              <dl>
-                <dt>Why stop</dt>
-                <dd>${html(whyStop.why_stop_exists)}</dd>
-                <dt>60-minute plan</dt>
-                <dd>${html(whyStop.best_60_minute_experience)}</dd>
-                <dt>Skip rule</dt>
-                <dd>${html(whyStop.skip_if_tired)}</dd>
-              </dl>
-            </article>
-            <article class="info-panel">
-              <p class="eyebrow">RELAXED SELF-DRIVE</p>
-              <h3>Daily burden ${dailyBurden.burden_score}/100</h3>
-              <dl>
-                <dt>Drive</dt>
-                <dd>${dailyBurden.drive_miles} mi · ${dailyBurden.drive_hours} hr estimate</dd>
-                <dt>Hotel change</dt>
-                <dd>${dailyBurden.hotel_change ? "Yes" : "No"} · attractions planned: ${dailyBurden.major_attractions}</dd>
-                <dt>Rule</dt>
-                <dd>${html(relaxedSelfDriveRules[0])}</dd>
-              </dl>
-            </article>
-          </section>
-
-          <section class="duration-ladder">
-            <div class="section-heading">
-              <div>
-                <p class="eyebrow">CITY DURATION LADDER</p>
-                <h3>${html(cityGuide.name)} first-time plans</h3>
-              </div>
-              <span class="status-pill">${cityGuide.status}</span>
-            </div>
-            <div class="ladder-grid">
-              ${Object.entries(cityGuide.first_time_duration_guides)
-                .map(
-                  ([key, guide]) => `
-                    <article class="ladder-card">
-                      <strong>${html(key.replaceAll("_", " "))}</strong>
-                      <span>${html(guide.pace)}</span>
-                      <p>${html(guide.notes)}</p>
-                      <small>${html(guide.schedule[0]?.time_range ?? "CONTENT_PENDING")}</small>
-                    </article>
-                  `,
-                )
-                .join("")}
-            </div>
-          </section>
-
-          <section class="compiler-panel">
-            <p class="eyebrow">TRIP COMPILER ENGINE</p>
-            <h3>${planner.duration === "full" ? "Full Grand Tour" : `${planner.duration.replace("_plus", "+")} days`} · ${html(planner.theme)}</h3>
-            <p>
-              Compiler skeleton is active. Approved city-duration packs will become the building blocks here;
-              missing packs stay marked CONTENT_PENDING instead of being invented.
-            </p>
-          </section>
-
-          <section class="region-roadmap">
-            <div class="section-heading">
-              <div>
-                <p class="eyebrow">FUTURE REGION BUILDS</p>
-                <h3>Global guide engine roadmap</h3>
-              </div>
-              <span class="status-pill">CONTENT_PENDING</span>
-            </div>
-            <div class="region-grid">
-              ${futureRegionBuilds.map((region) => `<span>${html(region)}</span>`).join("")}
-            </div>
-          </section>
-
-          <section class="help-contact">
-            <div>
-              <p class="eyebrow">HELP & CONTACT</p>
-              <h3>Ask the Travel Guide Team</h3>
-              <p>
-                This public guide is designed and operated by Ray's AI travel team. Ask questions about routes,
-                city plans, autumn timing, pacing, or what to look for at each stop.
-              </p>
-            </div>
-            <div class="team-grid">
-              <article>
-                <strong>ChatGPT</strong>
-                <span>Content planner · research organizer · trip designer</span>
-              </article>
-              <article>
-                <strong>Codex</strong>
-                <span>Platform builder · site operator · guide engine maintainer</span>
-              </article>
-            </div>
-            <div class="hero__actions">
-              <a class="button primary" href="https://github.com/mailtoray-lgtm/travel-guide/issues" target="_blank" rel="noreferrer">Ask on GitHub</a>
-              <a class="button" href="https://github.com/mailtoray-lgtm/travel-guide" target="_blank" rel="noreferrer">View Project</a>
-            </div>
-          </section>
-
-          <div class="map-embed">
-            <div>
-              <p class="eyebrow">EXTERNAL MAPS</p>
-              <h3>Continue in Google</h3>
-              <p>
-                The public guide keeps the route and attraction data available here. The original Google My Maps
-                share link is currently unavailable, so these handoffs open working Google Maps, Earth and Street View links.
-              </p>
-              <div class="hero__actions">
-                <a class="button primary" href="${stopDirectionsUrl}" target="_blank" rel="noreferrer">Open Route in Maps</a>
-                <a class="button" href="${stopMapsUrl}" target="_blank" rel="noreferrer">Open Maps</a>
-                <a class="button" href="${stopEarthUrl}" target="_blank" rel="noreferrer">Open Earth</a>
-                <a class="button" href="${stopStreetViewUrl}" target="_blank" rel="noreferrer">Street View</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="attraction-tools">
-            <h3>${language === "cn" ? "景点导游" : "Attraction Guide"}</h3>
-            <select id="priority-filter" aria-label="Filter attractions by priority">
-              ${priorities
-                .map((p) => `<option value="${html(p)}" ${p === selectedPriority ? "selected" : ""}>${html(p)}</option>`)
-                .join("")}
-            </select>
-          </div>
-
-          <div class="attractions">
-            ${
-              localAttractions.length
-                ? localAttractions
-                    .map(
-                      (a) => {
-                        const mapsUrl = safeUrl(a.Google_Maps_Search_URL, googleMapsSearch(a.Location));
-                        const sourceUrl = a.Source_URL ? safeUrl(a.Source_URL, "") : "";
-                        return `
-                        <article class="attraction-card">
-                          <div>
-                            <span class="priority">${html(a.Priority)}</span>
-                            <h4>${html(a.Map_Name)}</h4>
-                            <p>${html(language === "cn" ? a.Story_Theme_CN : a.Location)}</p>
-                          </div>
-                          <dl>
-                            <dt>${language === "cn" ? "怎么玩" : "How"}</dt>
-                            <dd>${html(language === "cn" ? a.How_To_Experience_CN : a.Recommended_Time)}</dd>
-                            <dt>${language === "cn" ? "看什么" : "Look For"}</dt>
-                            <dd>${html(language === "cn" ? a.What_To_Look_For_CN : a.Best_Time)}</dd>
-                            <dt>${language === "cn" ? "秋季重点" : "Autumn"}</dt>
-                            <dd>${html(language === "cn" ? a.Autumn_Focus_CN : a.Practical_Tip_CN)}</dd>
-                          </dl>
-                          <div class="card-links">
-                            <a href="${mapsUrl}" target="_blank" rel="noreferrer">Maps</a>
-                            <a href="${googleEarthSearch(a.Location)}" target="_blank" rel="noreferrer">Earth</a>
-                            <a href="${googleStreetView(a.Location)}" target="_blank" rel="noreferrer">Street View</a>
-                            ${sourceUrl ? `<a href="${sourceUrl}" target="_blank" rel="noreferrer">Source</a>` : ""}
-                          </div>
-                        </article>
-                      `;
-                      },
-                    )
-                    .join("")
-                : `<p class="empty">No attractions are listed for this stop yet.</p>`
-            }
-          </div>
-        </section>
-      </section>
-    </main>
-  `;
-  bind();
-  renderCanvas();
+      <footer class="journal-footer">
+        <div class="view-switch" role="tablist" aria-label="Journey views">
+          <button id="journal-view" role="tab" aria-selected="${viewMode === "journal"}" class="${viewMode === "journal" ? "active" : ""}"><i class="ph ph-book-open-text" aria-hidden="true"></i>${html(text.journal)}</button>
+          <button id="overview-view" role="tab" aria-selected="${viewMode === "overview"}" class="${viewMode === "overview" ? "active" : ""}"><i class="ph ph-list-bullets" aria-hidden="true"></i>${html(text.overview)}</button>
+        </div>
+        <div class="drive-total"><span>${html(text.totalDrive)}</span><strong>${html(driveLabel())}</strong></div>
+        <div class="footer-actions">
+          <button id="download-plan" class="icon-action" title="${html(text.download)}"><i class="ph ph-download-simple" aria-hidden="true"></i><span class="sr-only">${html(text.download)}</span></button>
+          <button id="save-plan" class="secondary-button"><i class="ph ph-bookmark-simple" aria-hidden="true"></i>${html(text.save)}</button>
+          <button id="compile-bottom" class="compile-button compact"><span><strong>${html(text.compile)}</strong></span><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+        </div>
+      </footer>
+      ${attractionSheet(day)}
+      <div class="toast ${statusMessage ? "show" : ""}" role="status" aria-live="polite">${html(statusMessage)}</div>
+    </div>`;
+  bindInteractions();
+  renderMap(day);
 }
 
-function bind() {
-  document.querySelectorAll<HTMLButtonElement>("[data-stop]").forEach((button) => {
+function renderMap(day: JournalDay) {
+  const container = document.querySelector<HTMLElement>("#route-map");
+  if (!container) return;
+  mapInstance = L.map(container, { zoomControl: true, scrollWheelZoom: false });
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 18,
+    attribution: "&copy; OpenStreetMap contributors",
+  }).addTo(mapInstance);
+
+  const fullRoute = routeStops
+    .filter((stop) => typeof stop.lat === "number" && typeof stop.lng === "number")
+    .map((stop) => [stop.lat!, stop.lng!] as L.LatLngTuple);
+  if (fullRoute.length > 1) {
+    L.polyline(fullRoute, { color: "#3f5e30", weight: 2.5, opacity: 0.5, dashArray: "4 7" }).addTo(mapInstance);
+    routeStops.forEach((stop, index) => {
+      if (index % 6 !== 0 && index !== routeStops.length - 1) return;
+      const contextMarker = L.circleMarker([stop.lat!, stop.lng!], {
+        radius: 3.5,
+        color: "#fffdf6",
+        weight: 1.5,
+        fillColor: "#c57620",
+        fillOpacity: 0.78,
+      }).addTo(mapInstance!);
+      contextMarker.bindTooltip(stop.Map_Name, { direction: "right", className: "map-tooltip" });
+    });
+  }
+
+  const bases = uniqueJourneyBases();
+  const activeRoute = bases.map((base) => [base.lat, base.lng] as L.LatLngTuple);
+  if (activeRoute.length > 1) {
+    L.polyline(activeRoute, { color: "#3f5e30", weight: 4, opacity: 0.92 }).addTo(mapInstance);
+  }
+  bases.forEach((base) => {
+    const selected = base.name === day.base.name;
+    const marker = L.circleMarker([base.lat, base.lng], {
+      radius: selected ? 8 : 6,
+      color: "#fffdf6",
+      weight: 3,
+      fillColor: selected ? "#c64a24" : "#3f5e30",
+      fillOpacity: 1,
+    }).addTo(mapInstance!);
+    marker.bindTooltip(base.name, { direction: "right", className: "map-tooltip" });
+    marker.on("click", () => {
+      const nextIndex = journalDays.findIndex((entry) => entry.base.name === base.name);
+      if (nextIndex >= 0) {
+        selectedDayIndex = nextIndex;
+        render();
+      }
+    });
+  });
+
+  if (activeRoute.length > 1) {
+    mapInstance.fitBounds(L.latLngBounds(activeRoute), { padding: [28, 28], maxZoom: 5 });
+  } else if (fullRoute.length > 1) {
+    mapInstance.fitBounds(L.latLngBounds(fullRoute), { padding: [24, 24], maxZoom: 4 });
+  } else {
+    mapInstance.setView(activeRoute[0] ?? [50.4, 8.7], activeRoute.length ? 11 : 4);
+  }
+  window.setTimeout(() => mapInstance?.invalidateSize(), 50);
+}
+
+function setStatus(message: string) {
+  statusMessage = message;
+  render();
+  window.setTimeout(() => {
+    statusMessage = "";
+    document.querySelector(".toast")?.classList.remove("show");
+  }, 2600);
+}
+
+function updatePlannerFromControls() {
+  const duration = Number((document.querySelector<HTMLSelectElement>("#duration")?.value ?? planner.duration));
+  const theme = document.querySelector<HTMLSelectElement>("#theme")?.value ?? planner.theme;
+  const pace = (document.querySelector<HTMLSelectElement>("#pace")?.value ?? planner.pace) as Planner["pace"];
+  const style = (document.querySelector<HTMLSelectElement>("#style")?.value ?? planner.style) as Planner["style"];
+  planner = { ...planner, duration, theme, pace, style };
+  planDirty =
+    planner.duration !== compiledPlanner.duration ||
+    planner.theme !== compiledPlanner.theme ||
+    planner.pace !== compiledPlanner.pace ||
+    planner.style !== compiledPlanner.style;
+  render();
+}
+
+function bindInteractions() {
+  document.querySelectorAll<HTMLElement>("[data-day-index]").forEach((button) => {
     button.addEventListener("click", () => {
-      setStop(Number(button.dataset.stop));
-      playing = false;
+      selectedDayIndex = Number(button.dataset.dayIndex ?? 0);
+      viewMode = "journal";
       render();
     });
   });
-  document.querySelectorAll<HTMLButtonElement>("[data-drive]").forEach((button) => {
+  document.querySelector(".brand")?.addEventListener("click", (event) => {
+    event.preventDefault();
+    selectedDayIndex = 0;
+    viewMode = "journal";
+    render();
+  });
+  document.querySelector("#previous-day")?.addEventListener("click", () => {
+    selectedDayIndex = Math.max(0, selectedDayIndex - 1);
+    render();
+  });
+  document.querySelector("#next-day")?.addEventListener("click", () => {
+    selectedDayIndex = Math.min(journalDays.length - 1, selectedDayIndex + 1);
+    render();
+  });
+  document.querySelector<HTMLInputElement>("#day-progress")?.addEventListener("input", (event) => {
+    selectedDayIndex = Number((event.currentTarget as HTMLInputElement).value) - 1;
+    render();
+  });
+  document.querySelectorAll<HTMLButtonElement>(".complete-stop").forEach((button) => {
     button.addEventListener("click", () => {
-      setStop(Number(button.dataset.drive));
-      playing = false;
+      const key = button.dataset.completeKey;
+      if (!key) return;
+      if (completedMoments.has(key)) completedMoments.delete(key);
+      else completedMoments.add(key);
+      persistReadingState();
       render();
     });
   });
-  document.querySelector("#prev-stop")?.addEventListener("click", () => {
-    setStop(selectedStop - 1);
+  document.querySelectorAll<HTMLButtonElement>(".nearby-item[data-attraction-id]").forEach((button) => {
+    button.addEventListener("click", () => {
+      selectedAttractionId = button.dataset.attractionId;
+      render();
+      window.setTimeout(() => document.querySelector<HTMLButtonElement>("#close-attraction")?.focus(), 0);
+    });
+  });
+  const closeAttraction = () => {
+    selectedAttractionId = undefined;
+    render();
+  };
+  document.querySelector("#close-attraction")?.addEventListener("click", closeAttraction);
+  document.querySelector("#close-attraction-backdrop")?.addEventListener("click", closeAttraction);
+  document.querySelector<HTMLButtonElement>("#save-attraction")?.addEventListener("click", (event) => {
+    const id = (event.currentTarget as HTMLButtonElement).dataset.attractionId;
+    if (!id) return;
+    if (savedAttractions.has(id)) savedAttractions.delete(id);
+    else savedAttractions.add(id);
+    persistReadingState();
     render();
   });
-  document.querySelector("#next-stop")?.addEventListener("click", () => {
-    setStop(selectedStop + 1);
+  document.onkeydown = (event) => {
+    if (event.key === "Escape" && selectedAttractionId) closeAttraction();
+  };
+  ["duration", "theme", "pace", "style"].forEach((id) => {
+    document.querySelector(`#${id}`)?.addEventListener("change", updatePlannerFromControls);
+  });
+  document.querySelector<HTMLSelectElement>("#language")?.addEventListener("change", (event) => {
+    planner.language = (event.currentTarget as HTMLSelectElement).value as Planner["language"];
+    compiledPlanner.language = planner.language;
     render();
   });
-  document.querySelector("#play")?.addEventListener("click", () => {
-    playing = !playing;
+  const compile = () => {
+    compileJourney(planner);
+    viewMode = "journal";
+    setStatus(copy[planner.language].compiled);
+  };
+  document.querySelector("#compile-top")?.addEventListener("click", compile);
+  document.querySelector("#compile-bottom")?.addEventListener("click", compile);
+  document.querySelector("#reset-plan")?.addEventListener("click", () => {
+    planner = { duration: 3, theme: "first_time_classic", pace: "relaxed", style: "classic_cultural", language: planner.language };
+    compileJourney(planner);
     render();
   });
-  document.querySelector("#mode")?.addEventListener("click", () => {
-    visualMode = visualMode === "daylight" ? "night" : "daylight";
+  document.querySelector("#expand-map")?.addEventListener("click", () => {
+    mapExpanded = !mapExpanded;
     render();
   });
-  document.querySelector("#lang")?.addEventListener("click", () => {
-    language = language === "cn" ? "en" : "cn";
+  document.querySelector("#journal-view")?.addEventListener("click", () => {
+    viewMode = "journal";
     render();
   });
-  document.querySelector("#narrate")?.addEventListener("click", speak);
-  document.querySelector<HTMLSelectElement>("#priority-filter")?.addEventListener("change", (event) => {
-    selectedPriority = (event.target as HTMLSelectElement).value;
+  document.querySelector("#overview-view")?.addEventListener("click", () => {
+    viewMode = "overview";
     render();
   });
-  document.querySelector<HTMLInputElement>("#route-progress")?.addEventListener("input", (event) => {
-    setStop(Number((event.target as HTMLInputElement).value));
-    playing = false;
-    render();
+  document.querySelector("#save-plan")?.addEventListener("click", () => {
+    localStorage.setItem("journey-journal-draft", JSON.stringify({
+      planner: compiledPlanner,
+      selectedDayIndex,
+      savedAttractions: [...savedAttractions],
+      completedMoments: [...completedMoments],
+    }));
+    persistReadingState();
+    setStatus(copy[planner.language].saved);
   });
-  document.querySelector<HTMLSelectElement>("#duration")?.addEventListener("change", (event) => {
-    planner = { ...planner, duration: (event.target as HTMLSelectElement).value as CompilerInput["duration"] };
-    render();
-  });
-  document.querySelector<HTMLSelectElement>("#visitor-profile")?.addEventListener("change", (event) => {
-    planner = { ...planner, visitorProfile: (event.target as HTMLSelectElement).value as CompilerInput["visitorProfile"] };
-    render();
-  });
-  document.querySelector<HTMLSelectElement>("#pace")?.addEventListener("change", (event) => {
-    planner = { ...planner, pace: (event.target as HTMLSelectElement).value as CompilerInput["pace"] };
-    render();
-  });
-  document.querySelector<HTMLSelectElement>("#drive-profile")?.addEventListener("change", (event) => {
-    planner = { ...planner, drivingPreference: (event.target as HTMLSelectElement).value as CompilerInput["drivingPreference"] };
-    render();
-  });
-  document.querySelector<HTMLSelectElement>("#theme")?.addEventListener("change", (event) => {
-    planner = { ...planner, theme: (event.target as HTMLSelectElement).value };
-    render();
+  document.querySelector("#download-plan")?.addEventListener("click", () => {
+    const payload = journalDays.map((day) => ({
+      day: day.dayNumber,
+      date: dayDate(day.index).toISOString().slice(0, 10),
+      base: day.base.name,
+      country: day.base.country,
+      schedule: scheduleFor(day).map(({ period, time, title, detail }) => ({ period, time, title, detail })),
+    }));
+    const blob = new Blob([JSON.stringify({ product: product?.id, planner: compiledPlanner, itinerary: payload }, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `journey-journal-${product?.id ?? "trip"}.json`;
+    link.click();
+    URL.revokeObjectURL(url);
+    setStatus(copy[planner.language].downloaded);
   });
 }
 
 async function load() {
-  const [routeCsv, attractionCsv, geojson] = await Promise.all([
-    fetch(`${assetBase}data/route-stops.csv`).then((r) => r.text()),
-    fetch(`${assetBase}data/attractions.csv`).then((r) => r.text()),
-    fetch(`${assetBase}data/route-points.geojson`).then((r) => r.json()),
-  ]);
-  routeStops = withCoordinates(parseCsv(routeCsv) as RouteStop[], geojson.features as GeoPoint[]);
-  attractions = parseCsv(attractionCsv) as Attraction[];
-  render();
-  requestAnimationFrame(tick);
-}
-
-function tick() {
-  if (playing && !reduceMotion && routeStops.length) {
-    routeProgress = (routeProgress + 0.0008) % 1;
-    selectedStop = Math.round(routeProgress * (routeStops.length - 1));
-    renderCanvas();
+  try {
+    restoreReadingSet("journey-journal-saved-places", savedAttractions);
+    restoreReadingSet("journey-journal-completed-moments", completedMoments);
+    const [routeText, geoResponse] = await Promise.all([
+      fetch(`${assetBase}data/route-stops.csv`).then((response) => {
+        if (!response.ok) throw new Error(`Route data ${response.status}`);
+        return response.text();
+      }),
+      fetch(`${assetBase}data/route-points.geojson`).then((response) => {
+        if (!response.ok) throw new Error(`Route geometry ${response.status}`);
+        return response.json();
+      }),
+    ]);
+    const features = ((geoResponse as { features?: GeoPoint[] }).features ?? []);
+    routeStops = withCoordinates(parseCsv(routeText) as unknown as RouteStop[], features);
+    compileJourney(planner);
+    render();
+  } catch (error) {
+    app.innerHTML = `<main class="load-error"><i class="ph ph-warning-circle" aria-hidden="true"></i><h1>Journey data could not be loaded</h1><p>${html(error instanceof Error ? error.message : "Unknown error")}</p></main>`;
   }
-  requestAnimationFrame(tick);
 }
 
-window.addEventListener("resize", renderCanvas);
-load().catch((error) => {
-  app.innerHTML = `<main class="error"><h1>Travel guide failed to load</h1><pre>${html(String(error))}</pre></main>`;
-});
+void load();
