@@ -121,7 +121,8 @@ const copy = {
     next: "Next day",
     day: "Day",
     days: "days",
-    bases: "bases",
+    bases: "cities",
+    countries: "countries",
     compiled: "Trip compiled from approved regional content.",
     saved: "Draft saved on this device.",
     downloaded: "Itinerary downloaded.",
@@ -170,7 +171,8 @@ const copy = {
     next: "后一天",
     day: "第",
     days: "天",
-    bases: "个基地",
+    bases: "个城市",
+    countries: "个国家",
     compiled: "已使用审核通过的区域内容生成行程。",
     saved: "草稿已保存在本设备。",
     downloaded: "行程已下载。",
@@ -221,14 +223,16 @@ const nearbyImageById: Record<string, string> = {
   "amsterdam-canal-cruise-damrak": "canal-belt.png",
 };
 
+const defaultPlanner: Planner = { duration: 120, theme: "autumn", pace: "relaxed", style: "grand_tour", language: "en" };
+
 let routeStops: RouteStop[] = [];
-let planner: Planner = { duration: 3, theme: "first_time_classic", pace: "relaxed", style: "classic_cultural", language: "en" };
+let planner: Planner = { ...defaultPlanner };
 let compiledPlanner: Planner = { ...planner };
 let product: CompilerProduct | undefined;
 let journeyBases: JourneyBase[] = [];
 let journalDays: JournalDay[] = [];
-let selectedDayIndex = 2;
-let viewMode: "journal" | "overview" = "journal";
+let selectedDayIndex = 0;
+let viewMode: "journal" | "overview" = "overview";
 let mapExpanded = false;
 let planDirty = false;
 let statusMessage = "";
@@ -308,10 +312,14 @@ function withCoordinates(stops: RouteStop[], features: GeoPoint[]) {
 
 function findRouteStop(value: string) {
   const needle = normalizePlace(value);
+  const exact = routeStops.find((stop) =>
+    normalizePlace(stop.Map_Name) === needle || normalizePlace(stop.Location) === needle,
+  );
+  if (exact) return exact;
   return routeStops.find((stop) => {
     const name = normalizePlace(stop.Map_Name);
     const location = normalizePlace(stop.Location);
-    return name === needle || name.includes(needle) || needle.includes(name) || location.includes(needle);
+    return name.includes(needle) || needle.includes(name) || location.includes(needle);
   });
 }
 
@@ -319,10 +327,13 @@ function buildLongDurationProduct(nextPlanner: Planner) {
   const routeNames = routeStops
     .filter((stop) => typeof stop.lat === "number" && typeof stop.lng === "number")
     .map((stop) => stop.Map_Name)
-    .filter((name, index, names) => names.findIndex((candidate) => normalizePlace(candidate) === normalizePlace(name)) === index);
+    .filter((name, index, names) => names.indexOf(name) === index);
   if (!routeNames.length) return undefined;
 
-  const baseCount = Math.min(routeNames.length, Math.max(1, Math.ceil(nextPlanner.duration / 3)));
+  const longestDuration = Math.max(...compilerData.duration_options_days);
+  const baseCount = nextPlanner.duration === longestDuration
+    ? routeNames.length
+    : Math.min(routeNames.length, Math.max(1, Math.ceil(nextPlanner.duration / 3)));
   const bases = Array.from({ length: baseCount }, (_, index) => {
     if (baseCount === 1) return routeNames[0];
     return routeNames[Math.round(index * (routeNames.length - 1) / (baseCount - 1))];
@@ -360,8 +371,8 @@ function makeJourneyBase(name: string, allocation: number): JourneyBase | undefi
   const lng = v2?.anchor.longitude ?? route?.lng;
   if (typeof lat !== "number" || typeof lng !== "number") return undefined;
   return {
-    name: v2?.name ?? route?.Map_Name ?? name,
-    country: v2?.country ?? route?.Country ?? "Europe",
+    name: route?.Map_Name ?? v2?.name ?? name,
+    country: route?.Country ?? v2?.country ?? "Europe",
     allocation,
     route,
     v2,
@@ -423,6 +434,10 @@ function dateParts(index: number, language = planner.language) {
 
 function uniqueJourneyBases() {
   return journeyBases.filter((base, index, list) => index === list.findIndex((item) => item.name === base.name));
+}
+
+function uniqueJourneyCountries() {
+  return journeyBases.filter((base, index, list) => index === list.findIndex((item) => item.country === base.country));
 }
 
 function haversineMiles(a: JourneyBase, b: JourneyBase) {
@@ -785,7 +800,7 @@ function overviewContent() {
   return `
     <section class="overview-panel" aria-labelledby="overview-title">
       <p class="kicker">${html(product?.id.replaceAll("-", " ") ?? "compiled journey")}</p>
-      <h1 id="overview-title">${journalDays.length} ${html(text.days)} · ${uniqueJourneyBases().length} ${html(text.bases)}</h1>
+      <h1 id="overview-title">${journalDays.length} ${html(text.days)} · ${uniqueJourneyBases().length} ${html(text.bases)} · ${uniqueJourneyCountries().length} ${html(text.countries)}</h1>
       <p class="story-lead">${html(product?.summary_cn ?? compilerData.duration_scope_rules[String(compiledPlanner.duration)] ?? "")}</p>
       <div class="overview-days">
         ${journalDays.map((day) => {
@@ -793,7 +808,7 @@ function overviewContent() {
           const first = day.base.v2?.five_star?.[0];
           return `<button data-day-index="${day.index}" class="overview-day">
             <span>${day.dayNumber}</span>
-            <div><strong>${html(day.base.name)}</strong><small>${html(date.monthDay)} · ${html(first ? attractionName(first) : copy[planner.language].arrival)}</small></div>
+            <div><strong>${html(day.base.name)}</strong><small>${html(day.base.country)} · ${html(date.monthDay)} · ${html(first ? attractionName(first) : copy[planner.language].arrival)}</small></div>
             <i class="ph ph-arrow-right" aria-hidden="true"></i>
           </button>`;
         }).join("")}
@@ -1072,8 +1087,9 @@ function bindInteractions() {
   document.querySelector("#compile-top")?.addEventListener("click", compile);
   document.querySelector("#compile-bottom")?.addEventListener("click", compile);
   document.querySelector("#reset-plan")?.addEventListener("click", () => {
-    planner = { duration: 3, theme: "first_time_classic", pace: "relaxed", style: "classic_cultural", language: planner.language };
+    planner = { ...defaultPlanner, language: planner.language };
     compileJourney(planner);
+    viewMode = "overview";
     render();
   });
   document.querySelector("#expand-map")?.addEventListener("click", () => {
